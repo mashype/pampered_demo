@@ -13,3 +13,12 @@ test:
   pool: 5
   username: mashype
   password:
+
+production:
+  database: <%= ENV["DATABASE_NAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  host: ec2-54-235-102-235.compute-1.amazonaws.com
+
+
+
