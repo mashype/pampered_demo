@@ -1,12 +1,88 @@
-Welcome to PamperedUp...
+#banner
+	.banner_content
+		= link_to image_tag('fitchlogo_center.png'), root_path, id: "logo"
+		%br/
+		%br/
+		%tag Don't you deserve it
+		%br/
+		%br/
+		%br/
+		.col-sm-4.col-sm-offset-4
+			= link_to "Book a session now", new_user_registration_path, class: "button"
+			%h2 BETA MODE
 
-Lets Get pampered up now...
-
-Get your own private professional on your terms
 
 
-Massage
-Housecleaning
-Hair Styling
-Manicures
-Pet Grooming
+#sample
+	.row
+		.col-md-6
+			%h1 Massage
+			%p Get certified masseurs right in your home for amazing massages
+		.col-md-6
+			= image_tag "massage.jpg", class: "img-circle"
+	.row
+		.col-md-6
+			= image_tag "hair.jpg", class: "img-circle"
+		.col-md-6
+			%h1 Stylists
+			%p Get licensed stylists into your home for hair and nail services
+	.row
+		.col-md-6
+			%h1 Home
+			%p Get support for your home with cooking and cleaning services.
+		.col-md-6
+			= image_tag "chef.jpg", class: "img-circle"
+
+
+
+#callouts
+	.wrapper
+		.row
+			.col-sm-4
+				%i.fa.fa-sign-in
+				%h2= link_to "Sign Up", new_user_registration_path
+				%p It just takes a few moments to create a username to access all of our partners.
+
+			.col-sm-4
+				%i.fa.fa-certificate
+				%h2 Create Profile
+				%p Just tell us the what you're interested in so we can tailor sessions to you.
+
+			.col-sm-4
+				%i.fa.fa-users
+				%h2 Connect
+				%p Create workouts to let people find you, or search for active workouts in your area to find partners.
+
+
+
+
+
+
+
+
+
+#testimonial
+	.wrapper
+		%p.quote "Where have you been all my life!  You make it so simple to get things that I never thought I could get done.  Love it!"
+		%p.name - Diane A.
+
+
+
+				
+#bottom_cta
+	.wrapper
+		%h2 Why are you not already signed up?  
+		%br/
+		.row
+			.col-sm-8.col-sm-offset-2
+				%p Checkout  offerings in your area whenever you need to, and there is never any cost or committment to use us.  Pampered lets you book massages, manicures, pilates sessions and others right in the comfort of your own home.
+				%p Its easy to create an account and find great partners in your area today!
+		%br/
+		.row
+			.col-sm-4.col-sm-offset-4
+				= link_to "View Our Partners", appointments_path, class: "button"
+		%br
+		%br
+
+		%h2 PAMPERED IS STILL IN BETA TESTING... 
+		%h2 SO PLEASE LET US KNOW YOUR THOUGHTS

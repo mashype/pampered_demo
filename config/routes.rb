@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  resources :services
   resources :appointments
 
+	devise_for :users, controllers: { registrations: "registrations" }
 
   get 'welcome/index'
  

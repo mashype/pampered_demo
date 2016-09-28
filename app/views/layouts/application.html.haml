@@ -1,29 +1,106 @@
 !!! 5
+
 %html
 %head
-	%title PamperedUp
+
 	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
 	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+	%link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+	%meta{:content => "initial-scale = 1.0,maximum-scale = 1.0", :name => "viewport"}/
+	= display_meta_tags
 	= csrf_meta_tags
+
 %body
-	%nav.navbar.navbar-default
-		.container
-			.navbar-brand= link_to "PamperedUp", root_path
+	%nav.navbar.navbar-inverse.navbar-fixed-top
+		.container-fluid
+			.navbar-header
+				%button.navbar-toggle{"data-target" => "#myNavbar", "data-toggle" => "collapse", :type => "button"}
+					%span.icon-bar
+					%span.icon-bar
+					%span.icon-bar
+				%a.navbar-brand
+				= link_to image_tag('pampedlogo.png'), root_path
+			#myNavbar.collapse.navbar-collapse
+				%ul.nav.navbar-nav
+					%li.active
+						=link_to "Home", root_path
+					%li
+						=link_to "Blog", root_path					
+					%li.dropdown
+						%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+							About
+							%span.caret
+						%ul.dropdown-menu
+							%li
+								=link_to "View Trainers", root_path	
+							%li
+								=link_to "Who Is Fitchike", root_path	
 
-			- if user_signed_in?
+					- if user_signed_in?
+
+						%li.dropdown	
+							%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+								Messages	
+								%span.caret
+							%ul.dropdown-menu
+								%li
+									= link_to "View Messages", root_path
+								%li
+									= link_to "New Message", root_path	
+
+
 				%ul.nav.navbar-nav.navbar-right
-					%li= link_to "Appointments", appointments_path
-					%li= link_to "Sign Out", destroy_user_session_path, method: :delete		
+					- if user_signed_in?
 
-			-else		
-				%ul.nav.navbar-nav.navbar-right
-					%li= link_to "Sign Up", new_user_registration_path 
-					%li= link_to "Sign In", new_user_session_path 
+						%li.dropdown	
+							%a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+								Account	
+								%span.caret
+							%ul.dropdown-menu
+								%li
+									= link_to "Change Password", edit_user_registration_path		
 
+						%li
+							= link_to destroy_user_session_path, method: :delete do
+								%span.glyphicon.glyphicon-user 
+								Sign Out
 
+					- else
+						%li
+							= link_to new_user_registration_path do
+								%span.glyphicon.glyphicon-user
+								Sign Up	
+								
+						%li
+							= link_to new_user_session_path do
+								%span.glyphicon.glyphicon-log-in
+								Login								
+
+	- flash.each do |key, value|
+		%div{:class => "alert alert-#{key}"}
+			= value
+	= yield
+
+%nav.navbar.navbar-default.navbar-fixed-bottom
 	.container
-		-flash.each do |name, msg|
-			=content_tag :div, msg, class: "alert"
-		= yield
-
-
+		.navbar-header
+			%button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+				%span.sr-only Toggle navigation
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar
+		#bs-example-navbar-collapse-1.collapse.navbar-collapse
+			%ul.nav.navbar-nav
+				%li
+					= link_to "Twitter", "http://www.twitter.com/getyourpamp", :target => "_blank" 
+					%span.sr-only (current)
+				%li
+					= link_to "Facebook", "http://www.facebook.com/pamperedup", :target => "_blank" 
+				%li
+					= link_to "Instagram", "http://www.instagram.com/getyourpamp", :target => "_blank" 
+				%li
+					=link_to "Terms Of Use", root_path	
+				%li
+					= mail_to "getyourpamp@gmail.com", "Contact", subject: "Pampered Contact Request"					
+			%p.navbar-text.navbar-right
+				&copy; LeftySeth Designs 2016                    

@@ -1,0 +1,25 @@
+
+= simple_form_for @appointment, html: { multipart: true } do |f|
+  - if @appointment.errors.any?
+    #errors
+      %p
+        = @appointment.errors.count
+        Prevented this appointment from saving
+      %ul
+        - @appointment.errors.full_message.each do |msg|
+          %li= msg
+
+  .form-style-6
+    %form
+      %fieldset
+        %legend
+          %span.number 1
+          User Info
+        = f.association :service, label_method: :title,  value_method: :id, include_blank: false
+        = f.association :user, label_method: :username,  value_method: :id, include_blank: false
+        = f.input :title, label: "Title", hint: 'Do you want to hide your profile?'
+        = f.input :description, label: "Description", hint: 'Do you want to train clients?'
+      %br/
+
+
+    %input{:type => "submit", :value => "Complete Profile"}/
