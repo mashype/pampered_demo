@@ -19,22 +19,22 @@
 					%span.icon-bar
 					%span.icon-bar
 				%a.navbar-brand
-				= link_to image_tag('pampedlogo.png'), root_path
+				= link_to image_tag('pampered_header.png'), root_path
 			#myNavbar.collapse.navbar-collapse
 				%ul.nav.navbar-nav
 					%li.active
 						=link_to "Home", root_path
 					%li
-						=link_to "Appoin", root_path					
+						=link_to "Appointment", root_path					
 					%li.dropdown
 						%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
 							About
 							%span.caret
 						%ul.dropdown-menu
 							%li
-								=link_to "View Trainers", root_path	
+								=link_to "About PamperedUp", welcome_about_path	
 							%li
-								=link_to "Who Is Fitchike", root_path	
+								=link_to "FAQ", welcome_faq_path	
 
 					- if user_signed_in?
 
@@ -58,7 +58,7 @@
 								%span.caret
 							%ul.dropdown-menu
 								%li
-									= link_to "Change Password", edit_user_registration_path		
+									= link_to "Edit Profile", edit_user_registration_path		
 								%li
 									= link_to "Create Appointment", new_appointment_path		
 						%li
@@ -100,7 +100,7 @@
 				%li
 					= link_to "Instagram", "http://www.instagram.com/getyourpamp", :target => "_blank" 
 				%li
-					=link_to "Terms Of Use", root_path	
+					=link_to "Terms Of Use", welcome_terms_path	
 				%li
 					= mail_to "getyourpamp@gmail.com", "Contact", subject: "Pampered Contact Request"					
 			%p.navbar-text.navbar-right
