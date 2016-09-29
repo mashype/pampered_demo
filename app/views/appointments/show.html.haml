@@ -1,0 +1,30 @@
+
+
+
+#appointment_show
+	.wrapper_with_padding
+		.container-fluid
+			.row
+				.col-md-5
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.user.avatar.url(:medium)}/
+				.col-md-7
+					%table.table
+						%tbody
+							%tr
+								%td
+									%strong Username:
+								%td= @appointment.user.username
+							%tr
+								%td
+									%strong Gender:
+								%td= @appointment.user.gender.gender 
+	
+			.row
+				.col-md-12 
+					%br/
+					%h2 APPOINTMENT DESCRIPTION
+					%p= @appointment.description
+					%br/
+
+%p= link_to 'Edit', edit_appointment_path(@appointment) |
+%p= link_to 'Back', appointments_path

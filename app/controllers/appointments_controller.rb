@@ -5,6 +5,10 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   def index
     @appointments = Appointment.all
+     
+    @nails = Appointment.where(service_id: '1')  
+    @massages = Appointment.where(service_id: '2')  
+    @homes = Appointment.where(service_id: '3') 
 
   end
 

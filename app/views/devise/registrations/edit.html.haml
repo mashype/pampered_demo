@@ -15,7 +15,7 @@
         = f.input :password, autocomplete: "off", placeholder: "password", hint: "leave it blank if you don't want to change it", required: false, label: false
         %br/
         = f.input :password_confirmation, placeholder: "re-enter password", required: false, label: false   
-        = f.input :gender
+        = f.association :gender, label_method: :gender,  value_method: :id, include_blank: false
         = f.input :bio  
         = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
         = image_tag current_user.avatar.url(:medium)

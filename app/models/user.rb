@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_many :appointments
+  belongs_to :gender
 
 end
