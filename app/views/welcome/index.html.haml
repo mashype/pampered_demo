@@ -1,38 +1,34 @@
 #banner
 	.banner_content
-		%br
-		%br
-		= link_to image_tag('pampered_center.png'), root_path, id: "logo"
-		%br/
-		%br/
+		= link_to image_tag('pampered_center.png'), root_path, id: "logo", class: "img-responsive"
 		%br/
 		.col-sm-4.col-sm-offset-4
 			= link_to "Book a session now", new_user_registration_path, class: "button"
 			%br
 			%br
-			%h2 BETA MODE
+			%h1 BETA MODE
 			%br
 
 
 
 #sample
 	.row
-		.col-md-6
+		.col-xs-8
 			%h1 Massage
 			%p Get certified masseurs right in your home for amazing massages
-		.col-md-6
+		.col-xs-4
 			= image_tag "massage.jpg", class: "img-circle"
 	.row
-		.col-md-6
+		.col-xs-4
 			= image_tag "hair.jpg", class: "img-circle"
-		.col-md-6
+		.col-xs-8
 			%h1 Stylists
 			%p Get licensed stylists into your home for hair and nail services
 	.row
-		.col-md-6
+		.col-xs-8
 			%h1 Home
 			%p Get support for your home with cooking and cleaning services.
-		.col-md-6
+		.col-xs-4
 			= image_tag "chef.jpg", class: "img-circle"
 
 
