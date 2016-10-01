@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :amounts
   resources :genders
   resources :services
   resources :appointments

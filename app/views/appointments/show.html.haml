@@ -1,47 +1,48 @@
-
-
-
 #appointment_show
 	.wrapper_with_padding
 		.container-fluid
 			.row
 				.col-md-5
-					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.user.avatar.url(:medium)}/
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.user.avatar.url(:medium)}
+					- if @appointment.user_id == current_user					
+						.row
+							.col-md-12
+								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
+					- else user_signed_in?
+						.row
+							.col-md-6
+								= link_to "Review Me", "#", class: "button"	
+							.col-md-6
+								= link_to "Book", "#", class: "button"					
 				.col-md-7 
-					%table.table
-						- if @appointment.user_id == current_user
-							.row
-								.col-md-12
-									= link_to "Edit Profile", edit_appointment_path(@appointment), class: "button"	
-						- else user_signed_in?
-							.row
-								.col-md-6
-									= link_to "Review Me", "#", class: "button"	
-								.col-md-6
-									= link_to "Book", "#", class: "button"
-						%br	
-
-						%tbody
-							%tr
-								%td
-									%strong Username:
-								%td= @appointment.user.username
-							%tr
-								%td
-									%strong Gender:
-								%td= @appointment.user.gender.gender 
-							%tr
-								%td
-									%strong Bio:
-								%td= @appointment.user.bio 
-
-	
-			.row
-				.col-md-12 
-					%br/
-					%h2 APPOINTMENT DESCRIPTION
-					%p= @appointment.description
-					%br/
-
-%p= link_to 'Edit', edit_appointment_path(@appointment) |
-%p= link_to 'Back', appointments_path
+					#appointment_demo
+						%table.table
+							%tbody
+								%tr
+									%td
+										%strong Title:
+									%td= @appointment.title
+								%tr
+									%td
+										%strong Price:
+									%td= number_to_currency(@appointment.amount.cost, unit:"$")
+								%tr
+									%td
+										%strong Username:
+									%td= @appointment.user.username
+								%tr
+									%td
+										%strong Gender:
+									%td= @appointment.user.gender.gender 
+								%tr
+									%td
+										%strong Bio:
+									%td= @appointment.user.bio 
+			%br
+			#appointment_description
+				.row
+					.col-md-12 
+						%br/
+						%h2 APPOINTMENT DESCRIPTION
+						%p= @appointment.description
+						%br/

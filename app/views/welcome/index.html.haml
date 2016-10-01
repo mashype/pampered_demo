@@ -1,6 +1,6 @@
 #banner
 	.banner_content
-		= link_to image_tag('pampered_center.png'), root_path, id: "logo", class: "img-responsive"
+		= link_to image_tag('pampered_center.png'), root_path, class: "img-responsive"
 		%br/
 		.col-sm-4.col-sm-offset-4
 			= link_to "Book a session now", new_user_registration_path, class: "button"
@@ -8,48 +8,53 @@
 			%br
 			%h1 BETA MODE
 			%br
+			%br
 
 
 
 #sample
-	.row
-		.col-xs-8
-			%h1 Massage
-			%p Get certified masseurs right in your home for amazing massages
-		.col-xs-4
-			= image_tag "massage.jpg", class: "img-circle"
-	.row
-		.col-xs-4
-			= image_tag "hair.jpg", class: "img-circle"
-		.col-xs-8
-			%h1 Stylists
-			%p Get licensed stylists into your home for hair and nail services
-	.row
-		.col-xs-8
-			%h1 Home
-			%p Get support for your home with cooking and cleaning services.
-		.col-xs-4
-			= image_tag "chef.jpg", class: "img-circle"
+	.wrapper
+		.row
+			.col-xs-8
+				%h1 Massage
+				%p Whether you are looking for a hot stone massage to calm your nerves, a deep tissue treatment to work out sore muscles or a simple swedish massage to relax after a busy day, we've got experts that can get you what you are looking for.
+			.col-xs-4
+				%br
+				= image_tag "massage.jpg", class: "img-circle"
+		.row
+			.col-xs-4
+				%br
+				= image_tag "hair.jpg", class: "img-circle"
+			.col-xs-8
+				%h1 Stylists
+				%p Why bother waiting for an appointment at a salon when you can get amazing treatment in the comfort of your own howe.  Our professionals can give you a great cut, color and style.  Schedule a manicure or a full service treatment.
+		.row
+			.col-xs-8
+				%h1 Home
+				%p Don't kill yourself trying to get everything ready on top of your super busy schedule.  Bring in a private chef to cook amazing dinners without breaking the back.  Find an amazing housecleaner or dog walker so you can spend your time doing what you really want.
+			.col-xs-4
+				%br
+				= image_tag "chef.jpg", class: "img-circle"
 
 
 
 #callouts
-	.wrapper
+	.wrapper_with_padding
 		.row
 			.col-sm-4
-				%i.fa.fa-sign-in
-				%h2= link_to "Sign Up", new_user_registration_path
-				%p It just takes a few moments to create a username to access all of our partners.
+				%i.fa.fa-clock-o
+				%h2= link_to "Save Time", new_user_registration_path
+				%p It literally just take a minute to book a service with Pampered Up
 
 			.col-sm-4
-				%i.fa.fa-certificate
-				%h2 Create Profile
-				%p Just tell us the what you're interested in so we can tailor sessions to you.
+				%i.fa.fa-money
+				%h2 Save Money
+				%p We dont have the overhead of traditional providers so we can pass that savings on to you.
 
 			.col-sm-4
-				%i.fa.fa-users
-				%h2 Connect
-				%p Create workouts to let people find you, or search for active workouts in your area to find partners.
+				%i.fa.fa-venus-mars
+				%h2 Get Pampered
+				%p Your deserve it, treat yourself to something amazing!
 
 				
 #bottom_cta

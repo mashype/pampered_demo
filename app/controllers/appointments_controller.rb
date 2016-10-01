@@ -1,33 +1,26 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
-  # GET /appointments
-  # GET /appointments.json
   def index
-    @appointments = Appointment.all
-     
-    @nails = Appointment.where(service_id: '1')  
-    @massages = Appointment.where(service_id: '2')  
-    @homes = Appointment.where(service_id: '3') 
+    if params[:service].blank?
+      @appointments = Appointment.all.order("created_at DESC")
+    else
+      @service_id = Service.find_by(title: params[:service]).id
+      @appointments = Appointment.where(service_id: @service_id).order("created_at DESC")
+    end
 
   end
 
-  # GET /appointments/1
-  # GET /appointments/1.json
   def show
   end
 
-  # GET /appointments/new
   def new
     @appointment = Appointment.new
   end
 
-  # GET /appointments/1/edit
   def edit
   end
 
-  # POST /appointments
-  # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
 
@@ -42,8 +35,6 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /appointments/1
-  # PATCH/PUT /appointments/1.json
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
@@ -56,8 +47,6 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # DELETE /appointments/1
-  # DELETE /appointments/1.json
   def destroy
     @appointment.destroy
     respond_to do |format|
@@ -67,13 +56,12 @@ class AppointmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:title, :description, :user_id, :service_id)
+      params.require(:appointment).permit(:title, :description, :user_id, :service_id, :amount_id)
     end
 end

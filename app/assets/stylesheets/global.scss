@@ -1,13 +1,15 @@
 $dark_gray: #2B2E2E;
 $light_gray: #C0C1C1;
-$blue: #0B5BAE;
 $purple: #652384;
 $gold: #CDA60D;
+$lt_green: #14CC73;
+
+$blue: #0B5BAE;
 $light_blue: #109177;
 $red: #B11322;
 
 @mixin bold_font {
-    font-family: "Brandon Grotesque","Helvetica Neue", Helvetica, sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -18,7 +20,7 @@ $red: #B11322;
 }
 
 body {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+    font-family: 'Lato', sans-serif;
     padding-top: 60px;
     padding-bottom: 60px;
   }
