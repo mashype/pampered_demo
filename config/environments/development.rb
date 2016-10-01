@@ -47,8 +47,9 @@ Rails.application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'pampered-dev',
-      :s3_credentials => "#{Rails.root}/config/aws.yml",
+      :s3_credentials => "/config/aws.yml",
     }
   }
+
 
 end

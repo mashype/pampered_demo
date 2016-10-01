@@ -1,17 +1,14 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LeftySeth Productions / PamperedUp
 
-Things you may want to cover:
+Web app created to connect service providers with clients efficiently.
+________________________________________
 
-* Ruby version
+* Ruby version launched on v 2.3
 
-* System dependencies
+* Database creation on AWS using POSTGres.  
 
-* Configuration
-
-* Database creation
 
 * Database initialization
 
@@ -22,7 +19,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
