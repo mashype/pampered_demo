@@ -15,12 +15,12 @@
                     %h2= appointment.title
                   .panel-body
                     .col-xs-4
-                      %img.img-circle.center-block{alt: "Profile Picture", src: appointment.user.avatar.url(:thumb)}/
+                      %img.img-circle.center-block{alt: "Profile Picture", src: appointment.vendor.user.avatar.url(:thumb)}/
                     .col-xs-8
                       %p= appointment.description
                   .panel-footer
                     .stars
-                      %p= appointment.user.username
+                      %p= appointment.vendor.user.username
                       %p= appointment.title
                       %p= appointment.amount.cost
   

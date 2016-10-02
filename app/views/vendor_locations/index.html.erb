@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Vendor Locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vendor</th>
+      <th>Location</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vendor_locations.each do |vendor_location| %>
+      <tr>
+        <td><%= vendor_location.vendor_id %></td>
+        <td><%= vendor_location.location_id %></td>
+        <td><%= vendor_location.notes %></td>
+        <td><%= link_to 'Show', vendor_location %></td>
+        <td><%= link_to 'Edit', edit_vendor_location_path(vendor_location) %></td>
+        <td><%= link_to 'Destroy', vendor_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vendor location', new_vendor_location_path %>

@@ -65,10 +65,15 @@
 								Account	
 								%span.caret
 							%ul.dropdown-menu
+
 								%li
-									= link_to "Edit Profile", edit_user_registration_path		
-								%li
-									= link_to "Create Appointment", new_appointment_path		
+									= link_to "User Account", edit_user_registration_path		
+								- if user_signed_in? && Vendor.exists?(user_id: current_user)	
+									%li
+										= link_to "Vendor Profile", vendor_path(current_user.vendor.id)		
+									%li
+										= link_to "Create Appointment", new_appointment_path		
+
 						%li
 							= link_to destroy_user_session_path, method: :delete do
 								%span.glyphicon.glyphicon-user 

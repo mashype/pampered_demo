@@ -1,0 +1,91 @@
+#profile_show
+	.wrapper_with_padding
+		.container-fluid
+			.row
+				.col-md-5
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}/
+				.col-md-7
+				%br
+					#profile_demo
+						%table.table
+							- if @vendor.id == current_user.vendor.id
+								.row
+									.col-md-12
+										= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
+							- else user_signed_in?
+								.row
+									.col-md-6
+										= link_to "Review Me", root_path, class: "button"	
+									.col-md-6
+										= link_to "Message Me", root_path(to: @vendor.user.id), class: "button"	
+							%br
+
+							%tbody
+								%tr
+									%td
+										%strong Username:
+									%td= @vendor.user.username
+								%tr
+									%td
+										%strong Business:
+									%td= @vendor.name
+	
+			.row
+				.col-md-12 
+					%br/
+					%h2 PROFILE BIO
+					%p= @vendor.bio
+					%br/
+			.row	
+				.col-md-12
+				- if user_signed_in?
+					/ Nav tabs
+					%ul.nav.nav-tabs{:role => "tablist"}
+						%li.active{:role => "presentation"}
+							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
+	
+						
+					/ Tab panes
+					.tab-content
+
+						#locations.tab-pane{:role => "tabpanel"}
+							%table.table.table-hover
+								%thead
+									%tr
+										%th
+										%th Address 1
+										%th Address 2
+										%th City
+										%th State
+										%th Zip
+										%th Location Type
+										%th{:colspan => "7"}
+								%tbody
+									- @vendor.vendor_locations.each do |vendor_locations|
+										%tr
+											%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{vendor_locations.location.latitude}%2C#{vendor_locations.location.longitude}"
+											%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
+											%td= vendor_locations.location.add_2								
+											%td= vendor_locations.location.city
+											%td= vendor_locations.location.state
+											%td= vendor_locations.location.zip		
+
+						#appointment.tab-pane.active{:role => "tabpanel"} 
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Title
+										%th Description
+										%th Amount
+										%th View
+										%th{:colspan => "4"}
+								%tbody
+									- @appointments.each do |appointment|
+										%tr
+											%td= appointment.title
+											%td= appointment.description
+											%td= appointment.amount.cost
+											%td= link_to 'View', appointment_path(appointment)
+

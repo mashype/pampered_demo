@@ -1,0 +1,40 @@
+= simple_form_for @vendor, html: { multipart: true } do |f|
+  - if @vendor.errors.any?
+    #errors
+      %p
+        = @vendor.errors.count
+        Prevented this appointment from saving
+      %ul
+        - @vendor.errors.full_message.each do |msg|
+          %li= msg 
+
+  .form-style-6
+    %form
+      %fieldset
+        %legend
+          %span.number 1
+          User Info
+        = f.association :user, label_method: :username,  value_method: :id, include_blank: false      
+        = f.input :name, label: "Vendor Name"
+        = f.input :bio, label: "Bio"
+        = image_tag @vendor.avatar.url(:medium)
+        = f.input :avatar, input_html: { class: 'form-control'}
+      %br/
+
+      %br/
+      %h2 COMPLETE YOUR PROFILE 
+
+      %fieldset#vendor-locations
+        %ol
+          %legend
+            %span.number 3
+            Where do you normally workout?
+          = f.simple_fields_for :vendor_locations do |vendorlocation|
+            = render 'vendor_location_fields', f: vendorlocation
+        = link_to_add_association 'Add Additional Locations', f, :vendor_locations, class: "btn btn-default add-button", 'data-association-insertion-node' => "#vendor-locations ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|vendor_location| vendor_location.build_location; vendor_location }		
+
+
+
+
+
+    %input{:type => "submit", :value => "Complete Vendor Profile"}/

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :locations
+  resources :vendor_locations
+  resources :vendors
   resources :amounts
   resources :genders
   resources :services

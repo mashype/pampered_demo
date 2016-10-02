@@ -1,0 +1,2 @@
+module VendorLocationsHelper
+end

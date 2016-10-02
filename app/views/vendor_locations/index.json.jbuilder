@@ -1,0 +1,1 @@
+json.array! @vendor_locations, partial: 'vendor_locations/vendor_location', as: :vendor_location
