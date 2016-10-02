@@ -1,0 +1,26 @@
+.wrapper_with_padding
+	.table-responsive
+		%table.table
+			%tbody
+				.row
+					%tr
+						.col-md-4
+						%td
+							= link_to image_tag('pampered_header.png'), root_path, id: "logo"
+						.col-md-8
+						%td
+							%h1 Confirm Your Appointment Now
+				.row
+					%tr		
+						%td
+							%strong TRAINER:
+						%td= @appointment.user.username 	
+					%tr
+						%td
+							%strong TOTAL PRICE:
+						%td= number_to_currency(@appointment.amount.cost, unit:"$")
+
+				%tr
+					%td
+						= render 'form'
+						= link_to 'Cancel Request', appointment_path(@appointment)

@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :amounts
   resources :genders
   resources :services
-  resources :appointments
+  resources :charges
+
+  resources :appointments do
+    resources :bookings
+  end
 
 	devise_for :users, controllers: { registrations: "registrations" }
 

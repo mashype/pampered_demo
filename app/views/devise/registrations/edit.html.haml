@@ -1,29 +1,38 @@
-%br
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
-  .form-style-5
-    %form
-      %fieldset
-        %legend
-          %span.number 1
-          Edit Your User Record
-        = f.input :username, required: true, autofocus: true, :placeholder => "Create Username", label: false
-        = f.input :email, required: true, placeholder: "Email Address", label: false, autofocus: true
-        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          %p
-            Currently waiting confirmation for: #{resource.unconfirmed_email}
-        = f.input :password, autocomplete: "off", placeholder: "password", hint: "leave it blank if you don't want to change it", required: false, label: false
-        %br/
-        = f.input :password_confirmation, placeholder: "re-enter password", required: false, label: false   
-        = f.association :gender, label_method: :gender,  value_method: :id, include_blank: false
-        = f.input :bio  
-        = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
-        = image_tag current_user.avatar.url(:medium)
-        = f.input :avatar, input_html: { class: 'form-control'}
-      %input{:type => "submit", :value => "Update Record"}/
-      %fieldset
-        %legend
-          %span.number 2
+  #devise
+    .wrapper_with_padding
+      .row
+        %h2 Edit Your User Record
+        %br
+      .row
+        .col-md-4
+          %h3 Account Info
+          = f.input :username, required: true, autofocus: true, :placeholder => "Create Username", label: false
+          = f.input :email, required: true, placeholder: "Email Address", label: false, autofocus: true
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            %p
+              Currently waiting confirmation for: #{resource.unconfirmed_email}
+          %br    
+          = f.input :password, autocomplete: "off", placeholder: "password", hint: "leave it blank if you don't want to change it", required: false, label: false
+          = f.input :password_confirmation, placeholder: "re-enter password", required: false, label: false   
+          
+          
+          = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+
+        .col-md-4
+          %h3 Simple Bio
+          = f.input :bio, label: false
+          = f.association :gender, label_method: :gender,  value_method: :id, include_blank: false
+          
+        .col-md-4
+          %h3 Image
+          = image_tag current_user.avatar.url(:medium)
+          = f.input :avatar, input_html: { class: 'form-control'}
+       
+          %input{:type => "submit", :value => "Update Profile", class: 'btn btn-primary'}
+          %br
+          %br
           Unhappy?
           %br
           #{link_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure you want to cancel?" }, method: :delete}
