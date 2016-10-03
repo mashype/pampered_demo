@@ -1,7 +1,6 @@
 = simple_form_for([@appointment, @booking]) do |f|
   .form-style-5
     %form
-
     =f.input :appointment_id, :as => :hidden, :input_html => { :value => @appointment.id }
     =f.input :conf_temp, :label => "Notes to vendor"
 

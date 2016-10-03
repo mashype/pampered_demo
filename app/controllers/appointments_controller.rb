@@ -10,6 +10,18 @@ class AppointmentsController < ApplicationController
       @appointments = Appointment.where(service_id: @service_id).order("created_at DESC")
     end
 
+    if params[:search].present?
+      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+    else
+      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
+      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+    end
+
+    @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
+      marker.lat vendor_location.location.latitude
+      marker.lng vendor_location.location.longitude
+    end
   end
 
   def show

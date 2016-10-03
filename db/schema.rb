@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20161002201339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "cube"
+  enable_extension "earthdistance"
 
   create_table "amounts", force: :cascade do |t|
     t.integer  "cost"

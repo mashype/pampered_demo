@@ -24,4 +24,20 @@
                       %p= appointment.title
                       %p= appointment.amount.cost
   
-     
+        .row
+          .col-md-8.col-md-offset-2
+            %img{:style => "width: 100%;"}
+              #map{:style => "width: 100%; height: 400px;"} 
+            %p 
+            = form_tag appointments_path, :method => :get do
+              %p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
+              %p= submit_tag "Refresh Search", :search => nil
+              %br
+
+:javascript
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(#{raw @hash.to_json});
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
