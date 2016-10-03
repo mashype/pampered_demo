@@ -17,7 +17,7 @@ class VendorsController < ApplicationController
 
   # GET /vendors/new
   def new
-    @vendor = Vendor.new
+    @vendor = current_user.build_vendor
   end
 
   # GET /vendors/1/edit
@@ -27,7 +27,7 @@ class VendorsController < ApplicationController
   # POST /vendors
   # POST /vendors.json
   def create
-    @vendor = Vendor.new(vendor_params)
+    @vendor = current_user.build_vendor(vendor_params)
 
     respond_to do |format|
       if @vendor.save

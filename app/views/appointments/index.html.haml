@@ -3,9 +3,21 @@
 %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
 
 .wrapper_with_padding
-  #appointment_background
+  #appointment_index
     .panel.panel-default
       .panel-body
+        .row
+          .col-md-8.col-md-offset-2
+            %p 
+            = form_tag appointments_path, :method => :get do
+              .col-md-8
+                = text_field_tag :search, params[:search], placeholder: 'Update your search here...'
+              .col-md-4
+                = submit_tag "Refresh Search", :search => nil, class:'button'
+            %img{:style => "width: 100%;"}
+              #map{:style => "width: 100%; height: 400px;"} 
+
+
         .row
           #appointments.transitions-enabled
             - @appointments.each_with_index do |appointment, i|
@@ -15,7 +27,7 @@
                     %h2= appointment.title
                   .panel-body
                     .col-xs-4
-                      %img.img-circle.center-block{alt: "Profile Picture", src: appointment.vendor.user.avatar.url(:thumb)}/
+                      %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
                     .col-xs-8
                       %p= appointment.description
                   .panel-footer
@@ -24,15 +36,10 @@
                       %p= appointment.title
                       %p= appointment.amount.cost
   
-        .row
-          .col-md-8.col-md-offset-2
-            %img{:style => "width: 100%;"}
-              #map{:style => "width: 100%; height: 400px;"} 
-            %p 
-            = form_tag appointments_path, :method => :get do
-              %p= text_field_tag :search, params[:search], placeholder: 'Update your search here...'
-              %p= submit_tag "Refresh Search", :search => nil
-              %br
+
+
+           
+
 
 :javascript
   handler = Gmaps.build('Google');

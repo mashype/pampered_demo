@@ -3,12 +3,6 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:service].blank?
-      @appointments = Appointment.all.order("created_at DESC")
-    else
-      @service_id = Service.find_by(title: params[:service]).id
-      @appointments = Appointment.where(service_id: @service_id).order("created_at DESC")
-    end
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
@@ -17,6 +11,15 @@ class AppointmentsController < ApplicationController
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
       @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
     end
+
+
+    if params[:service].blank?
+      @appointments = Appointment.includes(:vendor).where vendor_id: @vendor_locations.select(:vendor_id)
+    else
+      @service_id = Service.find_by(title: params[:service]).id
+      @appointments = Appointment.includes(:vendor).where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id)).order("created_at DESC")
+    end
+
 
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude
@@ -75,6 +78,6 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:title, :description, :user_id, :service_id, :amount_id)
+      params.require(:appointment).permit(:title, :description, :vendor_id, :service_id, :amount_id)
     end
 end

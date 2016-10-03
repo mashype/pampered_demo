@@ -14,7 +14,6 @@
         %legend
           %span.number 1
           User Info
-        = f.association :user, label_method: :username,  value_method: :id, include_blank: false      
         = f.input :name, label: "Vendor Name"
         = f.input :bio, label: "Bio"
         = image_tag @vendor.avatar.url(:medium)
