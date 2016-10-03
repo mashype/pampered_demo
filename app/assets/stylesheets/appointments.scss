@@ -2,7 +2,8 @@
   margin: 0 auto;
   width: 100%;
   .box {
-	  background: $purple;
+	  background: $gold;
+	  padding: 2px;
 	  margin: 5px;
 	  width: 350px;
 	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
@@ -15,7 +16,7 @@
 	 	  text-align: left;
 	  }
 	  .panel-heading {
-	 	  background: $gold;
+	 	  background: $purple;
 	 	  padding: 5px; 
 	 	  text-align: left;
 	  }
@@ -42,14 +43,6 @@
 	  	color: white;
 			padding: 2px;
 			margin: 0;
-	  }
-
-	  .stars {
-	  	img {
-				width: 15px;	 	  
-				padding-left: 1px; 
-	 			padding-right: 1px;
-	  	}
 	  }
 	}
 }
@@ -123,7 +116,7 @@
 	}
 
 	img {
-		max-width: 100%;
+		max-width: 90%;
 		height: auto; 
 		display: block;
 		margin: auto;
