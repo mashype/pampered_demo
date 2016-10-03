@@ -1,25 +1,22 @@
-#profile_show
+#vendor_show
 	.wrapper_with_padding
 		.container-fluid
 			.row
 				.col-md-5
-					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}/
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}
+					%table.table
+						.row
+						- if @vendor.id == current_user.vendor.id
+							.col-md-12
+								= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
+						- else user_signed_in?
+							.col-md-6
+								= link_to "Review Me", root_path, class: "button"	
+							.col-md-6
+								= link_to "Message Me", root_path(to: @vendor.user.id), class: "button"						
 				.col-md-7
-				%br
-					#profile_demo
+					#vendor_demo
 						%table.table
-							- if @vendor.id == current_user.vendor.id
-								.row
-									.col-md-12
-										= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
-							- else user_signed_in?
-								.row
-									.col-md-6
-										= link_to "Review Me", root_path, class: "button"	
-									.col-md-6
-										= link_to "Message Me", root_path(to: @vendor.user.id), class: "button"	
-							%br
-
 							%tbody
 								%tr
 									%td
@@ -29,13 +26,11 @@
 									%td
 										%strong Business:
 									%td= @vendor.name
+								%tr
+									%td
+										%strong Bio:
+									%td= @vendor.bio									
 	
-			.row
-				.col-md-12 
-					%br/
-					%h2 PROFILE BIO
-					%p= @vendor.bio
-					%br/
 			.row	
 				.col-md-12
 				- if user_signed_in?
@@ -86,6 +81,6 @@
 										%tr
 											%td= appointment.title
 											%td= appointment.description
-											%td= appointment.amount.cost
+											%td= number_to_currency(appointment.amount.cost, unit:"$")
 											%td= link_to 'View', appointment_path(appointment)
 

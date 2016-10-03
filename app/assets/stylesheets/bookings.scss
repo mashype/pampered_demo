@@ -1,3 +1,28 @@
-// Place all the styles related to the Bookings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#booking {
+	img {
+    max-width: 100%;
+    height: auto; 
+    display: block;
+    margin: auto;
+    padding: 3px;
+    vertical-align: middle;
+  } 
+
+  h2 {
+  	@include bold_font;
+  	font-size: 2.5em;
+  	text-decoration: none;
+  	margin: 0;
+	  text-align: center;
+  	padding: 5px 5px;
+  	color: $purple;
+  }
+
+
+  button, .button {
+    padding: 1rem 3.5rem;
+    display: block;
+    width: 100%;
+    }
+
+}

@@ -1,22 +1,3 @@
-#appointment_background {
-
-	button, .button {
-		@include bold_font;
-		padding: 1rem 3.5rem;
-    font-size: 12px;
-		border: 2px solid $blue;
-		border-radius: .35rem;
-		}
-
-	button, .button:hover {
-  	color: $blue;
-  	background-color: white;
-  	border: 2px solid $blue;
-  	border-color: $blue;
-  }  
-
-}
-
 #appointments {
   margin: 0 auto;
   width: 100%;
@@ -76,7 +57,7 @@
 #appointment_demo {
 	background: $dark_gray;
 	color: white;
-	min-height: 350px;
+	min-height: 450px;
 	border-radius: 10px;
 	border: 6px solid $purple;
 	border-color: $purple;

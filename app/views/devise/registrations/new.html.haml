@@ -15,10 +15,6 @@
                   = f.input :email, required: true, :placeholder => "Email Address", label: false, type: "email"
                   = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), :placeholder => "Password", label: false, type: "text"
                   = f.input :password_confirmation, required: true, :placeholder => "Confirm Password", label: false
-                  = f.input :gender
-                  = f.input :bio  
-                  = f.input :avatar, input_html: { class: 'form-control'}
               %input{:type => "submit", :value => "Create Account"}/
-              %p By signing up with PamperedUp you agree to our 
-              %p=link_to "Terms of Use", root_path
-
+              %p By signing up with Pampered you agree to our 
+              %p=link_to "Terms of Use", welcome_terms_path

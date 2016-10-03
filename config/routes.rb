@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :charges
 
   resources :appointments do
-    resources :bookings
+    resources :bookings, except: [:index]
   end
 
 	devise_for :users, controllers: { registrations: "registrations" }

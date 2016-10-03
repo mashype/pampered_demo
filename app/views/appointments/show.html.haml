@@ -3,8 +3,8 @@
 		.container-fluid
 			.row
 				.col-md-5
-					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.user.avatar.url(:medium)}
-					- if @appointment.user_id == current_user					
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
+					- if @appointment.vendor.user_id == current_user		
 						.row
 							.col-md-12
 								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
@@ -13,7 +13,7 @@
 							.col-md-6
 								= link_to "Review Me", "#", class: "button"	
 							.col-md-6 
-								= link_to "Book Appointment", new_appointment_booking_path(@appointment), class: "button"				
+								= link_to "Book Now", new_appointment_booking_path(@appointment), class: "button"				
 				.col-md-7 
 					#appointment_demo
 						%table.table
@@ -29,15 +29,15 @@
 								%tr
 									%td
 										%strong Username:
-									%td= @appointment.user.username
+									%td= @appointment.vendor.user.username
 								%tr
 									%td
 										%strong Gender:
-									%td= @appointment.user.gender.gender 
+									%td= @appointment.vendor.user.gender.gender 
 								%tr
 									%td
 										%strong Bio:
-									%td= @appointment.user.bio 
+									%td= @appointment.vendor.bio 
 			%br
 			#appointment_description
 				.row
