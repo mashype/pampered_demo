@@ -11,12 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002201339) do
+ActiveRecord::Schema.define(version: 20161004032920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "cube"
-  enable_extension "earthdistance"
 
   create_table "amounts", force: :cascade do |t|
     t.integer  "cost"
@@ -102,6 +100,14 @@ ActiveRecord::Schema.define(version: 20161002201339) do
     t.string   "notes"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "vendor_services", force: :cascade do |t|
+    t.integer  "vendor_id"
+    t.integer  "service_id"
+    t.string   "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "vendors", force: :cascade do |t|

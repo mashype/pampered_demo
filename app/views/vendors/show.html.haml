@@ -1,8 +1,8 @@
 #vendor_show
-	.wrapper_with_padding
+	.wrapper
 		.container-fluid
 			.row
-				.col-md-5
+				.col-md-3
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}
 					%table.table
 						.row
@@ -14,7 +14,7 @@
 								= link_to "Review Me", root_path, class: "button"	
 							.col-md-6
 								= link_to "Message Me", root_path(to: @vendor.user.id), class: "button"						
-				.col-md-7
+				.col-md-9
 					#vendor_demo
 						%table.table
 							%tbody
@@ -40,12 +40,13 @@
 							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
 						%li{:role => "presentation"}
 							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
-	
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
 						
 					/ Tab panes
 					.tab-content
 
-						#locations.tab-pane{:role => "tabpanel"}
+						#locations.tab-pane.active{:role => "tabpanel"}
 							%table.table.table-hover
 								%thead
 									%tr
@@ -67,7 +68,7 @@
 											%td= vendor_locations.location.state
 											%td= vendor_locations.location.zip		
 
-						#appointment.tab-pane.active{:role => "tabpanel"} 
+						#appointment.tab-pane{:role => "tabpanel"} 
 							%table.table.table-hover
 								%thead
 									%tr
@@ -84,3 +85,15 @@
 											%td= number_to_currency(appointment.amount.cost, unit:"$")
 											%td= link_to 'View', appointment_path(appointment)
 
+						#service.tab-pane{:role => "tabpanel"} 
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Service
+										%th Notes
+										%th{:colspan => "2"}
+								%tbody
+									- @vendor.vendor_services.each do |vendor_services|
+										%tr
+											%td= vendor_services.service.title
+											%td= vendor_services.notes

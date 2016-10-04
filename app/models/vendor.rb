@@ -11,4 +11,10 @@ class Vendor < ActiveRecord::Base
 	has_many :locations, through: :vendor_locations
 	accepts_nested_attributes_for :vendor_locations, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :locations, reject_if: :all_blank, allow_destroy: true
+
+	has_many :vendor_services
+	has_many :services, through: :vendor_services
+	accepts_nested_attributes_for :vendor_services, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :services, reject_if: :all_blank, allow_destroy: true
+
 end

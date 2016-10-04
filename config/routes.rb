@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :vendor_services
   resources :locations
   resources :vendor_locations
   resources :vendors

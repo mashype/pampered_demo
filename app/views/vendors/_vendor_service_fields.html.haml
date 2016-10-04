@@ -1,0 +1,9 @@
+%li.control-group.nested-fields
+	.controls
+		= f.simple_fields_for :vendor_service do |vendor_service|
+			= f.association :service, label_method: :title,  value_method: :id, include_blank: false
+			= f.input :notes, :placeholder => "Notes"
+		= link_to_remove_association "Remove Service", f, class: "btn btn-danger"
+		%br
+		%br	
+
