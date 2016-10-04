@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   def index
 
@@ -28,6 +27,8 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    set_meta_tags   title: @appointment.title,
+                    keywords: @appointment.title
   end
 
   def new

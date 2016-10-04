@@ -1,15 +1,12 @@
 #banner
 	.banner_content
 		= link_to image_tag('pampered_center.png'), root_path, class: "img-responsive"
-		%br/
 		.col-sm-4.col-sm-offset-4
-			= link_to "Book a session now", appointments_path, class: "button"
+			= form_tag(appointments_path, :method => "get") do
+				= text_field_tag(:search, '', placeholder: "Enter a zip code to get started")
+				= submit_tag "Search Now", class: "button"
 			%br
 			%br
-			%h1 BETA MODE
-			%br
-			%br
-
 
 #sample
 	.wrapper

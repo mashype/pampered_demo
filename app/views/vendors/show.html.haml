@@ -37,16 +37,33 @@
 					/ Nav tabs
 					%ul.nav.nav-tabs{:role => "tablist"}
 						%li.active{:role => "presentation"}
-							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
-						%li{:role => "presentation"}
 							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
 						%li{:role => "presentation"}
-							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
+							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
 						
 					/ Tab panes
 					.tab-content
 
-						#locations.tab-pane.active{:role => "tabpanel"}
+						#appointent.tab-pane.active{:role => "tabpanel"}
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Title
+										%th Description
+										%th Amount
+										%th View
+										%th{:colspan => "4"}
+								%tbody
+									- @appointments.each do |appointment|
+										%tr
+											%td= appointment.title
+											%td= appointment.description
+											%td= number_to_currency(appointment.amount.cost, unit:"$")
+											%td= link_to 'View', appointment_path(appointment)
+
+						#locations.tab-pane{:role => "tabpanel"} 
 							%table.table.table-hover
 								%thead
 									%tr
@@ -66,24 +83,7 @@
 											%td= vendor_locations.location.add_2								
 											%td= vendor_locations.location.city
 											%td= vendor_locations.location.state
-											%td= vendor_locations.location.zip		
-
-						#appointment.tab-pane{:role => "tabpanel"} 
-							%table.table.table-hover
-								%thead
-									%tr
-										%th Title
-										%th Description
-										%th Amount
-										%th View
-										%th{:colspan => "4"}
-								%tbody
-									- @appointments.each do |appointment|
-										%tr
-											%td= appointment.title
-											%td= appointment.description
-											%td= number_to_currency(appointment.amount.cost, unit:"$")
-											%td= link_to 'View', appointment_path(appointment)
+											%td= vendor_locations.location.zip
 
 						#service.tab-pane{:role => "tabpanel"} 
 							%table.table.table-hover
