@@ -4,8 +4,7 @@
 		.col-sm-4.col-sm-offset-4
 			= form_tag(appointments_path, :method => "get") do
 				= text_field_tag(:search, '', placeholder: "Enter a zip code to get started")
-				= submit_tag "Search Now", class: "button"
-			%br
+				= submit_tag "Or Search Nearby Now", class: "button"
 			%br
 
 #sample
@@ -56,19 +55,19 @@
 
 				
 #bottom_cta
-	.wrapper
-		%h2 Why are you not already signed up?  
-		%br/
-		.row
-			.col-sm-8.col-sm-offset-2
-				%p Checkout  offerings in your area whenever you need to, and there is never any cost or committment to use us.  Pampered lets you book massages, manicures, pilates sessions and others right in the comfort of your own home.
-				%p Its easy to create an account and find great partners in your area today!
-		%br/
-		.row
-			.col-sm-4.col-sm-offset-4
-				= link_to "View Our Partners", appointments_path, class: "button"
-		%br
-		%br
+	%h2 Why are you not already signed up?  
+	%br
+	.row
+		.col-sm-8.col-sm-offset-2
+			%p Checkout  offerings in your area whenever you need to, and there is never any cost or committment to use us.  
+			%p Pampered lets you book massages, manicures, pilates sessions and others right in the comfort of your own home.
+			%p Its easy to create an account and find great partners in your area today!
+	%br
+	.row
+		.col-sm-4.col-sm-offset-4
+			= link_to "View Our Partners", appointments_path, class: "button"
+	%br
+	%br
 
-		%h2 PAMPERED IS STILL IN BETA TESTING... 
-		%h2 SO PLEASE LET US KNOW YOUR THOUGHTS
+	%h3 PAMPERED IS STILL IN BETA TESTING... 
+	%h3 SO PLEASE LET US KNOW YOUR THOUGHTS

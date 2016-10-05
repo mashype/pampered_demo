@@ -2,44 +2,37 @@
 %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
 %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
 
-.wrapper_with_padding
-  #appointment_index
-    .panel.panel-default
-      .panel-body
-        .row
-          .col-md-10.col-md-offset-1
-            %p 
-            = form_tag appointments_path, :method => :get do
-              .col-md-8
-                = text_field_tag :search, params[:search], placeholder: 'Update your search here...'
-              .col-md-4
-                = submit_tag "Refresh Search", :search => nil, class:'button'
-            %img{:style => "width: 100%;"}
-              #map{:style => "width: 100%; height: 400px;"} 
+#appointment_index
+  .row
+    %img.img-responsive
+      #map{:style => "width: 100%; height: 400px;"} 
+  .row
+    .col-sm-8.col-sm-offset-2
+      %p
+      = form_tag appointments_path, :method => :get do
+        .col-md-8
+          = text_field_tag :search, params[:search], placeholder: 'Enter new address, zip or location...'
+        .col-md-4
+          = submit_tag "Refresh", :search => nil, class:'button'
+  %br
 
-
-        .row
-          #appointments.transitions-enabled
-            - @appointments.each_with_index do |appointment, i|
-              %a{ href: (url_for [appointment])}
-                .box.panel.panel-default
-                  .panel-heading
-                    %h2= appointment.title
-                  .panel-body
-                    .col-xs-4
-                      %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
-                    .col-xs-8
-                      %p= appointment.description
-                  .panel-footer
-                    .stars
-                      %p= appointment.vendor.user.username
-                      %p= appointment.title
-                      %p= appointment.amount.cost
-  
-
-
-           
-
+  .wrapper
+    .row
+      #appointments.transitions-enabled
+        - @appointments.each_with_index do |appointment, i|
+          %a{ href: (url_for [appointment])}
+            .box.panel.panel-default
+              .panel-heading
+                %h2= appointment.title
+              .panel-body
+                .col-xs-4
+                  %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
+                .col-xs-8
+                  %p= appointment.description
+              .panel-footer
+                %h3= appointment.vendor.user.username
+                %h3= number_to_currency((appointment.amount.cost), unit:"$")
+   
 
 :javascript
   handler = Gmaps.build('Google');

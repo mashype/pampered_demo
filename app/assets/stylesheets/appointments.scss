@@ -4,7 +4,7 @@
   .box {
 	  background: $gold;
 	  padding: 2px;
-	  margin: 5px;
+	  margin: 4px;
 	  width: 350px;
 	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
 	  border-radius: 7px;
@@ -12,37 +12,44 @@
 	  
 	  .panel-body {
 	 	  background: white;
-	 	  padding: 5px; 
+	 	  padding: 2px; 
 	 	  text-align: left;
 	  }
 	  .panel-heading {
-	 	  background: $purple;
+	 	  background: $gold;
 	 	  padding: 5px; 
 	 	  text-align: left;
 	  }
 	  img {
-	 	  padding-left: 5px; 
-	 		padding-right: 5px;
-	 		width: 90%;
+	 	  padding-left: 2px; 
+	 		padding-right: 2px;
+	 		border-bottom: none;
+	 		width: 100%;
 	  	height: auto;
 	  }
 	  h2 {
 	  	@include bold_font;
-	  	font-size: 16px;
+	  	font-size: 18px;
 	  	text-decoration: none;
 	  	margin: 0;
 		  text-align: center;
 	  	padding: 5px 5px;
-	  	color: white;
+	  	color: black;
 	  	a {
 				color: #474747;
 	  	}
 	  }
-	  .box_text {
+	  .box_text{
 	  	font-size: 14px;
 	  	color: white;
 			padding: 2px;
 			margin: 0;
+	  }
+
+	  h3 {
+	  	@include bold_font;
+	  	font-size: 16px;	
+	  	margin: 4px;
 	  }
 	}
 }
@@ -116,11 +123,12 @@
 	}
 
 	img {
-		max-width: 90%;
 		height: auto; 
 		display: block;
 		margin: auto;
 		padding: 3px;
 		vertical-align: middle;
-	}	
+		border-bottom: 2px solid $gold;
+	}
+
 }
