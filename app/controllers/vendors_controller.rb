@@ -1,31 +1,23 @@
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
 
-  # GET /vendors
-  # GET /vendors.json
   def index
     @vendors = Vendor.all
   end
 
-  # GET /vendors/1
-  # GET /vendors/1.json
   def show
 
     @appointments = Appointment.where(vendor_id: @vendor.id).order("created_at DESC")    
 
   end
 
-  # GET /vendors/new
   def new
     @vendor = current_user.build_vendor
   end
 
-  # GET /vendors/1/edit
   def edit
   end
 
-  # POST /vendors
-  # POST /vendors.json
   def create
     @vendor = current_user.build_vendor(vendor_params)
 
@@ -40,8 +32,6 @@ class VendorsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /vendors/1
-  # PATCH/PUT /vendors/1.json
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
@@ -54,8 +44,6 @@ class VendorsController < ApplicationController
     end
   end
 
-  # DELETE /vendors/1
-  # DELETE /vendors/1.json
   def destroy
     @vendor.destroy
     respond_to do |format|
@@ -65,12 +53,10 @@ class VendorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_vendor
       @vendor = Vendor.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def vendor_params
       params.require(:vendor).permit(:user_id, :name, :avatar, :bio, 
         vendor_locations_attributes: [:id, :vendor_id, :location_id, :_destroy, 

@@ -16,7 +16,6 @@
           %span.number 1
           User Info
         = f.association :service, label_method: :title,  value_method: :id, include_blank: false
-        = f.association :vendor, label_method: :name,  value_method: :id, include_blank: false
         = f.association :amount, label_method: :cost,  value_method: :id, include_blank: false        
         = f.input :title, label: "Appointment Title"
         = f.input :description, label: "Appointment Description"

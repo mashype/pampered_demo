@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
-  def index
+  def index 
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
@@ -40,6 +40,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
+    @appointment.vendor_id = current_user.vendor.id
 
     respond_to do |format|
       if @appointment.save
