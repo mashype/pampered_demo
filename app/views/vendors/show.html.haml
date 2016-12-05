@@ -6,14 +6,19 @@
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}
 					%table.table
 						.row
-						- if @vendor.id == current_user.vendor.id
+						- if @vendor.user_id.nil?
+							.col-md-12
+								= link_to "Claim Your Profile", edit_vendor_path(@vendor), class: "button"
+
+						- elsif @vendor.id == current_user.vendor.id
 							.col-md-12
 								= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
+
 						- else user_signed_in?
 							.col-md-6
 								= link_to "Review Me", root_path, class: "button"	
 							.col-md-6
-								= link_to "Message Me", root_path(to: @vendor.user.id), class: "button"						
+								= link_to "Message Me", root_path, class: "button"						
 				.col-md-9
 					#vendor_demo
 						%table.table
@@ -21,7 +26,7 @@
 								%tr
 									%td
 										%strong Username:
-									%td= @vendor.user.username
+									%td= @vendor.user_id
 								%tr
 									%td
 										%strong Business:
