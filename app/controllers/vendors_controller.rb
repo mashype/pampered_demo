@@ -7,9 +7,9 @@ class VendorsController < ApplicationController
 
   def show
 
-    @appointments = Appointment.where(vendor_id: @vendor.id).order("created_at DESC")    
+    @appointments = Appointment.where(vendor_id: @vendor.id).order("created_at DESC") 
 
-  end
+  end 
 
   def new
     @vendor = current_user.build_vendor

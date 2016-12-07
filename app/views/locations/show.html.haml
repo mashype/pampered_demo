@@ -1,0 +1,29 @@
+%p#notice= notice
+
+%p
+  %strong Add 1:
+  = @location.add_1
+%p
+  %strong Add 2:
+  = @location.add_2
+%p
+  %strong City:
+  = @location.city
+%p
+  %strong State:
+  = @location.state
+%p
+  %strong Zip:
+  = @location.zip
+%p
+  %strong Latitude:
+  = @location.latitude
+%p
+  %strong Longitude:
+  = @location.longitude
+
+%p=image_tag google_map(center: [ @location.latitude, @location.longitude ].join(','))
+
+= link_to 'Edit', edit_location_path(@location)
+|
+= link_to 'Back', locations_path
