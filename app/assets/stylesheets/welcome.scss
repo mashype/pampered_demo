@@ -143,3 +143,26 @@
 		}
 }
 
+#faq {
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 3.5rem 0;
+	.questions {
+		text-align: center;
+		padding: 1.5rem 2.5%;
+		float: left;
+		h2 {
+			@include bold_font;
+			color: $gold;
+			margin-bottom: 0;
+		}
+		q {
+			font-size: 2.0rem;
+			color: $purple;
+		}
+		a {
+			color: $dark_gray;
+		}
+	}
+}
+
