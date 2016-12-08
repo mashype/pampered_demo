@@ -4,7 +4,7 @@
 			.row
 				.col-md-5
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
-					- if @appointment.vendor.id == current_user.vendor.id
+					- if user_signed_in? && @appointment.vendor.id == current_user.vendor.id
 						.row
 							.col-md-6
 								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
