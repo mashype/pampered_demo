@@ -1,13 +1,16 @@
 #appointment_show
-	.wrapper_with_padding
+	.wrapper_with_padding 
 		.container-fluid
 			.row
 				.col-md-5
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
-					- if @appointment.vendor.user_id == current_user		
+					- if @appointment.vendor.id == current_user.vendor.id
 						.row
-							.col-md-12
+							.col-md-6
 								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
+							.col-md-6
+								= link_to "Delete Appointment", @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "button"
+
 					- else user_signed_in?
 						.row
 							.col-md-6
