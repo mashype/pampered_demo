@@ -5,19 +5,19 @@ class AppointmentsController < ApplicationController
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids).order('updated_at DESC')
+      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
 
     else
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids).order('updated_at DESC')
+      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
     end
 
 
     if params[:service].blank?
-      @appointments = Appointment.includes(:vendor).where vendor_id: @vendor_locations.select(:vendor_id)
+      @appointments = Appointment.includes(:vendor).where vendor_id: @vendor_locations.select(:vendor_id).order('updated_at DESC')
     else
       @service_id = Service.find_by(title: params[:service]).id
-      @appointments = Appointment.includes(:vendor).where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id)).order("created_at DESC")
+      @appointments = Appointment.includes(:vendor).where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id)).order("updated_at DESC")
     end
 
 
