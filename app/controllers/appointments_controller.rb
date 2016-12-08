@@ -14,10 +14,10 @@ class AppointmentsController < ApplicationController
 
 
     if params[:service].blank?
-      @appointments = Appointment.includes(:vendor).where vendor_id: @vendor_locations.select(:vendor_id).order('updated_at DESC')
+      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where vendor_id: @vendor_locations.select(:vendor_id)
     else
       @service_id = Service.find_by(title: params[:service]).id
-      @appointments = Appointment.includes(:vendor).where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id)).order("updated_at DESC")
+      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id))
     end
 
 
