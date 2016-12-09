@@ -49,6 +49,8 @@
 							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
 						%li{:role => "presentation"}
 							%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
+						%li{:role => "presentation"}
+							%a{"aria-controls" => "licenses", "data-toggle" => "tab", :href => "#license", :role => "tab"} Licenses
 						
 					/ Tab panes
 					.tab-content
@@ -108,6 +110,23 @@
 										%tr
 											%td= vendor_services.service.title
 											%td= vendor_services.notes
+
+						#license.tab-pane{:role => "tabpanel"} 
+							%table.table.table-hover
+								%thead
+									%tr
+										%th Licenser
+										%th License Name
+										%th Issue Date
+										%th License Number
+										%th{:colspan => "4"}
+								%tbody
+									- @vendor.vendor_licenses.each do |vendor_licenses|
+										%tr
+											%td= vendor_licenses.licenser
+											%td= vendor_licenses.name											
+											%td= vendor_licenses.issue_date
+											%td= vendor_licenses.license_number
 
 :javascript
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

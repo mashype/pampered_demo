@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Vendor Licenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Licenser</th>
+      <th>Name</th>
+      <th>Issue date</th>
+      <th>License number</th>
+      <th>Vendor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vendor_licenses.each do |vendor_license| %>
+      <tr>
+        <td><%= vendor_license.licenser %></td>
+        <td><%= vendor_license.name %></td>
+        <td><%= vendor_license.issue_date %></td>
+        <td><%= vendor_license.license_number %></td>
+        <td><%= vendor_license.vendor %></td>
+        <td><%= link_to 'Show', vendor_license %></td>
+        <td><%= link_to 'Edit', edit_vendor_license_path(vendor_license) %></td>
+        <td><%= link_to 'Destroy', vendor_license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vendor license', new_vendor_license_path %>

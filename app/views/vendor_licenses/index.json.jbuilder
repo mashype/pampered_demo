@@ -1,0 +1,1 @@
+json.array! @vendor_licenses, partial: 'vendor_licenses/vendor_license', as: :vendor_license

@@ -1,0 +1,7 @@
+.nested-fields
+	.row
+		= f.input :licenser, label: false, placeholder: "Issued By", input_html: { class: "form-control" }
+		= f.input :name, label: false, placeholder: "License Name", input_html: { class: "form-control" }
+		= f.input :issue_date, label: false, placeholder: "Issued Date", input_html: { class: "form-control" }
+		= f.input :license_number, label: false, placeholder: "License Number", input_html: { class: "form-control" }
+		= link_to_remove_association "Remove", f, class: "btn btn-default"

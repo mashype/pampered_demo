@@ -1,0 +1,15 @@
+<%= simple_form_for(@vendor_license) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :licenser %>
+    <%= f.input :name %>
+    <%= f.input :issue_date %>
+    <%= f.input :license_number %>
+    <%= f.association :vendor %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

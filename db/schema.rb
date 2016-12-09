@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004032920) do
+ActiveRecord::Schema.define(version: 20161209155111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 20161004032920) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "vendor_licenses", force: :cascade do |t|
+    t.string   "licenser"
+    t.string   "name"
+    t.string   "issue_date"
+    t.string   "license_number"
+    t.integer  "vendor_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "vendor_licenses", ["vendor_id"], name: "index_vendor_licenses_on_vendor_id", using: :btree
+
   create_table "vendor_locations", force: :cascade do |t|
     t.integer  "vendor_id"
     t.integer  "location_id"
@@ -122,4 +134,5 @@ ActiveRecord::Schema.define(version: 20161004032920) do
     t.datetime "avatar_updated_at"
   end
 
+  add_foreign_key "vendor_licenses", "vendors"
 end

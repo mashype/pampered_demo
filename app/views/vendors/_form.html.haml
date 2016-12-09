@@ -23,7 +23,7 @@
             = f.input :avatar, input_html: { class: 'form-control'}
 
         .row
-          .col-md-5.col-md-offset-1
+          .col-md-4.col-md-offset-1
             %fieldset#vendor-locations
               %h3 Locations
               %ol
@@ -32,13 +32,23 @@
               = link_to_add_association 'Add Additional Locations', f, :vendor_locations, class: "btn btn-default add-button", 'data-association-insertion-node' => "#vendor-locations ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|vendor_location| vendor_location.build_location; vendor_location }	
 
 
-          .col-md-5
+          .col-md-3
             %fieldset#vendor-services
               %h3 Services
               %ol
                 = f.simple_fields_for :vendor_services do |vendorservice|
                   = render 'vendor_service_fields', f: vendorservice
               = link_to_add_association 'Add Additional Services', f, :vendor_services, class: "btn btn-default add-button", 'data-association-insertion-node' => "#vendor-services ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|vendor_service| vendor_service.build_service; vendor_service }  
+
+          .col-md-3
+            %fieldset#vendor-licenses
+              %h3 Licenses
+              #notes
+                = f.simple_fields_for :vendor_licenses do |vendorlicense|
+                  = render 'vendor_license_fields', f: vendorlicense
+                .links
+                  = link_to_add_association 'Add License', f, :vendor_licenses, class: "btn btn-default add-button"  
+
         .row
           .col-md-3.col-md-offset-3
             %input{:type => "submit", :value => "Complete Vendor Profile", class: 'button'}

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Licenser:</strong>
+  <%= @vendor_license.licenser %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @vendor_license.name %>
+</p>
+
+<p>
+  <strong>Issue date:</strong>
+  <%= @vendor_license.issue_date %>
+</p>
+
+<p>
+  <strong>License number:</strong>
+  <%= @vendor_license.license_number %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @vendor_license.vendor %>
+</p>
+
+<%= link_to 'Edit', edit_vendor_license_path(@vendor_license) %> |
+<%= link_to 'Back', vendor_licenses_path %>
