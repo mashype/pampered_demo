@@ -1,28 +1,21 @@
 class VendorTypesController < ApplicationController
   before_action :set_vendor_type, only: [:show, :edit, :update, :destroy]
+  before_action :verify_is_admin
 
-  # GET /vendor_types
-  # GET /vendor_types.json
   def index
     @vendor_types = VendorType.all
   end
 
-  # GET /vendor_types/1
-  # GET /vendor_types/1.json
   def show
   end
 
-  # GET /vendor_types/new
   def new
     @vendor_type = VendorType.new
   end
 
-  # GET /vendor_types/1/edit
   def edit
   end
 
-  # POST /vendor_types
-  # POST /vendor_types.json
   def create
     @vendor_type = VendorType.new(vendor_type_params)
 
@@ -37,8 +30,6 @@ class VendorTypesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /vendor_types/1
-  # PATCH/PUT /vendor_types/1.json
   def update
     respond_to do |format|
       if @vendor_type.update(vendor_type_params)
@@ -51,8 +42,6 @@ class VendorTypesController < ApplicationController
     end
   end
 
-  # DELETE /vendor_types/1
-  # DELETE /vendor_types/1.json
   def destroy
     @vendor_type.destroy
     respond_to do |format|
@@ -62,13 +51,16 @@ class VendorTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_vendor_type
       @vendor_type = VendorType.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def vendor_type_params
       params.require(:vendor_type).permit(:title)
     end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    end
+
 end

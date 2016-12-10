@@ -1,5 +1,6 @@
 class GendersController < ApplicationController
   before_action :set_gender, only: [:show, :edit, :update, :destroy]
+  before_action :verify_is_admin 
 
   # GET /genders
   # GET /genders.json
@@ -71,4 +72,10 @@ class GendersController < ApplicationController
     def gender_params
       params.require(:gender).permit(:gender)
     end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    end
+
+
 end
