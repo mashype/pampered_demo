@@ -1,0 +1,1 @@
+json.array! @vendor_documents, partial: 'vendor_documents/vendor_document', as: :vendor_document

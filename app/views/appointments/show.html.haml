@@ -41,7 +41,11 @@
 									%td
 										%strong Bio:
 									%td= @appointment.vendor.bio 
-			%br
+								%tr
+									%td
+										%strong Share Us:
+									%td= social_share_button_tag("PamperedUp")
+
 			#appointment_description
 				.row
 					.col-md-12 

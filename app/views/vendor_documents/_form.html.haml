@@ -1,0 +1,10 @@
+= simple_form_for @vendor_document, html: { multipart: true }  do |f|
+
+	= f.error_notification
+	.form-inputs
+		= f.input :name
+		= f.association :vendor
+		= f.input :document, input_html: { class: 'form-control'}
+
+	.form-actions
+		= f.button :submit

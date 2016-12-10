@@ -31,8 +31,28 @@
 									%td= @vendor.user.username
 								%tr
 									%td
-										%strong Business:
+										%strong Business Name:
 									%td= @vendor.name
+								%tr
+									%td
+										%strong Business Type:
+									%td= @vendor.vendor_type.title									
+								%tr
+									%td
+										%strong Facebook:
+									%td= @vendor.sm_facebook
+								%tr
+									%td
+										%strong Twitter:
+									%td= @vendor.sm_twitter
+								%tr
+									%td
+										%strong Instagram:
+									%td= @vendor.sm_instagram
+								%tr
+									%td
+										%strong Pinterest:
+									%td= @vendor.sm_pinterest
 								%tr
 									%td
 										%strong Bio:
@@ -51,7 +71,7 @@
 							%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
 						%li{:role => "presentation"}
 							%a{"aria-controls" => "licenses", "data-toggle" => "tab", :href => "#license", :role => "tab"} Licenses
-						
+
 					/ Tab panes
 					.tab-content
 

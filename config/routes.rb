@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :vendor_types
+  resources :vendor_documents
   resources :vendor_licenses
   resources :vendor_services
   resources :locations

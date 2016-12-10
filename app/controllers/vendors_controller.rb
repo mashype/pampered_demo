@@ -59,7 +59,7 @@ class VendorsController < ApplicationController
     end
 
     def vendor_params
-      params.require(:vendor).permit(:user_id, :name, :avatar, :bio, 
+      params.require(:vendor).permit(:user_id, :name, :vendor_type_id, :sm_facebook, :sm_twitter, :sm_instagram, :sm_pinterest, :avatar, :bio, 
         vendor_locations_attributes: [:id, :vendor_id, :location_id, :_destroy, 
           location_attributes: [:id, :add_1, :add_2, :city, :state, :zip, :latitude, :longitude, :_destroy]],
         vendor_services_attributes: [:id, :vendor_id, :service_id, :notes, :_destroy],

@@ -19,4 +19,5 @@
 //= require cocoon
 //= require turbolinks
 //= require underscore
+//= require social-share-button
 //= require_tree .

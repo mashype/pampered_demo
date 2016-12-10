@@ -1,0 +1,14 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @vendor_document.name
+%p
+  %strong Vendor:
+  = @vendor_document.vendor_id
+
+= image_tag @vendor_document.document.url
+
+
+= link_to 'Edit', edit_vendor_document_path(@vendor_document)
+|
+= link_to 'Back', vendor_documents_path
