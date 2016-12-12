@@ -120,6 +120,12 @@
 				%li
 					=link_to "Terms Of Use", welcome_terms_path	
 				%li
-					= mail_to "getyourpamp@gmail.com", "Contact", subject: "Pampered Contact Request"					
+					= mail_to "seth@pamperedup.com", "Contact", subject: "Pampered Contact Request"	
+				%li	
+					- if user_signed_in? && !Vendor.exists?(user_id: current_user)  
+						= link_to "Offer Services", new_vendor_path	
+					- else
+						= link_to "Offer Services", new_user_registration_path
+
 			%p.navbar-text.navbar-right
 				&copy; LeftySeth Designs 2016                    

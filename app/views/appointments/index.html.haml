@@ -14,7 +14,12 @@
           = text_field_tag :search, params[:search], placeholder: 'Enter new address, zip or location...'
         .col-md-4
           = submit_tag "Refresh", :search => nil, class:'button'
-  %br 
+  .row 
+  - if user_signed_in? && !Vendor.exists?(user_id: current_user)  
+    .col-sm-6.col-sm-offset-3
+      %h4= link_to "Interested In offering services on PamperedUp?", new_vendor_path
+    %br
+    %br  
 
   .wrapper
     .row

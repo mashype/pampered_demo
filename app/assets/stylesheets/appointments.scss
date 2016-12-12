@@ -124,6 +124,7 @@
   	border-color: $blue;
 	}
 
+
 	img {
 		height: auto; 
 		display: block;
@@ -131,6 +132,11 @@
 		padding: 3px;
 		vertical-align: middle;
 		border-bottom: 2px solid $gold;
+	}
+
+	h4 {
+		@include bold_font;
+		text-align: center;
 	}
 
 }

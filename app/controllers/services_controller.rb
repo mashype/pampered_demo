@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
-  before_action :verify_is_admin
+  before_action :verify_is_admin 
 
   def index
     @services = Service.all
