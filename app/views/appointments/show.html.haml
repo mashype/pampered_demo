@@ -4,13 +4,14 @@
 			.row
 				.col-md-5
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
-					- if @appointment.vendor.id == current_user.id
+					- if user_signed_in? && Vendor.exists?(user_id: current_user.id)
+
 						.row
 							.col-md-6
 								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
 							.col-md-6
 								= link_to "Delete Appointment", @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "button"
-
+ 
 					- else
 						.row
 							.col-md-6
