@@ -10,7 +10,7 @@
 							.col-md-12
 								= link_to "Claim Your Profile", edit_vendor_path(@vendor), class: "button"
 
-						- elsif @vendor.id == current_user.vendor.id
+						- elsif user_signed_in? && @vendor.id == current_user.vendor.id
 							.col-md-12
 								= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
 							.col-md-12
