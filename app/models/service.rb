@@ -1,4 +1,7 @@
 class Service < ActiveRecord::Base
+
+	belongs_to :vendor_type
+
 	has_many :appointments
 
 	has_many :vendor_services

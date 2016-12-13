@@ -3,13 +3,10 @@ class VendorsController < ApplicationController
 
   def index
     @vendors = Vendor.all
-
   end
 
   def show
-
     @appointments = Appointment.where(vendor_id: @vendor.id).order("created_at DESC") 
-
   end 
 
   def new
