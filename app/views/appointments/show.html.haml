@@ -4,17 +4,17 @@
 			.row
 				.col-md-5
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
-					- if user_signed_in? && @appointment.vendor.id == current_user.vendor.id
+					- if @appointment.vendor.id == current_user.id
 						.row
 							.col-md-6
 								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
 							.col-md-6
 								= link_to "Delete Appointment", @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "button"
 
-					- else user_signed_in?
+					- else
 						.row
 							.col-md-6
-								= link_to "Review Me", "#", class: "button"	
+								= link_to "Review Me", new_vendor_review_path(@appointment.vendor_id), class: "button"	
 							.col-md-6 
 								= link_to "Book Now", new_appointment_booking_path(@appointment), class: "button"				
 				.col-md-7 
@@ -45,6 +45,10 @@
 									%td
 										%strong Bio:
 									%td= @appointment.vendor.bio 
+								%tr
+									%td
+										%strong View Profile
+									%td= link_to "View Profile", vendor_path(@appointment.vendor_id), class: "button"	
 								%tr
 									%td
 										%strong Share Us:
