@@ -27,6 +27,10 @@
 									%td= @appointment.title
 								%tr
 									%td
+										%strong Active:
+									%td= @appointment.active									
+								%tr
+									%td
 										%strong Price:
 									%td= number_to_currency(@appointment.amount.cost, unit:"$")
 								%tr

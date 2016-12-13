@@ -81,14 +81,16 @@
 									%tr
 										%th Title
 										%th Description
+										%th Active
 										%th Amount
 										%th View
-										%th{:colspan => "4"}
+										%th{:colspan => "5"}
 								%tbody
 									- @appointments.each do |appointment|
 										%tr
 											%td= appointment.title
 											%td= appointment.description
+											%td= appointment.active
 											%td= number_to_currency(appointment.amount.cost, unit:"$")
 											%td= link_to 'View', appointment_path(appointment)
 

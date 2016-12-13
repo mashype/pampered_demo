@@ -14,10 +14,10 @@ class AppointmentsController < ApplicationController
 
 
     if params[:service].blank?
-      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where vendor_id: @vendor_locations.select(:vendor_id)
+      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
     else
       @service_id = Service.find_by(title: params[:service]).id
-      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id))
+      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
     end
 
 
@@ -81,6 +81,6 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:title, :description, :vendor_id, :service_id, :amount_id)
+      params.require(:appointment).permit(:title, :description, :active, :vendor_id, :service_id, :amount_id)
     end
 end
