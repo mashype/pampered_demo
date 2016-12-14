@@ -1,3 +1,10 @@
+h2 {
+	@include bold_font;
+	color: $purple;
+	font-size: 2.5em;
+	margin-bottom: 10px;
+}
+
 #banner {
 	background-image: image-url('welcome_banner_image.png');
 	background-size: cover;
@@ -165,4 +172,133 @@
 		}
 	}
 }
+
+#vendor_what {
+	text-align: center;
+	vertical-align: middle;
+
+	p {
+		color: $dark_gray;
+		font-size: 1.2em;
+	}
+
+}
+
+#vendor_highlights {
+	background-color: $purple;
+	text-align: center;
+
+	h2 {
+		@include bold_font;
+		color: $gold;
+		font-size: 2.5em;
+	}
+
+	h3 {
+		@include bold_font;
+		color: white;
+		font-size: 1.7em;
+	}
+
+	i {
+		font-size: 5.0rem;
+		color: $gold;
+		padding: 2.0rem 2.5%;
+	}
+
+	p {
+		color: white;
+		font-size: 1.2em;
+	}
+
+	.row {
+		padding-bottom: 35px;
+	}
+
+}
+
+#vendor_who {
+	text-align: center;
+	vertical-align: middle;	
+
+	h2 {
+		@include bold_font;
+		color: $purple;
+		font-size: 2.5em;
+		margin-bottom: 10px;
+	}
+
+	i {
+		font-size: 5.0rem;
+		color: $gold;
+		padding: 2.0rem 2.5%;
+	}
+
+	p {
+		color: $dark_gray;
+		font-size: 1.5em;
+	}
+
+	a {
+    color: white;
+	}
+}
+
+			
+
+#vendor_why {
+	text-align: center;
+
+	h2 {
+		@include bold_font;
+		color: $purple;
+		font-size: 2.5em;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: $dark_gray;
+		font-size: 1.2em;
+	}
+
+	.quote_header {
+		color: $gold;
+		font-style: italic;
+		font-size: 4em;
+	}
+
+	.quote {
+		color: $gold;
+		font-size: 1.4em;
+		font-style: italic;
+		margin: 0 0 .5rem 0;
+	}
+
+	.row {
+		padding-bottom: 35px;
+	}
+}
+
+#vendor_how {
+	text-align: center;
+	vertical-align: middle;
+
+	h2 {
+		@include bold_font;
+		color: $purple;
+		font-size: 2.5em;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: $dark_gray;
+		font-size: 1.2em;
+	}
+
+	.row {
+		border-top: 6px solid $purple;
+	}
+		
+}
+
 

@@ -122,10 +122,7 @@
 				%li
 					= mail_to "seth@pamperedup.com", "Contact", subject: "Pampered Contact Request"	
 				%li	
-					- if user_signed_in? && !Vendor.exists?(user_id: current_user)  
-						= link_to "Offer Services", new_vendor_path	
-					- else
-						= link_to "Offer Services", new_user_registration_path
+					= link_to "Offer Services", welcome_vendors_path
 				%li
 					= form_tag aptsearch_appointments_path, method: :get, class: "navbar-form navbar-right", role: "search" do
 						%p

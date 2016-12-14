@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'welcome/about' => 'welcome#about'
   get 'welcome/faq' => 'welcome#faq'
   get 'welcome/terms' => 'welcome#terms' 
+  get 'welcome/vendors' => 'welcome#vendors' 
 
  
   authenticated :user do
