@@ -1,6 +1,15 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
+  def aptsearch
+    if params[:aptsearch].present?
+      @appointments = Appointment.search(params[:aptsearch], active: true)
+    else
+      @appointments = Appointment.where(active: true)
+    end
+  end
+
+
   def index 
 
     if params[:search].present?

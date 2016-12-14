@@ -41,7 +41,7 @@
 							%li
 								=link_to "About PamperedUp", welcome_about_path	
 							%li
-								=link_to "FAQ", welcome_faq_path	
+								=link_to "FAQ", welcome_faq_path								
 
 					- if user_signed_in?
 
@@ -126,6 +126,11 @@
 						= link_to "Offer Services", new_vendor_path	
 					- else
 						= link_to "Offer Services", new_user_registration_path
+				%li
+					= form_tag aptsearch_appointments_path, method: :get, class: "navbar-form navbar-right", role: "search" do
+						%p
+							= text_field_tag :aptsearch, params[:aptsearch], placeholder: 'Search appointments...', class: "form-control"
+							= submit_tag "Search", name: nil, class: "btn btn-default"							
 
 			%p.navbar-text.navbar-right
 				&copy; LeftySeth Designs 2016                    

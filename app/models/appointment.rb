@@ -1,4 +1,7 @@
 class Appointment < ActiveRecord::Base
+
+	searchkick
+
 	belongs_to :service
 	belongs_to :amount
 	belongs_to :vendor

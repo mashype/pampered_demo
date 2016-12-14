@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
 
   resources :appointments do
+    collection do 
+      get 'aptsearch'
+    end
     resources :bookings, except: [:index]
   end
 

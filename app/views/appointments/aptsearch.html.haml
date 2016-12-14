@@ -1,0 +1,31 @@
+%script{:src => "//maps.google.com/maps/api/js?v=3.23&key=AIzaSyCHo7P-uEfAEioZyTEw51cjJxfGlQf5tiM"}
+%script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
+%script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
+
+#appointment_index
+	%br/
+	%br/
+	.wrapper
+		.row
+			#appointments.transitions-enabled
+				- @appointments.each_with_index do |appointment, i|
+					%a{ href: (url_for [appointment])}
+						.box.panel.panel-default
+							.panel-heading
+								%h2= appointment.title
+							.panel-body
+								.col-xs-4
+									%img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
+								.col-xs-8
+									%p= appointment.description
+							.panel-footer
+								%h3= appointment.vendor.user.username
+								%h3= number_to_currency((appointment.amount.cost), unit:"$")
+
+:javascript
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-77303912-2', 'auto');
+	ga('send', 'pageview');

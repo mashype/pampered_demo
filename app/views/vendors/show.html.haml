@@ -18,9 +18,9 @@
 								= link_to "Create Appointment", new_appointment_path, class: "button"	
 
 						- else user_signed_in?
-							.col-md-6
+							.col-md-12
 								= link_to "Review Me", new_vendor_review_path(@vendor), class: "button"	
-							.col-md-6
+							.col-md-12
 								= link_to "Message Me", root_path, class: "button"						
 				.col-md-9
 					#vendor_demo
