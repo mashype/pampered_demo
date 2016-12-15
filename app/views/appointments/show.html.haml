@@ -45,7 +45,7 @@
 								%tr
 									%td
 										%strong Bio:
-									%td= @appointment.vendor.bio 
+									%td= simple_format(@appointment.vendor.bio)
 								%tr
 									%td
 										%strong View Profile
@@ -60,7 +60,7 @@
 					.col-md-12 
 						%br/
 						%h2 APPOINTMENT DESCRIPTION
-						%p= @appointment.description
+						%p= simple_format(@appointment.description)
 						%br/
 
 :javascript

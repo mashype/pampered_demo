@@ -33,7 +33,7 @@
                 .col-xs-4
                   %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
                 .col-xs-8
-                  %p= appointment.description
+                  %p= simple_format(appointment.description)
               .panel-footer
                 %h3= appointment.vendor.user.username
                 %h3= number_to_currency((appointment.amount.cost), unit:"$")
