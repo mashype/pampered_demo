@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     redirect_back_or root_path
   end
 
+  def redirect_back_or(path)
+    redirect_to request.referer || path
+  end
+
   def lookup_ip_location
 		Geocoder.search(request.remote_ip).first
 	end 

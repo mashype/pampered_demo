@@ -23,6 +23,7 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'bootstrap/theme';
 
 @import 'normalize.scss';
 @import 'global.scss';
@@ -31,6 +32,7 @@
 @import 'welcome.scss';
 @import 'bookings.scss';
 @import 'devise.scss';
+@import 'chosen';c
 
 .alert-notice {
   @extend .alert-success;

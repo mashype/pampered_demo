@@ -18,6 +18,8 @@
 //= require gmaps/google
 //= require cocoon
 //= require turbolinks
+//= require chosen-jquery
+//= require messages 
 //= require underscore
 //= require social-share-button
 //= require_tree .

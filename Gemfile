@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 gem 'pg'
+gem 'rake', '12.0.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -24,6 +25,10 @@ gem 'geocoder', '~> 1.3', '>= 1.3.1'
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'social-share-button', '~> 0.1.6'
 gem 'searchkick', '~> 1.4', '>= 1.4.1'
+gem 'filterrific'
+gem 'mailboxer'
+gem 'gravatar_image_tag'
+gem 'chosen-rails'
 gem 'heroku', '~> 3.42', '>= 3.42.44'
 gem 'aws-sdk', '< 2.0'
 gem 'meta-tags'
@@ -34,6 +39,8 @@ gem 'rails_12factor', group: :production
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
+  gem 'letter_opener'
 end
 
 group :development do
