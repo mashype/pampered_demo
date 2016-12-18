@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require filterrific/filterrific-jquery
 //= require bootstrap-sprockets
 //= require masonry/jquery.masonry
 //= require gmaps/google

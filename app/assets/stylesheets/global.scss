@@ -141,6 +141,7 @@ a {
 
 #bs-example-navbar-collapse-1 {
     @include bold_font;
+    vertical-align: bottom;
     
     p.copy {
         color: $gold;

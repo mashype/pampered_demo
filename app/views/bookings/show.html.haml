@@ -1,0 +1,50 @@
+%br
+%br
+#booking
+  .wrapper
+    %h2 You're All Booked!
+    %br
+    .col-sm-6.col-sm-offset-2
+      .row
+        %table.table
+          %tbody
+            %tr
+              %td
+                %strong Confirmation Code:
+              %td= @booking.card_token
+            %tr
+              %td
+                %strong User:
+              %td= @booking.user.username
+            %tr
+              %td
+                %strong Vendor:
+              %td= @booking.appointment.vendor.name  
+            %tr
+              %td
+                %strong Appointment:
+              %td= @booking.appointment.title
+            %tr
+              %td
+                %strong Notes:
+              %td= @booking.conf_temp
+            %tr
+              %td
+                %strong Payment Email:
+              %td= @booking.email
+
+            %tr
+              %td
+                %strong Share Us:
+              %td= social_share_button_tag(@booking.appointment.title)
+      .row
+        .col-sm-6
+          = link_to 'Home', root_path, class: "button"
+        .col-sm-6
+          = link_to 'View Account', edit_user_registration_path, class: "button"
+
+    .col-sm-2
+      %img.img-responsive.img-rounded{alt: "Profile Avatar", src: @booking.appointment.vendor.avatar.url(:medium)}
+
+
+  

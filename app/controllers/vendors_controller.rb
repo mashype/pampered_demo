@@ -1,9 +1,39 @@
+require 'builder'
+require 'will_paginate'
+include ActionView::Helpers::NumberHelper
+
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
 
+
+
   def index
-    @vendors = Vendor.all
+
+    @filterrific = initialize_filterrific(
+      Vendor,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Vendor.options_for_sorted_by,
+        with_vendor_type_id: VendorType.options_for_select
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [],
+    ) or return
+
+    @vendors = @filterrific.find.page(params[:page])
+
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+  rescue ActiveRecord::RecordNotFound => e
+    puts "Had to reset filterrific params: #{ e.message }"
+    redirect_to(reset_filterrific_url(format: :html)) and return
   end
+
 
   def show
     @reviews = Review.where(vendor_id: @vendor.id).order("created_at DESC")
