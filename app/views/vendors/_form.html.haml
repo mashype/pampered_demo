@@ -18,6 +18,7 @@
           .col-md-7.col-md-offset-1
             = f.input :name, label: "Business Name"
             = f.association :vendor_type, label_method: :title,  value_method: :id, include_blank: false   
+            = f.input :website, label: "Business Website"
             = f.input :bio, label: "Bio"
           .col-md-3        
             = image_tag @vendor.avatar.url(:medium)

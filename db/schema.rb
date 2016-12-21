@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216045453) do
+ActiveRecord::Schema.define(version: 20161221172242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,8 +209,8 @@ ActiveRecord::Schema.define(version: 20161216045453) do
     t.integer  "user_id"
     t.string   "name"
     t.text     "bio"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20161216045453) do
     t.string   "sm_twitter"
     t.string   "sm_instagram"
     t.string   "sm_pinterest"
+    t.string   "website",             limit: 200
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
