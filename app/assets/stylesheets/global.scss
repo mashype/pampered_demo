@@ -25,10 +25,13 @@ $red: #B11322;
 body {
     font-family: 'Lato', sans-serif;
     padding-top: 60px;
+    padding-bottom: 100px;
   }
   @media (max-width: 980px) {
     body {
       padding-top: 60px;
+      padding-bottom: 100px;
+
     }
   }
 
@@ -139,7 +142,17 @@ a {
         }
 }
 
+.navbar-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0px;
+}
+
 #bs-example-navbar-collapse-1 {
+
+
+
     @include bold_font;
     vertical-align: bottom;
     

@@ -1,35 +1,21 @@
 #appointment_show
-	.wrapper_with_padding 
-		.container-fluid
-			.row
-				.col-md-5
-					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
-					- if user_signed_in? && Vendor.exists?(user_id: current_user.id)
 
-						.row
-							.col-md-6
-								= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
-							.col-md-6
-								= link_to "Delete Appointment", @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "button"
- 
-					- else
-						.row
-							.col-md-6
-								= link_to "Review Me", new_vendor_review_path(@appointment.vendor_id), class: "button"	
-							.col-md-6 
-								= link_to "Book Now", new_appointment_booking_path(@appointment), class: "button"				
-				.col-md-7 
-					#appointment_demo
+	.container-fluid
+		.row
+			.col-md-3
+				%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}	
+		
+
+			
+			.col-md-9
+				#appointment_demo
+					.col-md-10
 						%table.table
 							%tbody
 								%tr
 									%td
 										%strong Title:
-									%td= @appointment.title
-								%tr
-									%td
-										%strong Active:
-									%td= @appointment.active									
+									%td= @appointment.title								
 								%tr
 									%td
 										%strong Price:
@@ -48,20 +34,29 @@
 									%td= simple_format(@appointment.vendor.bio)
 								%tr
 									%td
-										%strong View Profile
-									%td= link_to "View Profile", vendor_path(@appointment.vendor_id), class: "button"	
-								%tr
-									%td
 										%strong Share Us:
 									%td= social_share_button_tag("PamperedUp")
+		
+					.col-md-2
+						- if user_signed_in? && Vendor.exists?(user_id: current_user.id)
+							= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
+							= link_to "Delete Appointment", @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "button"
+							= link_to "View Profile", vendor_path(@appointment.vendor_id), class: "button"	
 
-			#appointment_description
-				.row
-					.col-md-12 
-						%br/
-						%h2 APPOINTMENT DESCRIPTION
-						%p= simple_format(@appointment.description)
-						%br/
+						- else
+							= link_to "Review Me", new_vendor_review_path(@appointment.vendor_id), class: "button"	
+							= link_to "Book Now", new_appointment_booking_path(@appointment), class: "button"	
+							= link_to "View Profile", vendor_path(@appointment.vendor_id), class: "button"	
+	%br
+	%br
+
+		#appointment_description
+			.row
+				.col-md-12 
+					%br/
+					%h2 APPOINTMENT DESCRIPTION
+					%p= simple_format(@appointment.description)
+					%br/
 
 :javascript
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

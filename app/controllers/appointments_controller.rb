@@ -29,6 +29,17 @@ class AppointmentsController < ApplicationController
       @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
     end
 
+    @avg_reviews = []
+    for singleappointment in @appointments
+      @reviews = Review.where(vendor_id: singleappointment.vendor.id)
+
+      if @reviews.blank?
+        @avg_reviews << 0
+      else
+        @avg_reviews << @reviews.average(:rating).round(2)
+      end
+    end
+
 
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude
