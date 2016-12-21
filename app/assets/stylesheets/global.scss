@@ -22,15 +22,31 @@ $red: #B11322;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
+
+    position: relative;
+    margin: 0;
+    padding-bottom: 100px;
+    min-height: 100%;   
+
     font-family: 'Lato', sans-serif;
     padding-top: 60px;
-    padding-bottom: 100px;
   }
   @media (max-width: 980px) {
     body {
       padding-top: 60px;
-      padding-bottom: 100px;
+      padding-bottom: 250px;
 
     }
   }
@@ -107,6 +123,7 @@ a {
     padding: 1.0rem 1.0rem 0 0;
     margin-bottom: 0px;
     @include bold_font;
+    border-radius: 0px;
 
     button, .btn {
         color: $purple;
@@ -143,18 +160,14 @@ a {
 }
 
 .navbar-footer {
-    position: fixed;
+    position: absolute;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    border-radius: 0px;
-}
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 15px;
 
-#bs-example-navbar-collapse-1 {
-
-
-
-    @include bold_font;
-    vertical-align: bottom;
     
     p.copy {
         color: $gold;
@@ -173,17 +186,8 @@ a {
         text-decoration: underline;
         color: $lt_gold;
     }
-
 }
 
-
-footer {
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  text-align: center;
-}
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
     width: 100%;

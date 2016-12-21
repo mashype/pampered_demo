@@ -94,15 +94,8 @@
 
 	= yield
 
-%nav.navbar.navbar-default.navbar-fixed-bottom
-	.container
-		.navbar-header
-			%button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-				%span.sr-only Toggle navigation
-				%span.icon-bar
-				%span.icon-bar
-				%span.icon-bar
-		#bs-example-navbar-collapse-1.collapse.navbar-collapse
+	%nav.navbar.navbar-footer
+		.wrapper
 			.col-md-3
 				%ul.list-group
 					%li
