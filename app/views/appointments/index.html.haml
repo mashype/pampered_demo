@@ -24,20 +24,35 @@
   .wrapper
     .row
       #appointments.transitions-enabled
-        - @appointments.each_with_index do |appointment, i|
-          %a{ href: (url_for [appointment])}
-            .box.panel.panel-default
-              .panel-heading
-                %h2= appointment.title
-              .panel-body
-                .col-xs-4
+        - unless @appointments.blank?
+          - @appointments.each_with_index do |appointment, i|
+            %a{ href: (url_for [appointment])}
+              .box.panel.panel-default
+                .panel-heading
+                  %h2= appointment.title
+                .panel-body
                   %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
-                .col-xs-8
-                  %p= simple_format(appointment.description)
-              .panel-footer
-                %h3= appointment.vendor.user.username
-                %h3= number_to_currency((appointment.amount.cost), unit:"$")
+                  %h3= appointment.vendor.name
+                  .stars
+                    %p{class: "star-rating", dscore: @avg_reviews[i]}
+                    %em= "#{@reviews.length} reviews"  
+
+                  
+                .panel-footer
+                  %h3= number_to_currency((appointment.amount.cost), unit:"$")
+
+        - else 
+          %p Sorry, but all our appointments are totally booked up right now.
+
    
+:javascript
+    $('.star-rating').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+            return $(this).attr('dscore');
+        }
+    }); 
 
 :javascript
   handler = Gmaps.build('Google');
