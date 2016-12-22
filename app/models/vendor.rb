@@ -1,6 +1,6 @@
 class Vendor < ActiveRecord::Base
 
-  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, 
+ 	has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, 
 	:default_url => "https://s3.amazonaws.com/fitchike-dev/profiles/avatars/missing_:style.jpg"
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
@@ -79,14 +79,22 @@ class Vendor < ActiveRecord::Base
 	}
 
 
-  def self.options_for_sorted_by
-    [
-      ['Name (a-z)', 'name_asc'],
-      ['Registration date (newest first)', 'created_at_desc'],
-      ['Registration date (oldest first)', 'created_at_asc'],
-      ['Type(a-z)', 'vendor_type_id_asc']
-    ]
-  end
+	def self.options_for_sorted_by
+	[
+	  ['Name (a-z)', 'name_asc'],
+	  ['Registration date (newest first)', 'created_at_desc'],
+	  ['Registration date (oldest first)', 'created_at_asc'],
+	  ['Type(a-z)', 'vendor_type_id_asc']
+	]
+	end
+
+  	def slug
+   		name.downcase.gsub(" ", "-")
+  	end
+
+ 	def to_param
+    	"#{id}-#{slug}"
+  	end
 
 end
 

@@ -9,12 +9,12 @@ class Appointment < ActiveRecord::Base
 	has_many :bookings
 
 	def slug
-    title.downcase.gsub(" ", "-")
-  end
+   		title.downcase.gsub(" ", "-")
+  	end
 
-  def to_param
-    "#{id}-#{slug}"
-  end
+ 	def to_param
+    	"#{id}-#{slug}"
+  	end
 
 end
 
