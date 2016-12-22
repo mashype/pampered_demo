@@ -46,11 +46,13 @@
 				.col-sm-2
 					%i.fa.fa-facebook-square
 				.col-sm-10
-					%p= link_to(@vendor.sm_facebook, @vendor.sm_facebook, target: '_blank')	
+					- if @vendor.sm_facebook.length <1
+						%p= "N/A"
+					- else
+						%p= link_to(@vendor.sm_facebook, @vendor.sm_facebook, target: '_blank')	
 				.col-sm-2
 					%i.fa.fa-twitter-square
 				.col-sm-10
-
 					- if @vendor.sm_twitter.length <1
 						%p= "N/A"
 					-else
