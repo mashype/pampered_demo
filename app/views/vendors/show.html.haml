@@ -1,183 +1,186 @@
 #vendor_show
-	.wrapper
-		.container-fluid
-			.row
-				.col-md-3
-					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}
-					%table.table
-						.row
-						- if @vendor.user_id.nil?
-							.col-md-12
-								= link_to "Claim Your Profile", edit_vendor_path(@vendor), class: "button"
+	.container-fluid
+		%h2= @vendor.name
+		.row	
+			.col-md-3
+				%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}					
+			
+			.col-md-7
+				%table.table
+					%tbody
+						%tr
+							%td
+								%strong Reviews
+							%td{class: "star-rating", dscore: @avg_review}
+								%em= "#{@reviews.length} reviews"
+						%tr
+							%td
+								%strong Username:
+							%td= @vendor.user.username
+						%tr
+							%td
+								%strong Website:
+							%td= @vendor.website									
+						%tr
+							%td
+								%strong Specialty:
+							%td= @vendor.vendor_type.title									
 
-						- elsif user_signed_in? && Vendor.exists?(user_id: current_user.id)
+						%tr
+							%td
+								%strong Bio:
+							%td=simple_format(@vendor.bio)		
 
-							.col-md-12
-								= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
-							.col-md-12
-								= link_to "Create Appointment", new_appointment_path, class: "button"	
+			.col-md-2
+				- if @vendor.user_id.nil?
+					= link_to "Claim Your Profile", edit_vendor_path(@vendor), class: "button"
 
-						- else user_signed_in?
-							.col-md-12
-								= link_to "Review Me", new_vendor_review_path(@vendor), class: "button"	
-							.col-md-12
-								= link_to "Message Me", root_path, class: "button"						
-				.col-md-9
-					#vendor_demo
-						%table.table
+				- elsif user_signed_in? && Vendor.exists?(user_id: current_user.id)
+					= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
+					= link_to "Create Appointment", new_appointment_path, class: "button"	
+
+				- else user_signed_in?
+					= link_to "Review Me", new_vendor_review_path(@vendor), class: "button"	
+					= link_to "Message Me", root_path, class: "button"
+				%br			
+				.col-sm-2
+					%i.fa.fa-facebook-square
+				.col-sm-10
+					%p= link_to(@vendor.sm_facebook, @vendor.sm_facebook, target: '_blank')	
+				.col-sm-2
+					%i.fa.fa-twitter-square
+				.col-sm-10
+
+					- if @vendor.sm_twitter.length <1
+						%p= "N/A"
+					-else
+						%p= link_to(@vendor.sm_twitter, @vendor.sm_twitter, target: '_blank')	
+				.col-sm-2
+					%i.fa.fa-instagram
+				.col-sm-10
+					- if @vendor.sm_instagram.length <1
+						%p= "N/A"
+					-else
+						%p= link_to(@vendor.sm_instagram, @vendor.sm_instagram, target: "_blank")
+				.col-sm-2
+					%i.fa.fa-pinterest-square
+				.col-sm-10
+					- if @vendor.sm_pinterest.length <1
+						%td= "N/A"
+					-else
+						%td= link_to(@vendor.sm_pinterest, @vendor.sm_pinterest, target: "_blank")		
+
+
+
+
+		.row	
+			.col-md-12
+			- if user_signed_in?
+				/ Nav tabs
+				%ul.nav.nav-tabs{:role => "tablist"}
+					%li.active{:role => "presentation"}
+						%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#review", :role => "tab"} Reviews							
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "licenses", "data-toggle" => "tab", :href => "#license", :role => "tab"} Licenses
+
+				/ Tab panes
+				.tab-content
+
+					#appointent.tab-pane.active{:role => "tabpanel"}
+						%table.table.table-hover
+							%thead
+								%tr
+									%th Title
+									%th Description
+									%th Active
+									%th Amount
+									%th View
+									%th{:colspan => "5"}
 							%tbody
-								%tr
-									%td
-										%strong Username:
-									%td= @vendor.user.username
-								%tr
-									%td
-										%strong Business Name:
-									%td= @vendor.name
-								%tr
-									%td
-										%strong Business Type:
-									%td= @vendor.vendor_type.title									
-								%tr
-									%td
-										%strong Website:
-									%td= @vendor.website
-								%tr
-									%td
-										%strong Facebook:
-									%td= @vendor.sm_facebook
-								%tr
-									%td
-										%strong Twitter:
-									%td= @vendor.sm_twitter
-								%tr
-									%td
-										%strong Instagram:
-									%td= @vendor.sm_instagram
-								%tr
-									%td
-										%strong Pinterest:
-									%td= @vendor.sm_pinterest
-
-								%tr		
-									%td
-										%strong Avg Rating:
-									%td{class: "star-rating", dscore: @avg_review}
-										%em= "#{@reviews.length} reviews"
-
-								%tr
-									%td
-										%strong Bio:
-									%td=simple_format(@vendor.bio)									
-	
-			.row	
-				.col-md-12
-				- if user_signed_in?
-					/ Nav tabs
-					%ul.nav.nav-tabs{:role => "tablist"}
-						%li.active{:role => "presentation"}
-							%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
-						%li{:role => "presentation"}
-							%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#review", :role => "tab"} Reviews							
-						%li{:role => "presentation"}
-							%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
-						%li{:role => "presentation"}
-							%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
-						%li{:role => "presentation"}
-							%a{"aria-controls" => "licenses", "data-toggle" => "tab", :href => "#license", :role => "tab"} Licenses
-
-					/ Tab panes
-					.tab-content
-
-						#appointent.tab-pane.active{:role => "tabpanel"}
-							%table.table.table-hover
-								%thead
+								- @appointments.each do |appointment|
 									%tr
-										%th Title
-										%th Description
-										%th Active
-										%th Amount
-										%th View
-										%th{:colspan => "5"}
-								%tbody
-									- @appointments.each do |appointment|
-										%tr
-											%td= appointment.title
-											%td= appointment.description
-											%td= appointment.active
-											%td= number_to_currency(appointment.amount.cost, unit:"$")
-											%td= link_to 'View', appointment_path(appointment)
+										%td= appointment.title
+										%td= appointment.description
+										%td= appointment.active
+										%td= number_to_currency(appointment.amount.cost, unit:"$")
+										%td= link_to 'View', appointment_path(appointment)
 
-						#review.tab-pane{:role => "tabpanel"} 
-							%table.table.table-hover
-								%thead 
+					#review.tab-pane{:role => "tabpanel"} 
+						%table.table.table-hover
+							%thead 
+								%tr
+									%th Rating
+									%th Comment
+									%th Username
+									%th{:colspan => "3"}
+							%tbody
+								- @vendor.reviews.each do |review|
 									%tr
-										%th Rating
-										%th Comment
-										%th Username
-										%th{:colspan => "3"}
-								%tbody
-									- @vendor.reviews.each do |review|
-										%tr
-											%td{class: "star-rating", dscore: review.rating}
-											%td= review.comment
-											%td= review.user.username
+										%td{class: "star-rating", dscore: review.rating}
+										%td= review.comment
+										%td= review.user.username
 
-						#locations.tab-pane{:role => "tabpanel"} 
-							%table.table.table-hover
-								%thead
+					#locations.tab-pane{:role => "tabpanel"} 
+						%table.table.table-hover
+							%thead
+								%tr
+									%th
+									%th Address 1
+									%th Address 2
+									%th City
+									%th State
+									%th Zip
+									%th Location Type
+									%th{:colspan => "7"}
+							%tbody
+								- @vendor.vendor_locations.each do |vendor_locations|
 									%tr
-										%th
-										%th Address 1
-										%th Address 2
-										%th City
-										%th State
-										%th Zip
-										%th Location Type
-										%th{:colspan => "7"}
-								%tbody
-									- @vendor.vendor_locations.each do |vendor_locations|
-										%tr
-											%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{vendor_locations.location.latitude}%2C#{vendor_locations.location.longitude}"
+										%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{vendor_locations.location.latitude}%2C#{vendor_locations.location.longitude}"
 
-											%td= image_tag google_map(center: [ vendor_locations.location.latitude, vendor_locations.location.longitude ].join(','))
+										%td= image_tag google_map(center: [ vendor_locations.location.latitude, vendor_locations.location.longitude ].join(','))
 
 
-											%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
-											%td= vendor_locations.location.add_2								
-											%td= vendor_locations.location.city
-											%td= vendor_locations.location.state
-											%td= vendor_locations.location.zip
+										%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
+										%td= vendor_locations.location.add_2								
+										%td= vendor_locations.location.city
+										%td= vendor_locations.location.state
+										%td= vendor_locations.location.zip
 
-						#service.tab-pane{:role => "tabpanel"} 
-							%table.table.table-hover
-								%thead
+					#service.tab-pane{:role => "tabpanel"} 
+						%table.table.table-hover
+							%thead
+								%tr
+									%th Service
+									%th Notes
+									%th{:colspan => "2"}
+							%tbody
+								- @vendor.vendor_services.each do |vendor_services|
 									%tr
-										%th Service
-										%th Notes
-										%th{:colspan => "2"}
-								%tbody
-									- @vendor.vendor_services.each do |vendor_services|
-										%tr
-											%td= vendor_services.service.title
-											%td= vendor_services.notes
+										%td= vendor_services.service.title
+										%td= vendor_services.notes
 
-						#license.tab-pane{:role => "tabpanel"} 
-							%table.table.table-hover
-								%thead
+					#license.tab-pane{:role => "tabpanel"} 
+						%table.table.table-hover
+							%thead
+								%tr
+									%th Licenser
+									%th License Name
+									%th Issue Date
+									%th License Number
+									%th{:colspan => "4"}
+							%tbody
+								- @vendor.vendor_licenses.each do |vendor_licenses|
 									%tr
-										%th Licenser
-										%th License Name
-										%th Issue Date
-										%th License Number
-										%th{:colspan => "4"}
-								%tbody
-									- @vendor.vendor_licenses.each do |vendor_licenses|
-										%tr
-											%td= vendor_licenses.licenser
-											%td= vendor_licenses.name											
-											%td= vendor_licenses.issue_date
-											%td= vendor_licenses.license_number
+										%td= vendor_licenses.licenser
+										%td= vendor_licenses.name											
+										%td= vendor_licenses.issue_date
+										%td= vendor_licenses.license_number
 
 :javascript
 		$('.star-rating').raty({

@@ -1,0 +1,16 @@
+.wrapper
+  = simple_form_for([@vendor, @review]) do |f|
+    = f.error_notification
+    .field
+      #star-rating
+    .form-inputs
+      = f.input :comment
+    .form-actions
+      = f.button :submit, class: "button"
+
+
+:javascript
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });

@@ -1,34 +1,39 @@
 #booking
 	.wrapper_with_padding
 		.col-md-6.col-md-offset-3
+			%h2 Confirm Appointment
 			.row
-				%h2 Confirm Appointment
-			.row
-				.col-md-4	
-					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:thumb)}
-				.col-md-8
-					%table.table
-						%tbody
-							%tr
-								%td
-									%strong Vendor:
-								%td= @appointment.vendor.user.username
-							%tr
-								%td
-									%strong Service:
-								%td= @appointment.title	
-							%tr
-								%td
-									%strong Pampered Fee:
-								%td= number_to_currency((@appointment.amount.cost*0.1), unit:"$")	
-							%tr
-								%td
-									%strong Total Price:
-								%td= number_to_currency(@appointment.amount.cost, unit:"$")								
+				%table.table
+					%tbody
+						%tr
+							%td
+								%strong Vendor:
+							%td= @appointment.vendor.user.username
+						%tr
+							%td
+								%strong Service:
+							%td= @appointment.title	
+						%tr
+							%td
+								%strong Pampered Fee:
+							%td= number_to_currency((@appointment.amount.cost*0.1), unit:"$")	
+						%tr
+							%td
+								%strong Total Price:
+							%td= number_to_currency(@appointment.amount.cost, unit:"$")								
 
 			.row 
 				= render 'form'
-				= link_to 'Cancel Request', appointment_path(@appointment)
+
+			.row
+				%ul
+					%li No payments are due to vendor at time of services.
+					%li PamperedUp handles all payments so no financial info is exchanged.
+					%li Payments are held until services are rendered
+					%li If you are not 100% satisfied, we'll get your money back.
+				%br
+				= link_to 'Cancel Request', appointment_path(@appointment), class: "btn btn-danger"
+
 
 :javascript
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

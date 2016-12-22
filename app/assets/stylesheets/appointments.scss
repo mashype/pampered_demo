@@ -57,15 +57,6 @@
 	}
 }
 
-#appointment_demo {
-	color: $dk_purple;
-	min-height: 400px;
-	border-radius: 5px;
-	border: 6px solid $purple;
-	border-color: $purple;
-	padding: 1em 1%;
-
-}
 
 #appointment_show {
 	margin: auto;
@@ -77,8 +68,10 @@
 		padding: 1rem 3.5rem;
 		display: block;
 		min-width: 100px;
-    font-size: 12px;
-    text-align: center;
+		min-height: 50px;
+    	font-size: 12px;
+    	text-align: center;
+    	padding: 20px 0;
 		border: 2px solid $lt_purple;
 		border-radius: .35rem;
 		margin: 0px 2px 10px;
@@ -88,7 +81,6 @@
   	color: $dk_purple;
   	background-color: $lt_gold;
   	border: 2px solid $dk_purple;
-
 	}
 
 	img {
@@ -99,12 +91,12 @@
 		padding: 3px;
 		vertical-align: middle;
 	}	
-}
-
-#appointment_description {
-	border-top: 6px solid $purple;
 	h2 {
 		text-align: center;
+	}
+	.row {
+		border-top: 3px solid $lt_purple;
+		padding-top: 10px;	
 	}
 }
 

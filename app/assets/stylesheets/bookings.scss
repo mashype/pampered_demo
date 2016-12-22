@@ -1,6 +1,9 @@
 #booking {
-  padding-bottom: 20%;
 
+  .row {
+    padding: 20px;
+    border-bottom: 3px solid $purple;
+  }
 	img {
     max-width: 100%;
     height: auto; 
@@ -22,9 +25,23 @@
 
 
   button, .button {
-    padding: 1rem 3.5rem;
     display: block;
     width: 100%;
-    }
+    position: absolute;
+    top: 27px;
+  }
+
+  li {
+    font-size: 14px;
+    color: $dk_purple;
+    padding: 5px;
+  }
+
+  .btn {
+    margin: auto;
+    align-items: center;
+    width: 75%;
+    padding: 7px;
+  }
 
 }
