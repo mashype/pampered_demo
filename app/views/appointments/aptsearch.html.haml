@@ -2,47 +2,28 @@
 %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
 %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
 
-#appointment_index
-  .row
-    %img.img-responsive
-      #map{:style => "width: 100%; height: 400px;"} 
-  .row
-    .col-sm-8.col-sm-offset-2
-      %p
-      = form_tag appointments_path, :method => :get do
-        .col-md-8
-          = text_field_tag :search, params[:search], placeholder: 'Enter new address, zip or location...'
-        .col-md-4
-          = submit_tag "Refresh", :search => nil, class:'button'
-  .row 
-  - if user_signed_in? && !Vendor.exists?(user_id: current_user)  
-    .col-sm-6.col-sm-offset-3
-      %h4= link_to "Interested In offering services on PamperedUp?", new_vendor_path
-    %br
-    %br  
 
-  .wrapper
-    .row
-      #appointments.transitions-enabled
-        - unless @appointments.blank?
-          - @appointments.each_with_index do |appointment, i|
-            %a{ href: (url_for [appointment])}
-              .box.panel.panel-default
-                .panel-heading
-                  %h2= appointment.title
-                .panel-body
-                  %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
-                  %h3= appointment.vendor.name
-                  .stars
-                    %p{class: "star-rating", dscore: @avg_reviews[i]}
-                    %em= "#{@reviews.length} reviews"  
+#appointments.transitions-enabled
+%br
+  - unless @appointments.blank?
+    - @appointments.each_with_index do |appointment, i|
+      %a{ href: (url_for [appointment])}
+        .box.panel.panel-default
+          .panel-heading
+            %h2= appointment.title
+          .panel-body
+            %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
+            %h3= appointment.vendor.name
+            .stars
+              %p{class: "star-rating", dscore: @avg_reviews[i]}
+              %em= "#{@reviews.length} reviews"  
 
-                  
-                .panel-footer
-                  %h3= number_to_currency((appointment.amount.cost), unit:"$")
+            
+          .panel-footer
+            %h3= number_to_currency((appointment.amount.cost), unit:"$")
 
-        - else 
-          %p Sorry, but all our appointments are totally booked up right now.
+  - else 
+    %p Sorry, but all our appointments are totally booked up right now.
 
    
 :javascript

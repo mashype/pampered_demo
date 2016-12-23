@@ -7,6 +7,18 @@ class AppointmentsController < ApplicationController
     else
       @appointments = Appointment.where(active: true)
     end
+
+    @avg_reviews = []
+    for singleappointment in @appointments
+      @reviews = Review.where(vendor_id: singleappointment.vendor.id)
+
+      if @reviews.blank?
+        @avg_reviews << 0
+      else
+        @avg_reviews << @reviews.average(:rating).round(2)
+      end
+    end
+    
   end
 
 
