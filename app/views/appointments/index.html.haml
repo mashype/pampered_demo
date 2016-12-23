@@ -42,7 +42,10 @@
                   %h3= number_to_currency((appointment.amount.cost), unit:"$")
 
         - else 
-          %p Sorry, but all our appointments are totally booked up right now.
+          %h2 Sorry...
+          %h3 We dont have any offers in your area. Please contact us to request we add providers in your area.
+          %br
+          %p= mail_to "seth@pamperedup.com", "Contact", subject: "Pampered Contact Request", class: "button"
 
    
 :javascript
