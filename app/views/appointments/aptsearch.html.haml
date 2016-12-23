@@ -2,28 +2,29 @@
 %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
 %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
 
+#appointments
+  #appointments.transitions-enabled
+  %br
+    - unless @appointments.blank?
+      - @appointments.each_with_index do |appointment, i|
+        %a{ href: (url_for [appointment])}
+          .box.panel.panel-default
+            .panel-heading
+              %h2= appointment.title
+            .panel-body
+              %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
+              %h3= appointment.vendor.name
+              .stars
+                %p{class: "star-rating", dscore: @avg_reviews[i]}
+                %em= "#{@reviews.length} reviews"  
 
-#appointments.transitions-enabled
-%br
-  - unless @appointments.blank?
-    - @appointments.each_with_index do |appointment, i|
-      %a{ href: (url_for [appointment])}
-        .box.panel.panel-default
-          .panel-heading
-            %h2= appointment.title
-          .panel-body
-            %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
-            %h3= appointment.vendor.name
-            .stars
-              %p{class: "star-rating", dscore: @avg_reviews[i]}
-              %em= "#{@reviews.length} reviews"  
+              
+            .panel-footer
+              %h3= number_to_currency((appointment.amount.cost), unit:"$")
 
-            
-          .panel-footer
-            %h3= number_to_currency((appointment.amount.cost), unit:"$")
-
-  - else 
-    %p Sorry, but all our appointments are totally booked up right now.
+    - else 
+      %h2 Sorry, but we aren't currently offering services in the area
+      %p Contact us to make a request.
 
    
 :javascript
@@ -34,14 +35,6 @@
             return $(this).attr('dscore');
         }
     }); 
-
-:javascript
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(#{raw @hash.to_json});
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
 
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
