@@ -24,77 +24,85 @@ class Vendor < ActiveRecord::Base
 	accepts_nested_attributes_for :vendor_licenses, reject_if: :all_blank, allow_destroy: true
 
 
-  # This directive enables Filterrific for the Student class.
-  # We define a default sorting by most recent sign up, and then
-  # we make a number of filters available through Filterrific.
-  filterrific(
-    default_filter_params: { sorted_by: 'created_at_desc' },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_vendor_type_id,
-      :with_created_at_gte
-    ]
-  )
+	filterrific :default_filter_params => { :sorted_by => 'created_at_desc' },
+            	:available_filters => %w[
+                sorted_by
+                search_query
+                with_user_id
+                with_vendor_type_id
+                with_created_at_gte
+              ]
+
+  	# default for will_paginate
+  	self.per_page = 10
+
 
 	scope :search_query, lambda { |query|
-
-	  return nil  if query.blank?
-	  terms = query.downcase.split(/\s+/)
-
-	  terms = terms.map { |e|
-	    (e.gsub('*', '%') + '%').gsub(/%+/, '%')
-	  }
-
-	  num_or_conds = 2
-	  where(
-	    terms.map { |term|
-	      "(LOWER(vendors.name) LIKE ? OR LOWER(vendors.bio) LIKE ?)"
-	    }.join(' AND '),
-	    *terms.map { |e| [e] * num_or_conds }.flatten
-	  )
+	    return nil  if query.blank?
+	    # condition query, parse into individual keywords
+	    terms = query.downcase.split(/\s+/)
+	    # replace "*" with "%" for wildcard searches,
+	    # append '%', remove duplicate '%'s
+	    terms = terms.map { |e|
+	      (e.gsub('*', '%') + '%').gsub(/%+/, '%')
+	    }
+	    # configure number of OR conditions for provision
+	    # of interpolation arguments. Adjust this if you
+	    # change the number of OR conditions.
+	    num_or_conditions = 3
+	    where(
+	      terms.map {
+	        or_clauses = [
+	          "LOWER(vendors.name) LIKE ?",
+	          "LOWER(vendors.bio) LIKE ?",
+	          "LOWER(vendors.sm_twitter) LIKE ?"
+	        ].join(' OR ')
+	        "(#{ or_clauses })"
+	      }.join(' AND '),
+	      *terms.map { |e| [e] * num_or_conditions }.flatten
+	    )
 	}
 
-	scope :sorted_by, lambda { |sort_option|
+  	scope :sorted_by, lambda { |sort_option|
+    	# extract the sort direction from the param value.
+    	direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+    	case sort_option.to_s
+    	when /^created_at_/
+     		order("vendors.created_at #{ direction }")
+    	when /^title_/
+    		order("LOWER(vendors.name) #{ direction }, LOWER(vendors.bio) #{ direction }")
+    	when /^vendor_type_title_/
+    		order("LOWER(vendor_types.title) #{ direction }").includes(:vendor_type)
+    else
+      	raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
 
-  direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
-	  case sort_option.to_s
-	  when /^created_at_/
-	    order("vendors.created_at #{ direction }")
-	  when /^name_/
-	    order("LOWER(vendors.name) #{ direction }, LOWER(students.bio) #{ direction }")
-	  when /^vendor_type_title_/
-	    order("LOWER(vnedor_types.title) #{ direction }").includes(:vendor_type)
-	  else
-	    raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
-	  end
-	}
-	
-	scope :with_vendor_type_id, lambda { |vendor_type_ids|
-	  where(with_vendor_type_id: [*vendor_type_ids])
-	}
-  
-	scope :created_at_gte, lambda { |reference_time|
-	  where('vendors.created_at >= ?', reference_time)
-	}
+  	scope :with_user_id, lambda { |user_ids| where(:user_id => [*user_ids]) }
 
+  	scope :with_vendor_type_id, lambda { |vendor_type_ids| where(:vendor_type_id => [*vendor_type_ids]) }
+
+  	scope :with_created_at_gte, lambda { |ref_date| where('vendors.created_at >= ?', ref_date) }
+
+	delegate :title, :to => :vendor_type, :prefix => true
 
 	def self.options_for_sorted_by
-	[
-	  ['Name (a-z)', 'name_asc'],
-	  ['Registration date (newest first)', 'created_at_desc'],
-	  ['Registration date (oldest first)', 'created_at_asc'],
-	  ['Type(a-z)', 'vendor_type_id_asc']
-	]
+	    [
+	      ['Title (a-z)', 'title_asc'],
+	      ['Registration date (newest first)', 'created_at_desc'],
+	      ['Registration date (oldest first)', 'created_at_asc'],
+	      ['type (a-z)', 'vendor_type_title_asc']
+	    ]
 	end
 
-  	def slug
+
+	def slug
    		name.downcase.gsub(" ", "-")
   	end
 
  	def to_param
     	"#{id}-#{slug}"
-  	end
+   	end
 
 end
 

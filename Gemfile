@@ -33,6 +33,15 @@ gem 'heroku', '~> 3.42', '>= 3.42.44'
 gem 'aws-sdk', '< 2.0'
 gem 'meta-tags'
 
+
+gem 'bootstrap-datepicker-rails'
+gem 'chardinjs-rails'
+gem 'haml-rails'
+gem 'random_data'
+gem 'thin'
+gem 'will_paginate-bootstrap'
+
+
 gem 'rails_12factor', group: :production
 
 

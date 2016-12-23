@@ -1,0 +1,25 @@
+
+.well.well-small
+  .pull-right{ :'data-position' => 'bottom', :'data-intro' => 'Reset the filter settings to defaults.' }
+    = link_to "Reset filters", reset_filterrific_url, :class => 'button'
+  .chardin_box{ :'data-position' => 'bottom', :'data-intro' => "will_paginate's entries info works as expected." }
+    = page_entries_info vendors, :model => 'vendor'
+  .chardin_box{ :'data-position' => 'bottom', :'data-intro' => 'Spinner indicates update.' }
+-#    = render_filterrific_spinner
+
+%table.table
+  %tr
+    %th= filterrific_sorting_link(@filterrific, :title)
+    %th Vendor Type
+    %th User
+    %th Member Since
+  - vendors.each do |vendor|
+    %tr
+      %td= vendor.name
+      %td= vendor.vendor_type_title
+      %td= vendor.user.username
+      %td= vendor.created_at.to_date.to_s(:long)
+      %td= link_to "View", vendor_path(vendor)
+
+.chardin_box{ :'data-position' => 'top', :'data-intro' => "will_paginate's paginator works as expected." }
+  = will_paginate vendors, renderer: BootstrapPagination::Rails

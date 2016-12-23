@@ -1,41 +1,32 @@
-require 'builder'
-require 'will_paginate'
-include ActionView::Helpers::NumberHelper
-
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
 
+  def list
+  end
 
 
   def index
-
     @filterrific = initialize_filterrific(
       Vendor,
       params[:filterrific],
-      select_options: {
+      :select_options => {
         sorted_by: Vendor.options_for_sorted_by,
+        with_user_id: User.options_for_select,
         with_vendor_type_id: VendorType.options_for_select
-      },
-      persistence_id: 'shared_key',
-      default_filter_params: {},
-      available_filters: [],
+      }
     ) or return
-
     @vendors = @filterrific.find.page(params[:page])
 
-    # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
       format.js
     end
-
-  rescue ActiveRecord::RecordNotFound => e
-    puts "Had to reset filterrific params: #{ e.message }"
-    redirect_to(reset_filterrific_url(format: :html)) and return
   end
 
 
+
   def show
+
     @reviews = Review.where(vendor_id: @vendor.id).order("created_at DESC")
     @appointments = Appointment.where(vendor_id: @vendor.id).order("created_at DESC") 
 
@@ -44,16 +35,20 @@ class VendorsController < ApplicationController
     else
       @avg_review = @reviews.average(:rating).round(2)
     end
+
   end 
+
 
   def new
     @vendor = current_user.build_vendor
   end
 
+
   def edit
   end
 
   def create
+
     @vendor = current_user.build_vendor(vendor_params)
 
     respond_to do |format|
@@ -65,7 +60,9 @@ class VendorsController < ApplicationController
         format.json { render json: @vendor.errors, status: :unprocessable_entity }
       end
     end
+
   end
+
 
   def update
     respond_to do |format|
@@ -80,14 +77,17 @@ class VendorsController < ApplicationController
   end
 
   def destroy
+
     @vendor.destroy
     respond_to do |format|
       format.html { redirect_to vendors_url, notice: 'Vendor was successfully destroyed.' }
       format.json { head :no_content }
     end
+
   end
 
   private
+
     def set_vendor
       @vendor = Vendor.find(params[:id])
     end

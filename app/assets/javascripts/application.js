@@ -13,7 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+
+
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js
 //= require filterrific/filterrific-jquery
+//= require chardinjs
+
 //= require bootstrap-sprockets
 //= require masonry/jquery.masonry
 //= require gmaps/google

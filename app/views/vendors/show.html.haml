@@ -46,31 +46,31 @@
 				.col-sm-2
 					%i.fa.fa-facebook-square
 				.col-sm-10
-					- if @vendor.sm_facebook.length <1
-						%p= "N/A"
+					- if @vendor.sm_facebook.present?
+						%p= link_to(@vendor.sm_facebook, @vendor.sm_facebook, target: '_blank')
 					- else
-						%p= link_to(@vendor.sm_facebook, @vendor.sm_facebook, target: '_blank')	
+						%p= "N/A"	
 				.col-sm-2
 					%i.fa.fa-twitter-square
 				.col-sm-10
-					- if @vendor.sm_twitter.length <1
-						%p= "N/A"
-					-else
+					- if @vendor.sm_twitter.present?
 						%p= link_to(@vendor.sm_twitter, @vendor.sm_twitter, target: '_blank')	
+					- else
+						%p= "N/A"	
 				.col-sm-2
 					%i.fa.fa-instagram
 				.col-sm-10
-					- if @vendor.sm_instagram.length <1
-						%p= "N/A"
-					-else
+					- if @vendor.sm_instagram.present?
 						%p= link_to(@vendor.sm_instagram, @vendor.sm_instagram, target: "_blank")
+					- else
+						%p= "N/A"	
 				.col-sm-2
 					%i.fa.fa-pinterest-square
 				.col-sm-10
-					- if @vendor.sm_pinterest.length <1
-						%td= "N/A"
-					-else
+					- if @vendor.sm_pinterest.present?
 						%td= link_to(@vendor.sm_pinterest, @vendor.sm_pinterest, target: "_blank")		
+					- else
+						%p= "N/A"	
 
 
 
