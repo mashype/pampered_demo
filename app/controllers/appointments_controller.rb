@@ -22,6 +22,34 @@ class AppointmentsController < ApplicationController
   end
 
 
+  def aptfilter
+
+    if params[:search].present?
+      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+
+    else
+      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
+      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+    end
+
+    @filterrific = initialize_filterrific(
+      Appointment.includes(:vendor),
+      params[:filterrific],
+      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
+      ) or return
+    
+    @appointments = @filterrific.find.where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
+ 
+
   def index 
 
     if params[:search].present?
