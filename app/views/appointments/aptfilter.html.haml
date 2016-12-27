@@ -1,0 +1,65 @@
+#appointment_index
+
+  .row
+    %img.img-responsive
+      #map{:style => "width: 100%; height: 400px;"} 
+  #search
+    .row
+      .col-sm-8.col-sm-offset-2
+        %p
+        = form_tag appointments_path, :method => :get do
+          .col-md-8
+            = text_field_tag :search, params[:search], placeholder: 'Enter new address, zip or location...'
+          .col-md-4
+            = submit_tag "Refresh", :search => nil, class:'button'
+  .row 
+  - if user_signed_in? && !Vendor.exists?(user_id: current_user)  
+    .col-sm-6.col-sm-offset-3
+      %h4= link_to "Interested In offering services on PamperedUp?", new_vendor_path
+
+  .row
+    .col-md-2
+      = form_for_filterrific @filterrific do |f|
+        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by first name, last name, or email.' }
+          %label Search Appointments
+          = f.text_field :search_query, :class => 'filterrific-periodically-observed form-control'
+
+        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by country.' }
+          %label Service Type
+          = f.select :with_service_id, @filterrific.select_options[:with_service_id], { :include_blank => '- Any -' }, { :class => 'form-control' }
+    .col-md-10
+      #results
+        = render :partial => 'appointments/list', :locals => { :appointments => @appointments }
+
+
+:javascript
+  $('.js-datepicker').datepicker();
+  $('#overlayTrigger').click(function(event) {
+    event.preventDefault();
+    $('body').chardinJs('start');
+  });
+
+:javascript
+    $('.star-rating').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+            return $(this).attr('dscore');
+        }
+    }); 
+
+:javascript
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(#{raw @hash.to_json});
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+
+:javascript
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-77303912-2', 'auto');
+  ga('send', 'pageview');
