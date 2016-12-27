@@ -45,6 +45,12 @@ class AppointmentsController < ApplicationController
       format.html
       format.js
     end
+
+    @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
+      marker.lat vendor_location.location.latitude
+      marker.lng vendor_location.location.longitude
+    end
+
   end
 
 
@@ -62,11 +68,24 @@ class AppointmentsController < ApplicationController
     end
 
 
-    if params[:service].blank?
-      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
-    else
-      @service_id = Service.find_by(title: params[:service]).id
-      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
+#    if params[:service].blank?
+#      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
+#    else
+#      @service_id = Service.find_by(title: params[:service]).id
+#      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
+#    end
+
+    @filterrific = initialize_filterrific(
+      Appointment.includes(:vendor),
+      params[:filterrific],
+      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
+      ) or return
+    
+    @appointments = @filterrific.find.where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
     end
 
     @avg_reviews = []

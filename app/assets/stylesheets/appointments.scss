@@ -110,8 +110,8 @@
 		display: block;
 		margin: 0px;
 		width: 100%;
-    font-size: 12px;
-    text-align: center;
+    	font-size: 12px;
+    	text-align: center;
 		border: 2px solid $blue;
 		border-radius: .35rem;
 		}
@@ -123,7 +123,6 @@
   	border-color: $blue;
 	}
 
-
 	img {
 		height: auto; 
 		display: block;
@@ -133,9 +132,25 @@
 		border-bottom: 2px solid $gold;
 	}
 
+	#search {
+		border: 1px solid $lt_gold;
+		margin-bottom: 15px;
+	}
+
+
 	h4 {
 		@include bold_font;
 		text-align: center;
+	}
+	.well {
+		width: 100%;
+		padding: 10px 0px;
+		border-radius: 0px;
+		margin-bottom: 10px;
+
+	}
+	.row {
+		margin: 0px;
 	}
 
 }
