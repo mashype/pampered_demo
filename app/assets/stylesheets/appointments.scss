@@ -103,7 +103,6 @@
 
 #appointment_index {
 
-	padding-bottom: 20px;
 
 	button, .button {
 		@include bold_font;
@@ -137,20 +136,17 @@
 		margin-bottom: 15px;
 	}
 
-
 	h4 {
 		@include bold_font;
 		text-align: center;
 	}
-	.well {
-		width: 100%;
-		padding: 10px 0px;
-		border-radius: 0px;
-		margin-bottom: 10px;
 
-	}
 	.row {
 		margin: 0px;
 	}
 
+}
+
+#appointment_list {
+	width: 90%;
 }
