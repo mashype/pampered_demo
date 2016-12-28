@@ -12,3 +12,6 @@
 !/log/.keep
 /tmp
 /config/aws.yml
+/config/secrets.yml
+/config/enviornments/development.rb
+/config/enviornments/test.rb
