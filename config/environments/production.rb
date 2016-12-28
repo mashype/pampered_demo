@@ -66,16 +66,16 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   # Change email delivery to :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "http://pamperedup.com" }
+  config.action_mailer.delivery_method = :sparkpost
+
   config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "gmail.com",
-      authentication: "plain",
-      enable_starttle_auto: true,
-      user_name: ENV["PMAIL_USERNAME"],
-      password: ENV["PMAIL_PASSWORD"]
+  user_name: 'SMTP_Injection',
+  password: ENV['SPARKPOST_API_KEY'],
+  address: 'smtp.sparkpostmail.com',
+  port: 587,
+  enable_starttls_auto: true,
+  domain: 'pamperedup.com'
+
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

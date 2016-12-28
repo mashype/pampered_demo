@@ -5,7 +5,7 @@ class BookingMailer < ApplicationMailer
   def booking_confirmation(booking)
   	@user = booking.user
   	attachments["pampered_header.png"] = File.read("#{Rails.root}/public/images/pampered_header.png")
-	mail(:to => "#{booking.user.username} <#{booking.user.email}>", :subject => "You're Booked!")
+    mail(:to => "#{booking.user.username} <#{booking.user.email}>", :subject => "You're Booked!")
   end
 
   def vendor_confirmation(booking)

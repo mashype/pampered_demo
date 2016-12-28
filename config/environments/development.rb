@@ -19,6 +19,18 @@ Rails.application.configure do
   # Change email delivery to :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :letter_opener
 
+  # config.action_mailer.delivery_method = :sparkpost
+
+  # config.action_mailer.smtp_settings = {
+  # user_name: 'SMTP_Injection',
+  # password: '2957db80344ffdeec0cde0f90ed26c32a9eb654d',
+  # address: 'smtp.sparkpostmail.com',
+  # port: 587,
+  # enable_starttls_auto: true,
+  # domain: 'pamperedup.com'
+
+  # }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

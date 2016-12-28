@@ -24,9 +24,9 @@ class BookingsController < ApplicationController
     raise "Please, check registration errors" unless @booking.valid?
     @booking.process_payment stripe_params['stripeToken']
     @booking.save
-    BookingMailer.booking_confirmation(@booking).deliver
-    BookingMailer.vendor_confirmation(@booking).deliver
-    BookingMailer.admin_confirmation(@booking).deliver
+    BookingMailer.booking_confirmation(@booking).deliver_now
+    BookingMailer.vendor_confirmation(@booking).deliver_now
+    BookingMailer.admin_confirmation(@booking).deliver_now
     redirect_to appointment_booking_path(@appointment.id, @booking.id), :notice => 'Confirmation was successfully updated.'
 
   rescue Exception => e
