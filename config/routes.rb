@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about' => 'welcome#about'
   get 'welcome/faq' => 'welcome#faq'
+  get 'welcome/how' => 'welcome#how'
   get 'welcome/terms' => 'welcome#terms' 
   get 'welcome/vendors' => 'welcome#vendors' 
 
