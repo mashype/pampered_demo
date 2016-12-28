@@ -166,6 +166,9 @@
 									%tr
 										%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{vendor_locations.location.latitude}%2C#{vendor_locations.location.longitude}"
 
+										%td= image_tag google_map(center: [ vendor_locations.location.latitude, vendor_locations.location.longitude ].join(','))
+
+
 										%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
 										%td= vendor_locations.location.add_2								
 										%td= vendor_locations.location.city
