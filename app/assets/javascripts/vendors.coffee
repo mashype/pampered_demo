@@ -4,15 +4,19 @@
 
 
 jQuery ->
+	$('#vendor_vendor_services_attributes_0_service_id').parent().hide()
 	vendor_service_types = $('#vendor_vendor_services_attributes_0_service_id').html()
-	console.log(vendor_service_types)
+	
 	$('#vendor_vendor_type_id').change ->
 		vendor_type = $('#vendor_vendor_type_id :selected').text()
-		options = $(vendor_service_types).filter("optgroup[label='#{vendor_type}']").html()
+		escaped_vendor_type = vendor_type.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1')
+		options = $(vendor_service_types).filter("optgroup[label='#{escaped_vendor_type}']").html()
 		if options
 			$('#vendor_vendor_services_attributes_0_service_id').html(options)
+			$('#vendor_vendor_services_attributes_0_service_id').parent().show()
 		else
 			$('#vendor_vendor_services_attributes_0_service_id').empty()
+			$('#vendor_vendor_services_attributes_0_service_id').parent().hide()
 
 
 
