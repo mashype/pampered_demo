@@ -1,0 +1,1 @@
+json.array! @vendor_features, partial: 'vendor_features/vendor_feature', as: :vendor_feature

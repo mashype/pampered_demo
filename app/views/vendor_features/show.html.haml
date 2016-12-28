@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Vendor:
+  = @vendor_feature.vendor
+%p
+  %b Feature:
+  = @vendor_feature.feature
+
+= link_to 'Edit', edit_vendor_feature_path(@vendor_feature)
+\|
+= link_to 'Back', vendor_features_path

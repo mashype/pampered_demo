@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :vendor_features
+  resources :features
   resources :amounts
   resources :charges
   resources :genders

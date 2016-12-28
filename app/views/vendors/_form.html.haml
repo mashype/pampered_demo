@@ -26,7 +26,7 @@
 
 
         .row
-          .col-md-4.col-md-offset-1
+          .col-md-3
             %fieldset#vendor-locations
               %h3 Locations
               %ol
@@ -42,6 +42,14 @@
                 = f.simple_fields_for :vendor_services do |vendorservice|
                   = render 'vendor_service_fields', f: vendorservice
               = link_to_add_association 'Add Additional Services', f, :vendor_services, class: "btn btn-default add-button", 'data-association-insertion-node' => "#vendor-services ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|vendor_service| vendor_service.build_service; vendor_service }  
+
+          .col-md-3
+            %fieldset#vendor-features
+              %h3 Features
+              %ol
+                = f.simple_fields_for :vendor_features do |vendorfeature|
+                  = render 'vendor_feature_fields', f: vendorfeature
+              = link_to_add_association 'Add Additional Features', f, :vendor_features, class: "btn btn-default add-button", 'data-association-insertion-node' => "#vendor-features ol", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|vendor_feature| vendor_feature.build_feature; vendor_feature }  
 
           .col-md-3
             %fieldset#vendor-licenses

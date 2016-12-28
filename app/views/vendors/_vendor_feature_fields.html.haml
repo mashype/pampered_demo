@@ -1,0 +1,8 @@
+
+%li.control-group.nested-fields
+	.controls
+		= f.simple_fields_for :vendor_feature do |vendor_feature|
+			= f.input :feature_id, collection: VendorType.all, as: :grouped_select, group_method: :features
+		= link_to_remove_association "Remove Feature", f, class: "btn btn-danger"
+		%br	
+  

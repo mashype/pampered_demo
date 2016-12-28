@@ -1,28 +1,20 @@
 class VendorLocationsController < ApplicationController
   before_action :set_vendor_location, only: [:show, :edit, :update, :destroy]
 
-  # GET /vendor_locations
-  # GET /vendor_locations.json
   def index
     @vendor_locations = VendorLocation.all
   end
 
-  # GET /vendor_locations/1
-  # GET /vendor_locations/1.json
   def show
   end
 
-  # GET /vendor_locations/new
   def new
     @vendor_location = VendorLocation.new
   end
 
-  # GET /vendor_locations/1/edit
   def edit
   end
 
-  # POST /vendor_locations
-  # POST /vendor_locations.json
   def create
     @vendor_location = VendorLocation.new(vendor_location_params)
 
@@ -37,8 +29,6 @@ class VendorLocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /vendor_locations/1
-  # PATCH/PUT /vendor_locations/1.json
   def update
     respond_to do |format|
       if @vendor_location.update(vendor_location_params)

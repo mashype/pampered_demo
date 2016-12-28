@@ -102,6 +102,7 @@ class VendorsController < ApplicationController
         vendor_locations_attributes: [:id, :vendor_id, :location_id, :_destroy, 
           location_attributes: [:id, :add_1, :add_2, :city, :state, :zip, :latitude, :longitude, :_destroy]],
         vendor_services_attributes: [:id, :vendor_id, :service_id, :notes, :_destroy],
+        vendor_features_attributes: [:id, :vendor_id, :feature_id, :_destroy],
         vendor_licenses_attributes: [:id, :licenser, :name, :issue_date, :license_number, :_destroy])
     end
 

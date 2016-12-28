@@ -1,0 +1,23 @@
+%h1 Listing vendor_features
+
+%table
+  %thead
+    %tr
+      %th Vendor
+      %th Feature
+      %th
+      %th
+      %th
+
+  %tbody
+    - @vendor_features.each do |vendor_feature|
+      %tr
+        %td= vendor_feature.vendor
+        %td= vendor_feature.feature
+        %td= link_to 'Show', vendor_feature
+        %td= link_to 'Edit', edit_vendor_feature_path(vendor_feature)
+        %td= link_to 'Destroy', vendor_feature, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Vendor feature', new_vendor_feature_path

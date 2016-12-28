@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227162209) do
+ActiveRecord::Schema.define(version: 20161228182754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20161227162209) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "features", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "vendor_type_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "features", ["vendor_type_id"], name: "index_features_on_vendor_type_id", using: :btree
 
   create_table "genders", force: :cascade do |t|
     t.string   "gender"
@@ -175,6 +184,16 @@ ActiveRecord::Schema.define(version: 20161227162209) do
 
   add_index "vendor_documents", ["vendor_id"], name: "index_vendor_documents_on_vendor_id", using: :btree
 
+  create_table "vendor_features", force: :cascade do |t|
+    t.integer  "vendor_id"
+    t.integer  "feature_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "vendor_features", ["feature_id"], name: "index_vendor_features_on_feature_id", using: :btree
+  add_index "vendor_features", ["vendor_id"], name: "index_vendor_features_on_vendor_id", using: :btree
+
   create_table "vendor_licenses", force: :cascade do |t|
     t.string   "licenser"
     t.string   "name"
@@ -227,9 +246,12 @@ ActiveRecord::Schema.define(version: 20161227162209) do
     t.string   "website",             limit: 200
   end
 
+  add_foreign_key "features", "vendor_types"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "vendor_documents", "vendors"
+  add_foreign_key "vendor_features", "features"
+  add_foreign_key "vendor_features", "vendors"
   add_foreign_key "vendor_licenses", "vendors"
 end

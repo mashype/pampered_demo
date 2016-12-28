@@ -1,0 +1,1 @@
+json.partial! "vendor_features/vendor_feature", vendor_feature: @vendor_feature
