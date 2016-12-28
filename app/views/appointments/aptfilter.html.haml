@@ -7,7 +7,7 @@
     .row
       .col-sm-8.col-sm-offset-2
         %p
-        = form_tag appointments_path, :method => :get do
+        = form_tag aptfilter_appointments_path, :method => :get do
           .col-md-8
             = text_field_tag :search, params[:search], placeholder: 'Enter new address, zip or location...'
           .col-md-4

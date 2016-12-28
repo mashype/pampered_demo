@@ -35,12 +35,6 @@
 							%li
 								=link_to "FAQ", welcome_faq_path		
 
-					%li
-						= form_tag aptsearch_appointments_path, method: :get, class: "navbar-form", role: "search" do
-							%p
-								= text_field_tag :aptsearch, params[:aptsearch], placeholder: 'Search appointments...', class: "form-control"
-								= submit_tag "Search", name: nil, class: "btn btn-default"		
-
 
 				%ul.nav.navbar-nav.navbar-right
 					- if user_signed_in?

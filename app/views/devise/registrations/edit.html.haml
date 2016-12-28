@@ -27,14 +27,16 @@
           %table.table.table-hover
             %thead
               %tr
-                %th ID
-                %th USERID
+                %th Appointment
+                %th Vendor
+                %th Booking Date
                 %th{:colspan => "2"}
             %tbody    
               - current_user.bookings.each do |booking|
                 %tr
-                  %td= booking.id
-                  %td= booking.user_id
+                  %td= booking.appointment.title
+                  %td= booking.appointment.vendor.name
+                  %td= localize(booking.created_at, :format => :short)
 
 
       Unhappy?
