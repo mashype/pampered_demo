@@ -113,9 +113,11 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    @services = Service.where(vendor_type_id: current_user.vendor.vendor_type_id)
   end
 
   def edit
+    @services = Service.where(vendor_type_id: current_user.vendor.vendor_type_id)
   end
 
   def create
