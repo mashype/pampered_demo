@@ -10,7 +10,7 @@ class BookingMailer < ApplicationMailer
 
   def vendor_confirmation(booking)
   	@user = booking.appointment.vendor.user
-	mail(:to => booking.appointment.vendor.user.email, :subject => "You've Been Booked!")
+    mail(:to => booking.appointment.vendor.user.email, :subject => "You've Been Booked!")
   end
 
   def admin_confirmation(booking)

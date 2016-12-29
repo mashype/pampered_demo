@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get 'welcome/how' => 'welcome#how'
   get 'welcome/terms' => 'welcome#terms' 
   get 'welcome/vendors' => 'welcome#vendors' 
-
+  get 'welcome/mail' => 'welcome#mail' 
  
   authenticated :user do
   	root 'appointments#index', as: "authenticated_root"
