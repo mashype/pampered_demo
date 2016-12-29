@@ -1,0 +1,23 @@
+
+%h1 Test
+
+= form_tag aptsearch_appointments_path, :method => :get do
+  .col-md-8
+    = text_field_tag :id, params[:od], placeholder: 'Enter id...'
+  .col-md-4
+    = submit_tag "Refresh", :id => nil, class:'button'
+
+%table
+  %thead
+    %tr
+      %th Rating
+      %th Comment
+      %th{:colspan => "3"}
+  %tbody
+    - @test_appointments.each do |appointment|
+      %tr
+        %td= appointment.title
+        %td= appointment.id
+        %td= link_to 'Show', appointment
+        %td= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }
+%br/

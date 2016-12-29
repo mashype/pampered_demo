@@ -9,11 +9,11 @@ class Appointment < ActiveRecord::Base
 	has_many :bookings
 
 
+	scope :test, ->(id){ where(id: id)}
 
 	filterrific :default_filter_params => { :sorted_by => 'created_at_desc' },
 		:available_filters => %w[
 			sorted_by
-            search_query
             with_service_id
             with_created_at_gte
         ]

@@ -24,6 +24,10 @@
           %label Search Appointments
           = f.text_field :search_query, :class => 'filterrific-periodically-observed form-control'
 
+        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by location.' }
+          %label Search Loc
+          = f.text_field :with_location, :class => 'filterrific-periodically-observed form-control'
+
         .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by country.' }
           %label Service Type
           = f.select :with_service_id, @filterrific.select_options[:with_service_id], { :include_blank => '- Any -' }, { :class => 'form-control' }

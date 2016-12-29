@@ -35,7 +35,9 @@
 				- if @vendor.user_id.nil?
 					= link_to "Claim Your Profile", edit_vendor_path(@vendor), class: "button"
 
-				- elsif user_signed_in? && Vendor.exists?(user_id: current_user.id)
+				- elsif user_signed_in? && Vendor.exists?(user_id: current_user.id) && @vendor.user_id == current_user
+
+
 					= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
 					= link_to "Create Appointment", new_appointment_path, class: "button"	
 

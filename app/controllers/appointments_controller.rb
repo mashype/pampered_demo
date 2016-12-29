@@ -2,23 +2,9 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   def aptsearch
-    if params[:aptsearch].present?
-      @appointments = Appointment.search(params[:aptsearch], active: true)
-    else
-      @appointments = Appointment.where(active: true)
-    end
 
-    @avg_reviews = []
-    for singleappointment in @appointments
-      @reviews = Review.where(vendor_id: singleappointment.vendor.id)
+    @test_appointments = Appointment.test(params[:id])
 
-      if @reviews.blank?
-        @avg_reviews << 0
-      else
-        @avg_reviews << @reviews.average(:rating).round(2)
-      end
-    end
-    
   end
 
 
@@ -26,11 +12,11 @@ class AppointmentsController < ApplicationController
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+      @vendor_locations = VendorLocation.where(location_id: location_ids)
 
     else
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+      @vendor_locations = VendorLocation.where(location_id: location_ids)
     end
 
     @filterrific = initialize_filterrific(
@@ -60,11 +46,11 @@ class AppointmentsController < ApplicationController
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+      @vendor_locations = VendorLocation.where(location_id: location_ids)
 
     else
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.includes(:location).where(location_id: location_ids)
+      @vendor_locations = VendorLocation.where(location_id: location_ids)
     end
 
 

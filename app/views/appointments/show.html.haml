@@ -31,7 +31,9 @@
 								%td= social_share_button_tag("PamperedUp")
 	
 				.col-md-2
-					- if user_signed_in? && Vendor.exists?(user_id: current_user.id)
+
+					- if user_signed_in? && Vendor.exists?(user_id: current_user.id) && @appointment.vendor_id == current_user.vendor.id 
+
 						= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "button"	
 						= link_to "Delete Appointment", @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "button"
 						= link_to "View Profile", vendor_path(@appointment.vendor_id), class: "button"	
