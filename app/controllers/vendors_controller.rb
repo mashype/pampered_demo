@@ -33,15 +33,16 @@ class VendorsController < ApplicationController
     @bookings = Booking.where(appointment_id: appointment_ids).order("created_at DESC") 
     @appointments = Appointment.where(vendor_id: @vendor.id).order("created_at DESC") 
 
-    
-
     if @reviews.blank?
       @avg_review = 0
     else
       @avg_review = @reviews.average(:rating).round(2)
     end
 
-  end 
+    set_meta_tags   title: @vendor.name,
+                    keywords: [@vendor.name, @vendor.vendor_type.title, @vendor.bio]
+
+  end  
 
 
   def new

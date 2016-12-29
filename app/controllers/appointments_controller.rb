@@ -108,7 +108,7 @@ class AppointmentsController < ApplicationController
 
   def show
     set_meta_tags   title: @appointment.title,
-                    keywords: @appointment.title
+                    keywords: ["Pampered", "GetYourPamp", "pamperedup", @appointment.vendor.name, @appointment.vendor.vendor_type.title, @appointment.title, @appointment.description]
   end
 
   def new
