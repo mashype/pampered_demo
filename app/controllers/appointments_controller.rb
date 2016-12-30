@@ -12,12 +12,10 @@ class AppointmentsController < ApplicationController
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.where(location_id: location_ids)
 
     else
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.where(location_id: location_ids)
-    end
+    end 
 
     @filterrific = initialize_filterrific(
       Appointment.includes(:vendor),
@@ -25,54 +23,40 @@ class AppointmentsController < ApplicationController
       select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
       ) or return
     
-    @appointments = @filterrific.find.where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @vendor_locations = VendorLocation.where(location_id: location_ids)
+    @appointments = @filterrific.find.includes(:vendor).where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
 
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude
       marker.lng vendor_location.location.longitude
     end
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
-
- 
 
   def index 
 
     if params[:search].present?
       location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.where(location_id: location_ids)
-
     else
-      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
-      @vendor_locations = VendorLocation.where(location_id: location_ids)
+      location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)      
     end
 
+#    @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
 
-    if params[:service].blank?
-      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
-    else
-      @service_id = Service.find_by(title: params[:service]).id
-      @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(service_id: @service_id).where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
-    end
-
-#    @filterrific = initialize_filterrific(
-#      Appointment.includes(:vendor),
-#      params[:filterrific],
-#      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
-#      ) or return
+    @filterrific = initialize_filterrific(
+      Appointment.includes(:vendor),
+      params[:filterrific],
+      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
+      ) or return
     
-#    @appointments = @filterrific.find.where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
-
-#    respond_to do |format|
-#      format.html
-#      format.js
-#    end
+    @vendor_locations = VendorLocation.where(location_id: location_ids)
+    @appointments = @filterrific.find.includes(:vendor).where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
 
     @avg_reviews = []
     for singleappointment in @appointments
@@ -84,7 +68,6 @@ class AppointmentsController < ApplicationController
         @avg_reviews << @reviews.average(:rating).round(2)
       end
     end
-
 
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude

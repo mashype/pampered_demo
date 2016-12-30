@@ -8,7 +8,6 @@ class Appointment < ActiveRecord::Base
 
 	has_many :bookings
 
-
 	scope :test, ->(id){ where(id: id)}
 
 	filterrific :default_filter_params => { :sorted_by => 'created_at_desc' },
@@ -63,6 +62,7 @@ class Appointment < ActiveRecord::Base
       		raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     	end
   	}
+
 
   	scope :with_service_id, lambda { |service_ids| where(:service_id => [*service_ids]) }
 

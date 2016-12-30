@@ -13,20 +13,17 @@
           .col-md-4
             = submit_tag "Refresh", :search => nil, class:'button'
   .row 
-  - if user_signed_in? && !Vendor.exists?(user_id: current_user)  
-    .col-sm-6.col-sm-offset-3
-      %h4= link_to "Interested In offering services on PamperedUp?", new_vendor_path
+    - if user_signed_in? && !Vendor.exists?(user_id: current_user)  
+      .col-sm-6.col-sm-offset-3
+        %h4= link_to "Interested In offering services on PamperedUp?", new_vendor_path
 
   .row
+    %br
     .col-md-2
       = form_for_filterrific @filterrific do |f|
         .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by first name, last name, or email.' }
           %label Search Appointments
-          = f.text_field :search_query, :class => 'filterrific-periodically-observed form-control'
-
-        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by location.' }
-          %label Search Loc
-          = f.text_field :with_location, :class => 'filterrific-periodically-observed form-control'
+          = f.text_field :search_query, placeholder: "BETA TEST", :class => 'filterrific-periodically-observed form-control'
 
         .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by country.' }
           %label Service Type
