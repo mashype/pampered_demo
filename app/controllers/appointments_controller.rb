@@ -29,6 +29,7 @@ class AppointmentsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude
       marker.lng vendor_location.location.longitude
+      marker.infowindow vendor_location.vendor.name
     end
 
     respond_to do |format|
@@ -47,16 +48,17 @@ class AppointmentsController < ApplicationController
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)      
     end
 
-#    @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
-
-    @filterrific = initialize_filterrific(
-      Appointment.includes(:vendor),
-      params[:filterrific],
-      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
-      ) or return
-    
     @vendor_locations = VendorLocation.where(location_id: location_ids)
-    @appointments = @filterrific.find.includes(:vendor).where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
+    @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
+
+#    @filterrific = initialize_filterrific(
+#      Appointment.includes(:vendor),
+#      params[:filterrific],
+#      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
+#      ) or return
+    
+    
+#    @appointments = @filterrific.find.includes(:vendor).where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
 
     @avg_reviews = []
     for singleappointment in @appointments
@@ -72,6 +74,7 @@ class AppointmentsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude
       marker.lng vendor_location.location.longitude
+      marker.infowindow vendor_location.vendor.name
     end
   end
 
