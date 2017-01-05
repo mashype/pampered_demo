@@ -4,9 +4,10 @@
 			= link_to image_tag('bell-header1.jpg'), root_path, class: "img-responsive"
 			.container
 				.carousel-caption
-
 					%h1 Need Some Pampering?
 					%p.lead.hidden-xs Why bother heading out for a little pampering, when you can have the best chefs, stylists, and massage therapists come to you.  Check it out now.
+				.col-sm-6.col-sm-offset-3
+					= link_to "Get Your Pamp", appointments_path, class: "button"
 
 		.item
 			= link_to image_tag('chef-banner1.jpg'), root_path, class: "img-responsive"

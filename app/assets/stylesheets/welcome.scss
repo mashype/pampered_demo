@@ -1,8 +1,9 @@
 h2 {
 	@include bold_font;
 	color: $purple;
-	font-size: 2.5em;
+	font-size: 3.0em;
 	margin-bottom: 15px;
+	text-align: center;
 }
 
 #banner {
@@ -172,6 +173,37 @@ h2 {
 			color: $dark_gray;
 		}
 	}
+}
+
+#howitworks {
+
+	h3 {
+		@include bold_font;
+		text-align: center;
+		font-size: 3.0rem;
+		color: $dk_gold;
+		margin: 1px;
+	}
+
+	p {
+		vertical-align: bottom;
+		font-size: 2.5rem;
+		color: $dk_purple;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto; 
+		display: block;
+		margin: auto;
+		padding: 3px;
+		vertical-align: middle;
+	}
+
+	.row {
+		margin-bottom: 40px;
+	}
+
 }
 
 #vendor_what {

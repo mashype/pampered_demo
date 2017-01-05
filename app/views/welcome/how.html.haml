@@ -1,31 +1,52 @@
-#how
+#howitworks
 	.wrapper
-		%h2 HOW IT WORKS
-		%br/
-		%ol
-			%li.h3 Search For Services
-			%ul
-				%li Search in your area to find a vendor
-				%li Select the type of pampering service you want
+		.row
+			%h2 HOW IT WORKS
+			%br/
+		.row	
+			.col-sm-2.col-sm-offset-1
+				= image_tag "search.jpg", class: "img-rounded"
+				%h3 Search
+			.col-sm-8
+				%p Our search algorithm naturally checks for vendors around your current location, or you can select another zip code if you are looking to book somwhere else. You can filter your results for just the right vendor.		
+		.row	
+			.col-sm-2.col-sm-offset-1
+				= image_tag "compare.jpg", class: "img-rounded"
+				%h3 Compare
+			.col-sm-8
+				%p We ask all of our clients who have gotten services from one of our vendors to rate them after each appointment to make sure they've gotten 5 star service every time. All of our reviews are verified from actual clients who have used our service.	
+		.row	
+			.col-sm-2.col-sm-offset-1
+				= image_tag "buy.jpg", class: "img-rounded"
+				%h3 Book
+			.col-sm-8
+				%p No need to share any financial or personal information to get your appointment booked. All of the information can be exchanged directly through our platform so that payment and personal information stays in your control and secure.	
+		.row	
+			.col-sm-2.col-sm-offset-1
+				= image_tag "win.jpg", class: "img-rounded"
+				%h3 Enjoy!
+			.col-sm-8
+				%p We want you to have an amazing experience, so we take every measure to ensure satisfaction and if you are not satisfied then we will guarentee your money back.	
+								
 
-			%li.h3 Read Reviews
-			%ul
-				%li Find someone that looks right for you
-				%li See's who's got great feedback from your peers
-			%li.h3 Book Direct
-			%ul
-				%li PamperedUp handles the booking for you
-				%li No personal or financial information is exchanged
-				%li We'll notify the selected vendor of your request.
-			%li.h3 Enjoy
-			%ul
-				%li Our vendors come direct to your home on your schedule.
-				%li We'll send a confrimation to book the date and time.
-		%br
-		%br
-		%ul
-			%li.h4 PamperedUp handles all of the booking
-			%li.h4 Your satisfaction is guarenteed. Not satisfied, your money back
+%br
+%br								
+
+#sample
+	.wrapper
+		.row
+			.col-sm-4
+				= image_tag "chef.jpg", class: "img-rounded"
+				%h1 Payment
+				%p We know you don't want to share your personal or financial information with freelancers (or with us for that matter!), so we make it super easy for you. We've partnered with Strip as a third party source to take al payment information securely. We will hold a booking fee once the transaction is booked and take the balance after services are rendered. We will handle all of the payment to your partner including the tip if you choose to add one on.	
+			.col-sm-4
+				= image_tag "massage.jpg", class: "img-rounded"
+				%h1 Booking
+				%p Booking is super simple. You just search for vendor the you want to book and you can make the request and hold the spot and we will facilitate all of the schedulng. ou can always send a direct message to talk to your vendor about specific requests without having to share any of your personal information.
+			.col-sm-4
+				= image_tag "hair.jpg", class: "img-rounded"
+				%h1 Cancellations
+				%p We understand that thin gs happen and there is no fee if you need to cancel an appointment. We ask that you give us a reasonable notice so our professionals can make other accomodation and the final payment will not be taken until the day of your appointment after services are completed.	
 
 :javascript
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
