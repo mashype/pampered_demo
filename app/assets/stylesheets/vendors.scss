@@ -50,6 +50,15 @@
     background-color: $lt_gold;
     border: 2px solid $dk_purple;
   }
+
+  nav, .nav-pills {
+    li.active {      
+      a {
+        background-color: $gold;
+        color: $dk_purple;
+      }
+    }
+  }
 }
 
 
