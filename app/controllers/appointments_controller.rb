@@ -10,8 +10,8 @@ class AppointmentsController < ApplicationController
 
   def aptfilter
 
-    if params[:search].present?
-      location_ids = Location.near(params[:search], 50, order: '').pluck(:id)
+    if params[:zip_search].present?
+      location_ids = Location.near(params[:zip_search], 50, order: '').pluck(:id)
 
     else
       location_ids = Location.near([session[:latitude], session[:longitude]], 50, order: '').pluck(:id)
