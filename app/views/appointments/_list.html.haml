@@ -2,7 +2,9 @@
 %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
 %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
 
-#appointment_list
+
+
+.wrapper 
   .row
     #appointments.transitions-enabled
       - unless @appointments.blank?
@@ -14,8 +16,6 @@
               .panel-body
                 %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
                 %h3= appointment.vendor.name
-
-
                 
               .panel-footer
                 %h3= number_to_currency((appointment.amount.cost), unit:"$")
@@ -25,6 +25,9 @@
         %h3 We dont have any offers in your area. Please contact us to request we add providers in your area.
         %br
         %p= mail_to "seth@pamperedup.com", "Contact", subject: "Pampered Contact Request", class: "button"
+
+
+
 
 
 

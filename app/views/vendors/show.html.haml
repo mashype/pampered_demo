@@ -192,8 +192,8 @@
 							%tbody
 								- @vendor.vendor_locations.each do |vendor_locations|
 									%tr
-										%td= image_tag "http://maps.google.com/maps/api/staticmap?size=150x150&sensor=false&zoom=13&markers=#{vendor_locations.location.latitude}%2C#{vendor_locations.location.longitude}"
 
+										%td= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{vendor_locations.location.latitude},#{vendor_locations.location.longitude}&markers=#{vendor_locations.location.latitude},#{vendor_locations.location.longitude}&zoom=9&size=320x200&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded', alt: "#{vendor_locations.vendor.name} on the map"                                                                                                                                                       
 										%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
 										%td= vendor_locations.location.add_2								
 										%td= vendor_locations.location.city
