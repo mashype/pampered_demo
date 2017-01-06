@@ -45,14 +45,6 @@ class AppointmentsController < ApplicationController
     @vendor_locations = VendorLocation.where(location_id: location_ids)
     @appointments = Appointment.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id), :active => true)
 
-#    @filterrific = initialize_filterrific(
-#      Appointment.includes(:vendor),
-#      params[:filterrific],
-#      select_options:{ sorted_by: Appointment.options_for_sorted_by, with_service_id: Service.options_for_select },
-#      ) or return
-    
-    
-#    @appointments = @filterrific.find.includes(:vendor).where(vendor_id: @vendor_locations.select(:vendor_id)).page(params[:page])
 
     @avg_reviews = []
     for singleappointment in @appointments
