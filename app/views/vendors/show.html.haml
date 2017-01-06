@@ -85,21 +85,44 @@
 
 		.row	
 			.col-md-12
-			- if user_signed_in?
-				/ Nav tabs
+
+
+
+			- if user_signed_in? && Vendor.exists?(user_id: current_user.id) && @vendor.id == current_user.vendor.id
+
 				%ul.nav.nav-tabs{:role => "tablist"}
 					%li.active{:role => "presentation"}
 						%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
+
 					%li{:role => "presentation"}
-						%a{"aria-controls" => "bookings", "data-toggle" => "tab", :href => "#bookings", :role => "tab"} Bookings
-					%li{:role => "presentation"}
-						%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#review", :role => "tab"} Reviews							
-					%li{:role => "presentation"}
-						%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
-					%li{:role => "presentation"}
-						%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
+						%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#review", :role => "tab"} Reviews	
+
 					%li{:role => "presentation"}
 						%a{"aria-controls" => "licenses", "data-toggle" => "tab", :href => "#license", :role => "tab"} Licenses
+
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "bookings", "data-toggle" => "tab", :href => "#bookings", :role => "tab"} Bookings
+						
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "locations", "data-toggle" => "tab", :href => "#locations", :role => "tab"} Locations
+
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "services", "data-toggle" => "tab", :href => "#service", :role => "tab"} Services	
+
+			- else
+				/ Nav tabs
+
+				%ul.nav.nav-tabs{:role => "tablist"}
+					%li.active{:role => "presentation"}
+						%a{"aria-controls" => "appointments", "data-toggle" => "tab", :href => "#appointment", :role => "tab"} Appointments
+
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "reviews", "data-toggle" => "tab", :href => "#review", :role => "tab"} Reviews	
+
+					%li{:role => "presentation"}
+						%a{"aria-controls" => "licenses", "data-toggle" => "tab", :href => "#license", :role => "tab"} Licenses
+
+
 
 				/ Tab panes
 				.tab-content
