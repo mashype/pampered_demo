@@ -1,0 +1,21 @@
+%h1 Listing durations
+
+%table
+  %thead
+    %tr
+      %th Duration
+      %th
+      %th
+      %th
+
+  %tbody
+    - @durations.each do |duration|
+      %tr
+        %td= duration.duration
+        %td= link_to 'Show', duration
+        %td= link_to 'Edit', edit_duration_path(duration)
+        %td= link_to 'Destroy', duration, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Duration', new_duration_path

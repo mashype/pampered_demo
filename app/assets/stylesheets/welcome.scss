@@ -175,8 +175,16 @@ h2 {
 	}
 }
 
-#howitworks {
+#about {
+	p {
+		font-size: 1.75rem;
+	}
+}
 
+#how {
+
+	background-color: $lt_purple;
+	padding: 30px 0px;
 	text-align: center;
 
 	h3 {
@@ -185,6 +193,8 @@ h2 {
 		font-size: 3.0rem;
 		color: $dk_gold;
 		margin: 1px;
+		padding-top: 40px; 
+		margin-top: -40px
 	}
 
 	p {
@@ -215,6 +225,19 @@ h2 {
 		padding-top: 10px;
 	}
 
+}
+
+
+#points {
+	padding: 50px 0px;
+
+	i {
+		font-size: 7.0rem;
+	}
+}
+
+#contact {
+	background-color: $lt_gold;
 }
 
 #vendor_what {

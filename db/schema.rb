@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106201750) do
+ActiveRecord::Schema.define(version: 20170107044225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20170106201750) do
     t.integer  "service_id"
     t.integer  "amount_id"
     t.boolean  "active",                 default: true, null: false
+    t.integer  "duration_id"
   end
+
+  add_index "appointments", ["duration_id"], name: "index_appointments_on_duration_id", using: :btree
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,6 +44,12 @@ ActiveRecord::Schema.define(version: 20170106201750) do
     t.string   "card_token"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "durations", force: :cascade do |t|
+    t.string   "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "features", force: :cascade do |t|
@@ -246,6 +255,7 @@ ActiveRecord::Schema.define(version: 20170106201750) do
     t.string   "website",             limit: 200
   end
 
+  add_foreign_key "appointments", "durations"
   add_foreign_key "features", "vendor_types"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"

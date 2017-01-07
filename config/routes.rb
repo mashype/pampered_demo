@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :durations
   resources :vendor_features
   resources :features
   resources :amounts

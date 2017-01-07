@@ -120,6 +120,6 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:title, :description, :active, :vendor_id, :service_id, :amount_id)
+      params.require(:appointment).permit(:title, :description, :active, :vendor_id, :service_id, :amount_id, :duration_id)
     end
 end

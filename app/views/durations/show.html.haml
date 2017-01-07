@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Duration:
+  = @duration.duration
+
+= link_to 'Edit', edit_duration_path(@duration)
+\|
+= link_to 'Back', durations_path

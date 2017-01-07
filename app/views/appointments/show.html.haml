@@ -15,6 +15,10 @@
 								%td= number_to_currency(@appointment.amount.cost, unit:"$")
 							%tr
 								%td
+									%strong Length:
+								%td= @appointment.duration.duration
+							%tr
+								%td
 									%strong Username:
 								%td= @appointment.vendor.user.username
 							%tr
