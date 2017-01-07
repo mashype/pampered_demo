@@ -20,7 +20,7 @@ class Appointment < ActiveRecord::Base
         ]
 
   	# default for will_paginate
-	self.per_page = 10
+	self.per_page = 16
 
 
 	scope :search_query, lambda { |query|

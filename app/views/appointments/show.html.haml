@@ -3,38 +3,32 @@
 	.container-fluid
 		.row
 			.col-md-3
-				%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}	
+				%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @appointment.vendor.avatar.url(:medium)}
+				%p= social_share_button_tag("PamperedUp")	
 			
 			.col-md-9
-				.col-md-10
+				.col-md-9
 					%table.table
 						%tbody						
 							%tr
 								%td
 									%strong Price:
-								%td= number_to_currency(@appointment.amount.cost, unit:"$")
+								%td= simple_format(number_to_currency(@appointment.amount.cost, unit:"$"))
 							%tr
 								%td
 									%strong Length:
-								%td= @appointment.duration.duration
+								%td= simple_format(@appointment.duration.duration)
 							%tr
 								%td
-									%strong Username:
-								%td= @appointment.vendor.user.username
+									%strong Vendor:
+								%td= simple_format(@appointment.vendor.name)
 							%tr
 								%td
-									%strong Gender:
-								%td= @appointment.vendor.user.gender.gender 
-							%tr
-								%td
-									%strong Bio:
-								%td= simple_format(@appointment.vendor.bio)
-							%tr
-								%td
-									%strong Share Us:
-								%td= social_share_button_tag("PamperedUp")
+									%strong Description:
+								%td= simple_format(@appointment.description)
+
 	
-				.col-md-2
+				.col-md-3
 
 					- if user_signed_in? && Vendor.exists?(user_id: current_user.id) && @appointment.vendor_id == current_user.vendor.id 
 
@@ -43,17 +37,10 @@
 						= link_to "View Profile", vendor_path(@appointment.vendor_id), class: "button"	
 
 					- else
+						= link_to "View Profile", vendor_path(@appointment.vendor), class: "button"	
 						= link_to "Review Me", new_vendor_review_path(@appointment.vendor_id), class: "button"	
 						= link_to "Book Now", new_appointment_booking_path(@appointment), class: "button"	
-						= link_to "View Profile", vendor_path(@appointment.vendor), class: "button"	
-
-		.row
-			.col-md-12 
-				%h2 APPOINTMENT DESCRIPTION
-				%p= simple_format(@appointment.description)
-				%br/
-				.col-sm-4.col-sm-offset-4
-					= link_to "Book Now", new_appointment_booking_path(@appointment), class: "button"	
+						
 
 :javascript
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

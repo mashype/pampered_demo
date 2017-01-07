@@ -1,28 +1,21 @@
 class DurationsController < ApplicationController
   before_action :set_duration, only: [:show, :edit, :update, :destroy]
+  before_action :verify_is_admin 
 
-  # GET /durations
-  # GET /durations.json
   def index
     @durations = Duration.all
   end
 
-  # GET /durations/1
-  # GET /durations/1.json
   def show
   end
 
-  # GET /durations/new
   def new
     @duration = Duration.new
   end
 
-  # GET /durations/1/edit
   def edit
   end
 
-  # POST /durations
-  # POST /durations.json
   def create
     @duration = Duration.new(duration_params)
 
@@ -37,8 +30,6 @@ class DurationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /durations/1
-  # PATCH/PUT /durations/1.json
   def update
     respond_to do |format|
       if @duration.update(duration_params)
@@ -51,8 +42,6 @@ class DurationsController < ApplicationController
     end
   end
 
-  # DELETE /durations/1
-  # DELETE /durations/1.json
   def destroy
     @duration.destroy
     respond_to do |format|
@@ -62,13 +51,15 @@ class DurationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_duration
       @duration = Duration.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def duration_params
       params.require(:duration).permit(:duration)
+    end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end

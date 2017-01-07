@@ -39,7 +39,7 @@
 
                   
                 .panel-footer
-                  %h3= number_to_currency((appointment.amount.cost), unit:"$")
+                  %h3 #{number_to_currency((appointment.amount.cost), unit:"$")} | #{appointment.duration.duration}
 
         - else 
           %h2 Sorry...
