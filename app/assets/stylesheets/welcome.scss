@@ -75,6 +75,7 @@ i {
 #sample {
 	text-align: justify;
 	font-size: 2.0rem;
+	padding: 35px 0px;
 
 	h1 {
 		@include bold_font;
@@ -91,23 +92,23 @@ i {
 		margin: auto;
 		padding: 3px;
 		vertical-align: middle;
+		border: 2px solid $purple;
 	}
 
-	.row {
-		padding-top: 15px;
-		padding-bottom: 15px;
-		border-bottom: 1px solid $purple;
+	.col {
+		padding: 0px 30px;
 	}
+
+
+
 }
 
 #callouts {
 	background-color: $purple;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: top center;
-	width: 100%;
 	text-align: center;
 	vertical-align: middle;
+	padding: 40px 0px;
+
 	h2 {
 		@include bold_font;
 		color: white;
@@ -118,7 +119,7 @@ i {
 
 	i {
 		color: $gold;
-		font-size: 5.0rem;
+		font-size: 7.0rem;
 		padding: 2.0rem 2.5%;
 	}
 
@@ -132,30 +133,11 @@ i {
 }
 
 
-#faq {
-	text-align: center;
-	font-size: 1.5rem;
-	padding: 3.5rem 0;
-	.questions {
-		text-align: center;
-		padding: 1.5rem 2.5%;
-		float: left;
-		h2 {
-			@include bold_font;
-			color: $gold;
-			margin-bottom: 0;
-		}
-		q {
-			font-size: 2.0rem;
-			color: $purple;
-		}
-		a {
-			color: $dark_gray;
-		}
-	}
-}
+
 
 #welcome_about {
+	padding: 35px 0px;
+
 	p {
 		font-size: 1.75rem;
 	}
@@ -201,12 +183,18 @@ i {
 
 #welcome_highlights {
 
-	background-color: $gold;
+	background-color: $lt_purple;
 	text-align: center;
 	padding: 40px 0px;
 
+	h3 {
+		font-size: 3.0rem;
+		color: $lt_gold;
+		@include bold_font
+	}
+
 	i {
-		color: $dk_purple;
+		color: white;
 		font-size: 5.0rem;
 		padding: 2.0rem 2.5%;
 	}
@@ -220,6 +208,45 @@ i {
 }
 
 
+
+
+#about_vendors {
+	text-align: center;
+	padding: 50px 0px;
+	p {
+		font-size: 2.0rem;
+	}
+}
+
+
+#about_billing {
+	background-color: $light_gray;
+	text-align: center;
+	padding: 50px 0px;
+	p {
+		font-size: 2.0rem;
+	}
+}
+
+
+#about_cancellations {
+
+	padding: 50px 0px;
+	text-align: center;
+	p {
+		font-size: 2.0rem;
+	}
+}
+
+
+#about_offer_services {
+	background-color: $lt_purple;
+	text-align: center;
+	padding: 50px 0px;
+	p {
+		font-size: 2.0rem;
+	}
+}
 
 
 
@@ -471,4 +498,25 @@ i {
 	  }
 	}
 
-
+#faq {
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 3.5rem 0;
+	.questions {
+		text-align: center;
+		padding: 1.5rem 2.5%;
+		float: left;
+		h2 {
+			@include bold_font;
+			color: $gold;
+			margin-bottom: 0;
+		}
+		q {
+			font-size: 2.0rem;
+			color: $purple;
+		}
+		a {
+			color: $dark_gray;
+		}
+	}
+}

@@ -80,138 +80,148 @@
 					- else
 						%p= "N/A"	
 
+		#vendor_show_table
+			.row
+				.col-sm-2
+					%ul.nav.nav-pills.nav-stacked
+						- if user_signed_in? && Vendor.exists?(user_id: current_user.id) && @vendor.id == current_user.vendor.id
+							%li.active
+								%a{"data-toggle" => "pill", :href => "#home"} Appointments
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu1"} Reviews
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu2"} Licenses
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu3"} Bookings			
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu4"} Locations	
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu5"} Services		
 
-		.row
-			.col-sm-2.col-sm-offset-1
-				%ul.nav.nav-pills.nav-stacked
-					- if user_signed_in? && Vendor.exists?(user_id: current_user.id) && @vendor.id == current_user.vendor.id
-						%li.active
-							%a{"data-toggle" => "pill", :href => "#home"} Appointments
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu1"} Reviews
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu2"} Licenses
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu3"} Bookings			
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu4"} Locations	
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu5"} Services		
+						- else
+							%li.active
+								%a{"data-toggle" => "pill", :href => "#home"} Appointments
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu1"} Reviews
+							%li
+								%a{"data-toggle" => "pill", :href => "#menu2"} Licenses
 
-					- else
-						%li.active
-							%a{"data-toggle" => "pill", :href => "#home"} Appointments
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu1"} Reviews
-						%li
-							%a{"data-toggle" => "pill", :href => "#menu2"} Licenses
-
-			.col-sm-8
-				.tab-content
-					#home.tab-pane.fade.in.active
-						%table.table.table-hover
-							%thead
-								%tr
-									%th Title
-									%th Description
-									%th Active
-									%th Amount
-									%th View
-									%th{:colspan => "5"}
-							%tbody
-								- @appointments.each do |appointment|
+				.col-sm-10
+					.tab-content
+						#home.tab-pane.fade.in.active
+							%table.table.table-hover
+								%thead
 									%tr
-										%td= appointment.title
-										%td= appointment.description
-										%td= appointment.active
-										%td= number_to_currency(appointment.amount.cost, unit:"$")
-										%td= link_to 'View', appointment_path(appointment)
+										%th 
+										%th Title
+										%th Description
+										%th Cost
+										%th Active
+										%th{:colspan => "5"}
+								%tbody
+									- @appointments.each do |appointment|
+										%tr
+											%td= link_to 'View', appointment_path(appointment), class: "button"
+											%td= appointment.title
+											%td= appointment.description
+											%td.cost= number_to_currency(appointment.amount.cost, unit:"$", precision: 0)
+											-if appointment.active?
+												%td
+													%i.fa.fa-check
+											-else
+												%td
+													%i.fa.fa-close	
 
-					#menu1.tab-pane.fade
-						%table.table.table-hover
-							%thead 
-								%tr
-									%th Rating
-									%th Comment
-									%th Username
-									%th{:colspan => "3"}
-							%tbody
-								- @vendor.reviews.each do |review|
+
+
+						#menu1.tab-pane.fade
+							%table.table.table-hover
+								%thead 
 									%tr
-										%td{class: "star-rating", dscore: review.rating}
-										%td= review.comment
-										%td= review.user.username
+										%th Rating
+										%th Comment
+										%th Username
+										%th{:colspan => "3"}
+								%tbody
+									-if @vendor.reviews.exists?
+										- @vendor.reviews.each do |review|
+											%tr
+												%td{class: "star-rating", dscore: review.rating}
+												%td= review.comment
+												%td= review.user.username
+									-else
+										%p "No reviews yet"
 
-					#menu2.tab-pane.fade
-						%table.table.table-hover
-							%thead
-								%tr
-									%th Licenser
-									%th License Name
-									%th Issue Date
-									%th License Number
-									%th{:colspan => "4"}
-							%tbody
-								- @vendor.vendor_licenses.each do |vendor_licenses|
+						#menu2.tab-pane.fade
+							%table.table.table-hover
+								%thead
 									%tr
-										%td= vendor_licenses.licenser
-										%td= vendor_licenses.name											
-										%td= vendor_licenses.issue_date
-										%td= vendor_licenses.license_number
+										%th Licenser
+										%th License Name
+										%th Issue Date
+										%th License Number
+										%th{:colspan => "4"}
+								%tbody
+									- @vendor.vendor_licenses.each do |vendor_licenses|
+										%tr
+											%td= vendor_licenses.licenser
+											%td= vendor_licenses.name											
+											%td= vendor_licenses.issue_date
+											%td= vendor_licenses.license_number
 
 
-					#menu3.tab-pane.fade 
-						%table.table.table-hover
-							%thead
-								%tr
-									%th Email
-									%th User
-									%th Appointment
-									%th
-									%th{:colspan => "3"}
-							%tbody
-								- @bookings.each do |booking| 
+						#menu3.tab-pane.fade 
+							%table.table.table-hover
+								%thead
 									%tr
-										%td= booking.email	
-										%td= booking.user.username
-										%td= booking.appointment.title
-										%td= link_to 'View', appointment_booking_path(booking.appointment_id, booking.id)
+										%th Email
+										%th User
+										%th Appointment
+										%th
+										%th{:colspan => "3"}
+								%tbody
+									- @bookings.each do |booking| 
+										%tr
+											%td= booking.email	
+											%td= booking.user.username
+											%td= booking.appointment.title
+											%td= link_to 'View', appointment_booking_path(booking.appointment_id, booking.id)
 
-					#menu4.tab-pane.fade 
-						%table.table.table-hover
-							%thead
-								%tr
-									%th
-									%th Address 1
-									%th Address 2
-									%th City
-									%th State
-									%th Zip
-									%th Location Type
-									%th{:colspan => "7"}
-							%tbody
-								- @vendor.vendor_locations.each do |vendor_locations|
+						#menu4.tab-pane.fade 
+							%table.table.table-hover
+								%thead
 									%tr
+										%th
+										%th Address 1
+										%th Address 2
+										%th City
+										%th State
+										%th Zip
+										%th Location Type
+										%th{:colspan => "7"}
+								%tbody
+									- @vendor.vendor_locations.each do |vendor_locations|
+										%tr
 
-										%td= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{vendor_locations.location.latitude},#{vendor_locations.location.longitude}&markers=#{vendor_locations.location.latitude},#{vendor_locations.location.longitude}&zoom=9&size=320x200&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded', alt: "#{vendor_locations.vendor.name} on the map"                                                                                                                                                       
-										%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
-										%td= vendor_locations.location.add_2								
-										%td= vendor_locations.location.city
-										%td= vendor_locations.location.state
-										%td= vendor_locations.location.zip
+											%td= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{vendor_locations.location.latitude},#{vendor_locations.location.longitude}&markers=#{vendor_locations.location.latitude},#{vendor_locations.location.longitude}&zoom=9&size=320x200&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded', alt: "#{vendor_locations.vendor.name} on the map"                                                                                                                                                       
+											%td= link_to vendor_locations.location.add_1, location_path(vendor_locations.location)
+											%td= vendor_locations.location.add_2								
+											%td= vendor_locations.location.city
+											%td= vendor_locations.location.state
+											%td= vendor_locations.location.zip
 
-					#menu5.tab-pane.fade 
-						%table.table.table-hover
-							%thead
-								%tr
-									%th Service
-									%th Notes
-									%th{:colspan => "2"}
-							%tbody
-								- @vendor.vendor_services.each do |vendor_services|
+						#menu5.tab-pane.fade 
+							%table.table.table-hover
+								%thead
 									%tr
-										%td= vendor_services.service.title
-										%td= vendor_services.notes
+										%th Service
+										%th Notes
+										%th{:colspan => "2"}
+								%tbody
+									- @vendor.vendor_services.each do |vendor_services|
+										%tr
+											%td= vendor_services.service.title
+											%td= vendor_services.notes
 
 :javascript
 		$('.star-rating').raty({

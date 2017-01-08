@@ -36,30 +36,34 @@
 				.col-sm-6.col-sm-offset-3
 					= link_to "Check Out Our Stylists", aptfilter_appointments_path, class: "button"
 
-	%a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} &lsaquo;
-	%a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} &rsaquo;
+	%a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+		%span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+		%span.sr-only Previous
+	%a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+		%span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+		%span.sr-only Next
+
 
 
 #sample
 	.wrapper
 		.row
-
-			.col-sm-4
-				= image_tag "chef.jpg", class: "img-circle"
-				%h1 Home
+			.col.col-sm-4
+				= image_tag "chef.jpg", class: "img-rounded"
+				%h1 Help At Home
 				%p Don't kill yourself trying to get everything ready on top of your super busy schedule.  Bring in a private chef to cook amazing dinners without breaking the back.  Find an amazing housecleaner or dog walker so you can spend your time doing what you really want.		
-			.col-sm-4
-				= image_tag "massage.jpg", class: "img-circle"
-				%h1 Massage
+			.col.col-sm-4
+				= image_tag "massage.jpg", class: "img-rounded"
+				%h1 Time To Relax
 				%p Whether you are looking for a hot stone massage to calm your nerves, a deep tissue treatment to work out sore muscles or a simple swedish massage to relax after a busy day, we've got experts that can get you what you are looking for.
-			.col-sm-4
-				= image_tag "hair.jpg", class: "img-circle"
-				%h1 Stylists
+			.col.col-sm-4
+				= image_tag "hair.jpg", class: "img-rounded"
+				%h1 Get Styled Up
 				%p Why bother waiting for an appointment at a salon when you can get amazing treatment in the comfort of your own howe.  Our professionals can give you a great cut, color and style.  Schedule a manicure or a full service treatment.
 
 
 #callouts
-	.wrapper_with_padding
+	.wrapper
 		.row
 			.col-sm-4
 				%i.fa.fa-clock-o
@@ -69,12 +73,12 @@
 			.col-sm-4
 				%i.fa.fa-money
 				%h2 Save Money
-				%p We dont have the overhead of traditional providers so we can pass that savings on to you.
+				%p Working with freelancers lets us pass a huge savings on to you.
 
 			.col-sm-4
 				%i.fa.fa-venus-mars
 				%h2 Get Pampered
-				%p Your deserve it, treat yourself to something amazing!
+				%p Your deserve it, treat yourself to something amazing right now!
 
 
 
@@ -83,20 +87,25 @@
 		%h2 HOW IT WORKS
 		%br
 			.col-sm-3
-				= image_tag "search.jpg", class: "img-rounded"
+				= image_tag "search.jpg", class: "img-rounded"				
 				%h3 Search
-				%p Our search algorithm naturally checks for vendors around your current location, or you can select another zip code if you are looking to book somwhere else. You can filter your results for just the right vendor.	
+				%span.glyphicon.glyphicon-chevron-right	
+				%p Our search algorithm naturally checks for vendors around your current location, or you can select another zip code if you are looking to book somwhere else. You can filter your results for just the right vendor.
+
 			.col-sm-3
 				= image_tag "compare.jpg", class: "img-rounded"
 				%h3 Compare
+				%span.glyphicon.glyphicon-chevron-right	
 				%p We ask all of our clients who have gotten services from one of our vendors to rate them after each appointment to make sure they've gotten 5 star service every time. All of our reviews are verified from actual clients who have used our service.	
 			.col-sm-3
 				= image_tag "buy.jpg", class: "img-rounded"
 				%h3 Book
+				%span.glyphicon.glyphicon-chevron-right	
 				%p No need to share any financial or personal information to get your appointment booked. All of the information can be exchanged directly through our platform so that payment and personal information stays in your control and secure.	
-			.col-sm-3
+			.col-sm-3		
 				= image_tag "win.jpg", class: "img-rounded"
 				%h3 Enjoy!
+				%span.glyphicon.glyphicon-ok				
 				%p We want you to have an amazing experience, so we take every measure to ensure satisfaction and if you are not satisfied then we will guarentee your money back.	
 
 
@@ -104,20 +113,20 @@
 	.wrapper
 		.col-sm-4
 			%i.fa.fa-usd
-			%h1 Payment
+			%h3 Payment
 			%p We know you don't want to share your personal or financial information with freelancers (or with us for that matter!), so we make it super easy for you. We've partnered with Stripe is a third party source to take al payment information securely. We will hold a booking fee until after services are rendered. 
 		.col-sm-4
 			%i.fa.fa-mouse-pointer
-			%h1 Booking
+			%h3 Booking
 			%p Booking is super simple. You just search for vendor the you want to book and you can make the request and hold the spot and we will facilitate all of the schedulng. ou can always send a direct message to talk to your vendor about specific requests without having to share any of your personal information.
 		.col-sm-4
 			%i.fa.fa-ban
-			%h1 Cancellations
-			%p We understand that thin gs happen and there is no fee if you need to cancel an appointment. We ask that you give us a reasonable notice so our professionals can make other accomodation and the final payment will not be taken until the day of your appointment after services are completed.	
+			%h3 Cancellations
+			%p We understand that things happen and there is no fee if you need to cancel an appointment. We ask that you give us a reasonable notice so our professionals can make other accomodation and the final payment will not be taken until the day of your appointment after services are completed.	
 
 #welcome_about.container-fluid.text-center
 	.wrapper
-		%h2 About Us
+		%h2 Our Story...
 		%p Thanks so much for coming to check out our latest project. Please forgive us as we are building the airplane as we are already in flight, so you might run into little bugs here and there as we work to improve our user experience. PamperedUp start from a very simple philosophy, that everyone deserves to get a little pampering and we want to help make that real for as many people as possible. Our driving mission here is that we believe that getting access to incredible services like in-home massages and private chefs doesn't have to be limited to the super wealthy and like every other market, there should be offerings from the relatively inexpensive all they way up to the obscenely decadent. We all need to get a little bit of pampering, and by taking advantage of the sharing that has grown over the past several years with services like Uber, AirBnB and Fiverr, Pampered Up helps people trying to grow their local businesses while also getting people access to amazing services at a fair price.
 
 		%p PamperedUp was created with a mission to connect people that are looking to get access to things that might have traditionally been out of reach right at their fingertips. Getting access to things like private in home gourment dining or having a private masseur show up at your office might have been unthinkable in the past, but with Pampered Up, we try to expand that access to as many of us as possible. From my personal experience, I never thought I would be able to have a private massage therapist until I signed up for one of those monthly membership packages where I was able to get services on a regular basis for a reasonable cost. I was blown away and was able to get access to something that I previously believed to be simply unattainable. I then though, what vaule add am I really getting from this building or the company that employs these therapists, and thought that we'd all actually be happier if I could just book them directly to come to my home when mutually convenient. That simple concept was the foundation of the idea that has grown into PamperedUp, and we are now working to put it into practice. We always welcome good feedback, so if there is anything we can do that will make your experience more enjoyable, please let us know.
@@ -130,7 +139,7 @@
 			%p Contact us and we'll get back to you within 24 hours.
 			%p
 				%span.glyphicon.glyphicon-map-marker
-				San Francisco, CA, US
+				San Diego, CA, US
 			%p
 				%span.glyphicon.glyphicon-phone
 				(415) 496-5580
