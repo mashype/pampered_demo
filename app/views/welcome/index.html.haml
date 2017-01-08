@@ -16,7 +16,7 @@
 					%h1 Dinner Party?
 					%p.lead.hidden-xs Browse our peer reviewed private chefs to come out to your dinner party or event to take away all the hassle. Coordinate menus, browse resume's and get started.
 				.col-sm-6.col-sm-offset-3
-					= link_to "Check Out Our Chefs", appointments_path, class: "button"
+					= link_to "Check Out Our Chefs", aptfilter_appointments_path, class: "button"
 
 		.item
 			= link_to image_tag('massage-banner1.jpg'), root_path, class: "img-responsive"
@@ -25,7 +25,7 @@
 					%h1 Rough Day?
 					%p.lead.hidden-xs Have one of our certified massage therapists meet at your home or office for an amazing stress relieving swedish massage or get tension relieving deep tissue work.
 				.col-sm-6.col-sm-offset-3
-					= link_to "Check Out Our Therapists", appointments_path, class: "button"
+					= link_to "Check Out Our Therapists", aptfilter_appointments_path, class: "button"
 
 		.item
 			= link_to image_tag('hair-banner1.jpg'), root_path, class: "img-responsive"
@@ -34,7 +34,7 @@
 					%h1 Night Out?
 					%p.lead.hidden-xs Bring a certified professional stylist in for a cut, color or style for your big night. Get a manicure or pedicure while you're at it!
 				.col-sm-6.col-sm-offset-3
-					= link_to "Check Out Our Stylists", appointments_path, class: "button"
+					= link_to "Check Out Our Stylists", aptfilter_appointments_path, class: "button"
 
 	%a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} &lsaquo;
 	%a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} &rsaquo;
@@ -78,100 +78,77 @@
 
 
 
-
-#about.container-fluid.text-center
-	%h2 Hey this is the about section
-	%p Thanks so much for coming to check out our latest project. Please forgive us as we are building the airplane as we are already in flight, so you might run into little bugs here and there as we work to improve our user experience. PamperedUp start from a very simple philosophy, that everyone deserves to get a little pampering and we want to help make that real for as many people as possible. Our driving mission here is that we believe that getting access to incredible services like in-home massages and private chefs doesn't have to be limited to the super wealthy and like every other market, there should be offerings from the relatively inexpensive all they way up to the obscenely decadent. We all need to get a little bit of pampering, and by taking advantage of the sharing that has grown over the past several years with services like Uber, AirBnB and Fiverr, Pampered Up helps people trying to grow their local businesses while also getting people access to amazing services at a fair price.
-
-	%p PamperedUp was created with a mission to connect people that are looking to get access to things that might have traditionally been out of reach right at their fingertips. Getting access to things like private in home gourment dining or having a private masseur show up at your office might have been unthinkable in the past, but with Pampered Up, we try to expand that access to as many of us as possible. From my personal experience, I never thought I would be able to have a private massage therapist until I signed up for one of those monthly membership packages where I was able to get services on a regular basis for a reasonable cost. I was blown away and was able to get access to something that I previously believed to be simply unattainable. I then though, what vaule add am I really getting from this building or the company that employs these therapists, and thought that we'd all actually be happier if I could just book them directly to come to my home when mutually convenient. That simple concept was the foundation of the idea that has grown into PamperedUp, and we are now working to put it into practice. We always welcome good feedback, so if there is anything we can do that will make your experience more enjoyable, please let us know.
-
-	%p As mentioned above, this is a work in progress and the goal now is to create a functional product that works for both our clients and our vendors in a safe, secure and simple way. With those key goals in mind, we set out to build the platform to prove that there is the interest on both sides as we continue to work with an incredibly small budget. We are still in our beta phase and we have begun the work for a full pilot product lauch in 2017 for our initial service area around Los Angeles and San Diego in Southern California. We have been working hard on building out the infrastructure to make sure that we are able to offer a safe and secure solution for both our clients as well as our vendors that make your relationship with Pampered Up seamless.
-
-#works
-	%h2 HOW IT WORKS
-	%br
-	.col-sm-3
-		= image_tag "search.jpg", class: "img-rounded"
-		%h3 Search
-		%p Our search algorithm naturally checks for vendors around your current location, or you can select another zip code if you are looking to book somwhere else. You can filter your results for just the right vendor.	
-	.col-sm-3
-		= image_tag "compare.jpg", class: "img-rounded"
-		%h3 Compare
-		%p We ask all of our clients who have gotten services from one of our vendors to rate them after each appointment to make sure they've gotten 5 star service every time. All of our reviews are verified from actual clients who have used our service.	
-	.col-sm-3
-		= image_tag "buy.jpg", class: "img-rounded"
-		%h3 Book
-		%p No need to share any financial or personal information to get your appointment booked. All of the information can be exchanged directly through our platform so that payment and personal information stays in your control and secure.	
-	.col-sm-3
-		= image_tag "win.jpg", class: "img-rounded"
-		%h3 Enjoy!
-		%p We want you to have an amazing experience, so we take every measure to ensure satisfaction and if you are not satisfied then we will guarentee your money back.	
-						
-				
-.row
-
-	.col-sm-4
-		%i.fa.fa-usd
-		%h1 Payment
-		%p We know you don't want to share your personal or financial information with freelancers (or with us for that matter!), so we make it super easy for you. We've partnered with Stripe is a third party source to take al payment information securely. We will hold a booking fee until after services are rendered. 
-	.col-sm-4
-		%i.fa.fa-mouse-pointer
-		%h1 Booking
-		%p Booking is super simple. You just search for vendor the you want to book and you can make the request and hold the spot and we will facilitate all of the schedulng. ou can always send a direct message to talk to your vendor about specific requests without having to share any of your personal information.
-	.col-sm-4
-		%i.fa.fa-ban
-		%h1 Cancellations
-		%p We understand that thin gs happen and there is no fee if you need to cancel an appointment. We ask that you give us a reasonable notice so our professionals can make other accomodation and the final payment will not be taken until the day of your appointment after services are completed.	
+#welcome_works.container-fluid.text-center
+	.wrapper
+		%h2 HOW IT WORKS
+		%br
+			.col-sm-3
+				= image_tag "search.jpg", class: "img-rounded"
+				%h3 Search
+				%p Our search algorithm naturally checks for vendors around your current location, or you can select another zip code if you are looking to book somwhere else. You can filter your results for just the right vendor.	
+			.col-sm-3
+				= image_tag "compare.jpg", class: "img-rounded"
+				%h3 Compare
+				%p We ask all of our clients who have gotten services from one of our vendors to rate them after each appointment to make sure they've gotten 5 star service every time. All of our reviews are verified from actual clients who have used our service.	
+			.col-sm-3
+				= image_tag "buy.jpg", class: "img-rounded"
+				%h3 Book
+				%p No need to share any financial or personal information to get your appointment booked. All of the information can be exchanged directly through our platform so that payment and personal information stays in your control and secure.	
+			.col-sm-3
+				= image_tag "win.jpg", class: "img-rounded"
+				%h3 Enjoy!
+				%p We want you to have an amazing experience, so we take every measure to ensure satisfaction and if you are not satisfied then we will guarentee your money back.	
 
 
-#contact
-	.container-fluid.bg-grey
-		%h2.text-center CONTACT
-		.row
-			.col-sm-5
-				%p Contact us and we'll get back to you within 24 hours.
-				%p
-					%span.glyphicon.glyphicon-map-marker
-					San Diego, CA, US
-				%p
-					%span.glyphicon.glyphicon-phone
-					(415) 555-1212
-				%p
-					%span.glyphicon.glyphicon-envelope
-					admin@pamperedup.com
-			.col-sm-7
-				.row
-					.col-sm-6.form-group
-						%input#name.form-control{:name => "name", :placeholder => "Name", :required => "", :type => "text"}/
-					.col-sm-6.form-group
-						%input#email.form-control{:name => "email", :placeholder => "Email", :required => "", :type => "email"}/
-				%textarea#comments.form-control{:name => "comments", :placeholder => "Comment", :rows => "5"}
-				%br/
-				.row
-					.col-sm-12.form-group
-						%button.btn.btn-default.pull-right{:type => "submit"} Send
+#welcome_highlights.container-fluid
+	.wrapper
+		.col-sm-4
+			%i.fa.fa-usd
+			%h1 Payment
+			%p We know you don't want to share your personal or financial information with freelancers (or with us for that matter!), so we make it super easy for you. We've partnered with Stripe is a third party source to take al payment information securely. We will hold a booking fee until after services are rendered. 
+		.col-sm-4
+			%i.fa.fa-mouse-pointer
+			%h1 Booking
+			%p Booking is super simple. You just search for vendor the you want to book and you can make the request and hold the spot and we will facilitate all of the schedulng. ou can always send a direct message to talk to your vendor about specific requests without having to share any of your personal information.
+		.col-sm-4
+			%i.fa.fa-ban
+			%h1 Cancellations
+			%p We understand that thin gs happen and there is no fee if you need to cancel an appointment. We ask that you give us a reasonable notice so our professionals can make other accomodation and the final payment will not be taken until the day of your appointment after services are completed.	
+
+#welcome_about.container-fluid.text-center
+	.wrapper
+		%h2 About Us
+		%p Thanks so much for coming to check out our latest project. Please forgive us as we are building the airplane as we are already in flight, so you might run into little bugs here and there as we work to improve our user experience. PamperedUp start from a very simple philosophy, that everyone deserves to get a little pampering and we want to help make that real for as many people as possible. Our driving mission here is that we believe that getting access to incredible services like in-home massages and private chefs doesn't have to be limited to the super wealthy and like every other market, there should be offerings from the relatively inexpensive all they way up to the obscenely decadent. We all need to get a little bit of pampering, and by taking advantage of the sharing that has grown over the past several years with services like Uber, AirBnB and Fiverr, Pampered Up helps people trying to grow their local businesses while also getting people access to amazing services at a fair price.
+
+		%p PamperedUp was created with a mission to connect people that are looking to get access to things that might have traditionally been out of reach right at their fingertips. Getting access to things like private in home gourment dining or having a private masseur show up at your office might have been unthinkable in the past, but with Pampered Up, we try to expand that access to as many of us as possible. From my personal experience, I never thought I would be able to have a private massage therapist until I signed up for one of those monthly membership packages where I was able to get services on a regular basis for a reasonable cost. I was blown away and was able to get access to something that I previously believed to be simply unattainable. I then though, what vaule add am I really getting from this building or the company that employs these therapists, and thought that we'd all actually be happier if I could just book them directly to come to my home when mutually convenient. That simple concept was the foundation of the idea that has grown into PamperedUp, and we are now working to put it into practice. We always welcome good feedback, so if there is anything we can do that will make your experience more enjoyable, please let us know.
 
 
 
-				
-#bottom_cta
-	%h2 Why are you not already signed up?  
-	%br
-	.row
-		.col-sm-8.col-sm-offset-2
-			%p Checkout  offerings in your area whenever you need to, and there is never any cost or committment to use us.  
-			%p Pampered lets you book massages, manicures, pilates sessions and others right in the comfort of your own home.
-			%p Its easy to create an account and find great partners in your area today!
-	%br
-	.row
-		.col-sm-4.col-sm-offset-4
-			= link_to "View Our Partners", appointments_path, class: "button"
-	%br
-	%br
-	.row
-		.col-sm-8.col-sm-offset-2
-			%h3 PAMPERED IS STILL IN BETA TESTING... 
-			%h3 SO PLEASE LET US KNOW YOUR THOUGHTS
+#welcome_contact.container-fluid
+	.wrapper
+		.col-sm-5
+			%p Contact us and we'll get back to you within 24 hours.
+			%p
+				%span.glyphicon.glyphicon-map-marker
+				San Diego, CA, US
+			%p
+				%span.glyphicon.glyphicon-phone
+				(415) 555-1212
+			%p
+				%span.glyphicon.glyphicon-envelope
+				admin@pamperedup.com
+		.col-sm-7
+			.row
+				.col-sm-6.form-group
+					%input#name.form-control{:name => "name", :placeholder => "Name", :required => "", :type => "text"}/
+				.col-sm-6.form-group
+					%input#email.form-control{:name => "email", :placeholder => "Email", :required => "", :type => "email"}/
+			%textarea#comments.form-control{:name => "comments", :placeholder => "Comment", :rows => "5"}
+			%br/
+			.row
+				.col-sm-12.form-group
+					%button.btn.btn-default.pull-right{:type => "submit"} Send
+
 
 
 

@@ -22,20 +22,10 @@
 				= link_to image_tag('pampered_header.png'), root_path
 			#myNavbar.collapse.navbar-collapse
 				%ul.nav.navbar-nav
-					%li.active
-						=link_to "Home", root_path
-
-					%li.dropdown
-						%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-							About
-							%span.caret
-						%ul.dropdown-menu
-							%li
-								=link_to "About Us", welcome_about_path	
-							%li
-								=link_to "How It Works", "#"									
-							%li
-								=link_to "FAQ", "#contact"	
+					%li
+						= link_to "Home", root_path
+					%li
+						= link_to "About", welcome_about_path
 
 
 				%ul.nav.navbar-nav.navbar-right
@@ -74,6 +64,8 @@
 								Sign Out
 
 					- else
+						%li
+							= link_to "List Your Business", welcome_vendors_path, class: "button-clear"
 						%li
 							= link_to new_user_registration_path do
 								%span.glyphicon.glyphicon-user

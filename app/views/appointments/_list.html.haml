@@ -15,10 +15,12 @@
                 %h2= appointment.title
               .panel-body
                 %img.img-responsive.img-rounded{alt: "Profile Avatar", src: appointment.vendor.avatar.url(:medium)}
-                %h3= appointment.vendor.name
-                
+                %h3  #{number_to_currency((appointment.amount.cost), unit:"$")} | #{appointment.duration.duration}
+
+
               .panel-footer
-                %h3 #{number_to_currency((appointment.amount.cost), unit:"$")} | #{appointment.duration.duration}
+                %h4= appointment.vendor.name
+
 
       - else 
         %h2 Sorry...
@@ -30,3 +32,13 @@
 
 .chardin_box{ :'data-position' => 'top', :'data-intro' => "will_paginate's paginator works as expected." }
   = will_paginate appointments, renderer: BootstrapPagination::Rails 
+
+
+:javascript
+    $('.star-rating').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+            return $(this).attr('dscore');
+        }
+    }); 

@@ -12,29 +12,24 @@
   .row
     %br
     .col-md-2
-      = form_for_filterrific @filterrific do |f|
-        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by first name, last name, or email.' }
-          %label Search Appointments
-          = f.text_field :search_query, placeholder: "BETA TEST", :class => 'filterrific-periodically-observed form-control'
+      .well
+        = form_for_filterrific @filterrific do |f|
+          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by first name, last name, or email.' }
+            %label Appointment Title
+            = f.text_field :search_query, placeholder: "Filter Appointments", :class => 'filterrific-periodically-observed form-control'
 
-        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by zip code.' }
-          %label Change Zip Code
-          = text_field_tag :zip_search, params[:zip_search], placeholder: 'New Zip Code Search'
+          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by zip code.' }
+            %label Change Zip Code
+            = text_field_tag :zip_search, params[:zip_search], placeholder: 'New Zip Code Search'
 
-        .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by country.' }
-          %label Service Type
-          = f.select :with_service_id, @filterrific.select_options[:with_service_id], { :include_blank => '- Any -' }, { :class => 'form-control' }
+          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by country.' }
+            %label Service Type
+            = f.select :with_service_id, @filterrific.select_options[:with_service_id], { :include_blank => '- Any -' }, { :class => 'form-control' }
     .col-md-10
       #results
         = render :partial => 'appointments/list', :locals => { :appointments => @appointments }
 
 
-:javascript
-  $('.js-datepicker').datepicker();
-  $('#overlayTrigger').click(function(event) {
-    event.preventDefault();
-    $('body').chardinJs('start');
-  });
 
 :javascript
     $('.star-rating').raty({

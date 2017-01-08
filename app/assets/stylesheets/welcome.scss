@@ -6,6 +6,14 @@ h2 {
 	text-align: center;
 }
 
+p {
+	font-size: 1.75rem;
+}
+
+i {
+
+}
+
 #banner {
 	background-image: image-url('welcome_banner_image.png');
 	background-size: cover;
@@ -75,9 +83,6 @@ h2 {
 		text-align: center;
 	} 
 
-	p {
-		font-size: 2.0rem;
-	}
 
 	img {
 		max-width: 100%;
@@ -112,14 +117,13 @@ h2 {
 	}
 
 	i {
-		font-size: 5.0rem;
 		color: $gold;
+		font-size: 5.0rem;
 		padding: 2.0rem 2.5%;
 	}
 
 	p {
 		color: $gold;
-		font-size: 1.5em;
 	}
 
 	a {
@@ -127,30 +131,6 @@ h2 {
 	}
 }
 
-#bottom_cta {
-	text-align: center;
-	padding: 7.5rem 0;
-	h2 {
-		@include bold_font;
-		color: $purple;
-		font-size: 2.5rem;
-		text-align: center;
-		margin: 0;
-	}
-
-	h3 {
-		@include bold_font;
-		color: $gold;
-		font-size: 2.0rem;
-		text-align: center;
-	}
-
-	p {
-			font-size: 1.75rem;
-			margin: 0 0 2.0rem 0;
-			color: $dark_gray;
-		}
-}
 
 #faq {
 	text-align: center;
@@ -175,38 +155,29 @@ h2 {
 	}
 }
 
-#about {
+#welcome_about {
 	p {
 		font-size: 1.75rem;
 	}
 }
 
-#how {
+#welcome_works {
 
-	background-color: $lt_purple;
-	padding: 30px 0px;
 	text-align: center;
+	display: block;
+    padding: 40px 0px;	
 
 	h3 {
 		@include bold_font;
 		text-align: center;
 		font-size: 3.0rem;
-		color: $dk_gold;
+		color: $dk_purple;
 		margin: 1px;
-		padding-top: 40px; 
-		margin-top: -40px
+
 	}
 
 	p {
-		font-size: 1.75rem;
 		color: $dk_purple;
-	}
-
-	i {
-		font-size: 7.5rem;
-		color: $purple;
-		padding: 2.0rem 2.5%;
-		text-align: right;
 	}
 
 	img {
@@ -228,17 +199,30 @@ h2 {
 }
 
 
-#points {
-	padding: 50px 0px;
+#welcome_highlights {
+
+	background-color: $gold;
+	text-align: center;
+	padding: 40px 0px;
 
 	i {
-		font-size: 7.0rem;
+		color: $dk_purple;
+		font-size: 5.0rem;
+		padding: 2.0rem 2.5%;
 	}
+
 }
 
-#contact {
-	background-color: $lt_gold;
+#welcome_contact {
+	background-color: $light_gray;
+	display: block;
+    padding-top: 40px;
 }
+
+
+
+
+
 
 #vendor_what {
 	text-align: center;
@@ -272,14 +256,13 @@ h2 {
 	}
 
 	i {
-		font-size: 5.0rem;
 		color: $gold;
+		font-size: 5.0rem;
 		padding: 2.0rem 2.5%;
 	}
 
 	p {
 		color: white;
-		font-size: 1.2em;
 	}
 
 	.row {

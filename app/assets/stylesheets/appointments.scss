@@ -5,7 +5,7 @@
 	  background: $gold;
 	  padding: 2px;
 	  margin: 4px;
-	  width: 250px;
+	  width: 275px;
 	  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
 	  border-radius: 7px;
 	  text-align: center;
@@ -47,6 +47,13 @@
 	  	@include bold_font;
 	  	font-size: 16px;	
 	  	margin: 4px;
+	  	padding: 8px 0px;
+	  }
+
+	  h4 {
+	  	@include bold_font;
+	  	font-size: 12px;	
+	  	margin: 2px;
 	  }
 
 	  .stars {
