@@ -18,7 +18,7 @@ class AppointmentsController < ApplicationController
       ) or return
     
     @vendor_locations = VendorLocation.where(location_id: location_ids)
-    @appointments = @filterrific.find.includes(:vendor).where(vendor_id: @vendor_locations.select(:vendor_id)).where(active: true).page(params[:page])
+    @appointments = @filterrific.find.includes(:vendor).order('updated_at DESC').where(vendor_id: @vendor_locations.select(:vendor_id)).where(active: true).page(params[:page])
 
     @hash = Gmaps4rails.build_markers(@vendor_locations) do |vendor_location, marker|
       marker.lat vendor_location.location.latitude
