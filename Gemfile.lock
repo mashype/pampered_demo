@@ -160,6 +160,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mail_form (1.6.0)
+      actionmailer (>= 3.2, < 5.1)
+      activemodel (>= 3.2, < 5.1)
     mailboxer (0.13.0)
       carrierwave (>= 0.5.8)
       foreigner (>= 0.9.1)
@@ -323,6 +326,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   letter_opener
+  mail_form
   mailboxer
   masonry-rails (~> 0.2.4)
   meta-tags

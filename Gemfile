@@ -33,6 +33,7 @@ gem 'chosen-rails'
 gem 'heroku', '~> 3.42', '>= 3.42.44'
 gem 'aws-sdk', '< 2.0'
 gem 'meta-tags'
+gem 'mail_form'
 
 
 gem 'bootstrap-datepicker-rails'

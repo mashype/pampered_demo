@@ -49,6 +49,9 @@ Rails.application.routes.draw do
   get 'welcome/vendors' => 'welcome#vendors' 
   get 'welcome/mail' => 'welcome#mail' 
  
+  match '/contacts',     to: 'contacts#new',             via: 'get'
+  resources "contacts", only: [:new, :create]
+
   authenticated :user do
   	root 'appointments#index', as: "authenticated_root"
   end
