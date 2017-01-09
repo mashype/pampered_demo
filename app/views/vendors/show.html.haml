@@ -5,7 +5,7 @@
 			.col-md-3
 				%img.img-responsive.img-rounded{alt: "Profile Avatar", src: @vendor.avatar.url(:medium)}					
 			
-			.col-md-7
+			.col-md-6
 				%table.table
 					%tbody
 						%tr
@@ -31,7 +31,7 @@
 								%strong Bio:
 							%td=simple_format(@vendor.bio)		
 
-			.col-md-2
+			.col-md-3
 				- if @vendor.user_id.nil?
 					= link_to "Claim Your Profile", edit_vendor_path(@vendor), class: "button"
 

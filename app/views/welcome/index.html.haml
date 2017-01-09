@@ -149,18 +149,39 @@
 
 		.col-sm-7
 			.row
-				.col-sm-6.form-group
-					%input#name.form-control{:name => "name", :placeholder => "Name", :required => "", :type => "text"}/
-				.col-sm-6.form-group
-					%input#email.form-control{:name => "email", :placeholder => "Email", :required => "", :type => "email"}/
-			%textarea#comments.form-control{:name => "comments", :placeholder => "Comment", :rows => "5"}
-			%br/
-			.row
-				.col-sm-12.form-group
-					%button.btn.btn-default.pull-right{:type => "submit"} Send
 
+				%link{:href => "//cdn-images.mailchimp.com/embedcode/classic-10_7.css", :rel => "stylesheet", :type => "text/css"}/
+				:css
+					#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
 
-
+				#mc_embed_signup 
+					%form#mc-embedded-subscribe-form.validate{:action => "//leftyseth.us12.list-manage.com/subscribe/post?u=fd9fd116c23d75e6992fb7233&id=4ba15edf8a", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}
+						#mc_embed_signup_scroll
+							%h2 Subscribe to our mailing list
+							.indicates-required
+								%span.asterisk *
+								indicates required
+							.mc-field-group
+								%label{:for => "mce-EMAIL"}
+									Email Address
+									%span.asterisk *
+								%input#mce-EMAIL.required.email{:name => "EMAIL", :type => "email", :value => ""}/
+							.mc-field-group
+								%label{:for => "mce-FNAME"} First Name
+								%input#mce-FNAME{:name => "FNAME", :type => "text", :value => ""}/
+							.mc-field-group
+								%label{:for => "mce-LNAME"} Last Name
+								%input#mce-LNAME{:name => "LNAME", :type => "text", :value => ""}/
+							#mce-responses.clear
+								#mce-error-response.response{:style => "display:none"}
+								#mce-success-response.response{:style => "display:none"}
+				     
+							%div{"aria-hidden" => "true", :style => "position: absolute; left: -5000px;"}
+								%input{:name => "b_fd9fd116c23d75e6992fb7233_4ba15edf8a", :tabindex => "-1", :type => "text", :value => ""}/
+							.clear
+								%input#mc-embedded-subscribe.button{:name => "subscribe", :type => "submit", :value => "Subscribe"}/
+				
+				%script{:src => "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js", :type => "text/javascript"}
 
 
 :javascript
@@ -180,3 +201,6 @@
 	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-77303912-2', 'auto');
 	ga('send', 'pageview');
+
+:javascript
+	(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='NAME';ftypes[3]='text';fnames[4]='ID';ftypes[4]='number';}(jQuery));var $mcj = jQuery.noConflict(true);
