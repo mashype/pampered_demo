@@ -52,7 +52,12 @@
 }
 
 .alert-alert {
-  @extend .alert-warning;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 60%;
+	text-align: center;
+  	@extend .alert-warning;
 }
 
 .messages {

@@ -30,7 +30,7 @@ class VendorsController < ApplicationController
     set_meta_tags   title: @vendor.name,
                     keywords: [@vendor.name, @vendor.vendor_type.title, @vendor.bio]
 
-  end  
+  end   
 
 
   def new
@@ -47,7 +47,7 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully created.' }
+        format.html { redirect_to new_appointment_path, notice: 'Your Profile is up! Lets create a booking for people to find you.' }
         format.json { render :show, status: :created, location: @vendor }
       else
         format.html { render :new }
