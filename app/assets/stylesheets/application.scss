@@ -42,7 +42,13 @@
 
 
 .alert-notice {
-  @extend .alert-success;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 60%;
+	text-align: center;
+ 	@extend .alert-success;
+ 	@include bold_font;
 }
 
 .alert-alert {
