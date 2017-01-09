@@ -45,7 +45,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/about' => 'welcome#about'
   get 'welcome/faq' => 'welcome#faq'
-  get 'welcome/how' => 'welcome#how'
   get 'welcome/terms' => 'welcome#terms' 
   get 'welcome/vendors' => 'welcome#vendors' 
   get 'welcome/mail' => 'welcome#mail' 
@@ -54,7 +53,7 @@ Rails.application.routes.draw do
   resources "contacts", only: [:new, :create]
 
   authenticated :user do
-  	root 'appointments#index', as: "authenticated_root"
+  	root 'appointments#aptfilter', as: "authenticated_root"
   end
 
   root  'welcome#index'
