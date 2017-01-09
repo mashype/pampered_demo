@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :vendors do
+  resources :vendors, except: [:index] do
     resources :reviews, except: [:show, :index]    
   end
 
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 	devise_for :users, controllers: { registrations: "registrations" }
   
 
+  get 'vendors' => 'welcome#vendors'
   get 'welcome/index'
   get 'welcome/about' => 'welcome#about'
   get 'welcome/faq' => 'welcome#faq'

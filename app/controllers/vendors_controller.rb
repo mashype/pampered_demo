@@ -6,21 +6,9 @@ class VendorsController < ApplicationController
 
 
   def index
-    @filterrific = initialize_filterrific(
-      Vendor,
-      params[:filterrific],
-      :select_options => {
-        sorted_by: Vendor.options_for_sorted_by,
-        with_user_id: User.options_for_select,
-        with_vendor_type_id: VendorType.options_for_select
-      }
-    ) or return
-    @vendors = @filterrific.find.page(params[:page])
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @vendors = Vendor.all
+
   end
 
 

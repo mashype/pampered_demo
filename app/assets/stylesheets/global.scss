@@ -71,6 +71,12 @@ body {
     clear: both;
 }
 
+
+.button-clear:hover {
+    background-color: $lt_purple;
+    color: $dk_purple;
+}
+
 button, .button {
     @include bold_font;
     border: 2px solid $purple;
@@ -85,6 +91,8 @@ button, .button {
         text-decoration: none;
     }
 }
+
+
 
 
 button, .button:hover {
