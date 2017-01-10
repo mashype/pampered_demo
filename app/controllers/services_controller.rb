@@ -57,7 +57,7 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-      params.require(:service).permit(:title, :desctiption)
+      params.require(:service).permit(:title, :desctiption, :vendor_type_id)
     end
 
     def verify_is_admin
