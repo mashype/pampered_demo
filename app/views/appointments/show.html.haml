@@ -20,6 +20,10 @@
 								%td= simple_format(@appointment.duration.duration)
 							%tr
 								%td
+									%strong Service:
+								%td= simple_format(@appointment.service.title)
+							%tr
+								%td
 									%strong Vendor:
 								%td= simple_format(@appointment.vendor.name)
 							%tr
