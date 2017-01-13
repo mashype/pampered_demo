@@ -40,6 +40,7 @@
 
 					= link_to "Edit Profile", edit_vendor_path(@vendor), class: "button"	
 					= link_to "Create Appointment", new_appointment_path, class: "button"	
+					= link_to "Delete Profile", @vendor, method: :delete, data: { confirm: 'Are you sure you want to delete your profile? This can not be restored' }, class: "button button-danger"
 
 				- else user_signed_in?
 					= link_to "Review Me", new_vendor_review_path(@vendor), class: "button"	
