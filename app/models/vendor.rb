@@ -9,18 +9,18 @@ class Vendor < ActiveRecord::Base
 	has_many :appointments
 	has_many :reviews
 
-	has_many :vendor_locations
+	has_many :vendor_locations, dependent: :destroy
 	has_many :locations, through: :vendor_locations
 	accepts_nested_attributes_for :vendor_locations, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :locations, reject_if: proc { |att| att[:add_1].blank? && attr[:city].blank? }, allow_destroy: true
 
 
-	has_many :vendor_services
+	has_many :vendor_services, dependent: :destroy
 	has_many :services, through: :vendor_services
 	accepts_nested_attributes_for :vendor_services, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :services, reject_if: :all_blank, allow_destroy: true
 
-	has_many :vendor_features
+	has_many :vendor_features, dependent: :destroy
 	has_many :features, through: :vendor_features
 	accepts_nested_attributes_for :vendor_features, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :features, reject_if: :all_blank, allow_destroy: true
