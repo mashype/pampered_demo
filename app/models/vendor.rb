@@ -7,7 +7,7 @@ class Vendor < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :vendor_type
 	has_many :appointments
-	has_many :reviews
+	has_many :reviews, dependent: :destroy
 
 	has_many :vendor_locations, dependent: :destroy
 	has_many :locations, through: :vendor_locations
