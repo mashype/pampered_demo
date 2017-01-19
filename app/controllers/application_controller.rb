@@ -34,12 +34,12 @@ class ApplicationController < ActionController::Base
 
     # Let's prepare a nice set of defaults
     defaults = {
-      site:        "Pampered Up",
+      site:        "PamperedUp",
       title:       "You deserve it",
       description: "You don't have to be ridiculously rich to get a little pampering.",
       keywords:    "massage hair stylist private chef housekeeping pampering pamper",
       twitter: {
-        site_name: "Pampered Up",
+        site_name: "PamperedUp",
         site: '@getyourpamp',
         card: 'summary',
         description: 'Pampered Twitter page',

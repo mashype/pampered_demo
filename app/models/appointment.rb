@@ -16,6 +16,7 @@ class Appointment < ActiveRecord::Base
 			sorted_by
 			search_query
             with_service_id
+            with_vendor_type 
             with_created_at_gte
         ]
 
@@ -67,6 +68,8 @@ class Appointment < ActiveRecord::Base
 
 
   	scope :with_service_id, lambda { |service_ids| where(:service_id => [*service_ids]) }
+
+  	scope :with_vendor_type, lambda { |vendor_type_ids| includes(:vendor).where(:vendor_type_id => [*vendor_type_ids]) }
 
   	scope :with_created_at_gte, lambda { |ref_date| where('appointments.created_at >= ?', ref_date) }
 

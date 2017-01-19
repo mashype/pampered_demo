@@ -7,24 +7,25 @@
   .row 
     - if user_signed_in? && !Vendor.exists?(user_id: current_user)  
       .col-sm-6.col-sm-offset-3
-        %h4= link_to "Interested In offering services on PamperedUp?", new_vendor_path
+        %h2= link_to "Interested In offering services on PamperedUp?", new_vendor_path
 
   .row
     %br
     .col-md-2
       .well
         = form_for_filterrific @filterrific do |f|
-          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by first name, last name, or email.' }
+          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by service.' }
             %label Appointment Title
-            = f.text_field :search_query, placeholder: "Filter Appointments", :class => 'filterrific-periodically-observed form-control'
+            = f.text_field :search_query, placeholder: "Search Names", :class => 'filterrific-periodically-observed form-control'
 
-          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search by zip code.' }
+          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Search zips.' }
             %label Change Zip Code
             = text_field_tag :zip_search, params[:zip_search], placeholder: 'New Zip Code Search'
 
-          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by country.' }
+          .form-group.chardin_box{ :'data-position' => 'top', :'data-intro' => 'Filter by service.' }
             %label Service Type
             = f.select :with_service_id, @filterrific.select_options[:with_service_id], { :include_blank => '- Any -' }, { :class => 'form-control' }
+
     .col-md-10
       #results
         = render :partial => 'appointments/list', :locals => { :appointments => @appointments }
