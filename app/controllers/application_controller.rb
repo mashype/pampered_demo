@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
       site:        "PamperedUp",
       title:       "You deserve it",
       description: "You don't have to be ridiculously rich to get a little pampering.",
-      keywords:    "massage hair stylist private chef housekeeping pampering pamper",
+      keywords:    "massage hair stylist private chef housekeeping pampering pamper pamperedup yoga health fitness mani manicure pedi pedicure",
       twitter: {
         site_name: "PamperedUp",
         site: '@getyourpamp',
