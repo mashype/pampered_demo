@@ -24,9 +24,13 @@
 
       - else 
         %h2 Sorry...
-        %h3 We dont have any offers in your area. Please contact us to request we add providers in your area.
+        %h3 We dont have any offers in your area right now.
+        %h3 As of today, we are only available in Los Angeles 
+        %br 
+        %h3 Please contact us to request we add providers in your area.
         %br
-        %p= mail_to "seth@pamperedup.com", "Contact", subject: "Pampered Contact Request", class: "button"
+        .col-sm-6.col-sm-offset-3
+          %p= mail_to "seth@pamperedup.com", "Contact", subject: "Pampered Contact Request", class: "button"
 
 
 
