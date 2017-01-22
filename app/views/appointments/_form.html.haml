@@ -14,20 +14,22 @@
         %fieldset
           .row
             .col-sm-4
+              = f.input :title, input_html: {maxlength: 50}, label: "Appointment Title"
+            .col-sm-4
               = f.input :service_id, collection: VendorType.where(id: current_user.vendor.vendor_type_id), as: :grouped_select, group_method: :services, label: "Service Category", include_blank: false
-            .col-sm-3
+            .col-sm-2
               = f.association :amount, label_method: :cost,  value_method: :id, label: "Amount (in dollars)",include_blank: false     
-            .col-sm-3
-              = f.association :duration, label_method: :duration,  value_method: :id, label: "Length (per appointment)",include_blank: false     
-            .col-sm-2   
-              = f.input :active, label: "Appointment Active"
+            .col-sm-2
+              = f.association :duration, label_method: :duration,  value_method: :id, label: "Appt. Length",include_blank: false      
+              
           .row
             .col-sm-12
-              = f.input :title, label: "Appointment Title"
-            .col-sm-12
               = f.input :description, label: "Appointment Description"
-          
+          .row
+            .col-sm-2.col-sm-offset-10
+              = f.input :active, label: "Active"
         %br/
+
 
 
       %input{:type => "submit", class: "button", :value => "Finalize Appointment Detail"}/ 
