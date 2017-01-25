@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     defaults = {
       site:        "PamperedUp",
       title:       "You deserve it",
-      description: "You don't have to be ridiculously rich to get a little pampering. Bring private masseurs, chefs, trainers and stylists into your home for top notch treatment today!"",
+      description: "You don't have to be ridiculously rich to get a little pampering. Bring private masseurs, chefs and stylists into your home for top notch treatment today!",
       keywords:    "massage hair stylist private chef housekeeping pampering pamper pamperedup yoga health fitness mani manicure pedi pedicure getyourpamp",
       twitter: {
         site_name: "PamperedUp",
