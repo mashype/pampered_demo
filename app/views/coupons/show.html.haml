@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Code string:
+  = @coupon.code_string
+%p
+  %b Min price:
+  = @coupon.min_price
+%p
+  %b Max price:
+  = @coupon.max_price
+%p
+  %b Min value:
+  = @coupon.min_value
+%p
+  %b Max value:
+  = @coupon.max_value
+%p
+  %b Disc pct:
+  = @coupon.disc_pct
+%p
+  %b Disc cost:
+  = @coupon.disc_cost
+%p
+  %b Exp date:
+  = @coupon.exp_date
+
+= link_to 'Edit', edit_coupon_path(@coupon)
+\|
+= link_to 'Back', coupons_path

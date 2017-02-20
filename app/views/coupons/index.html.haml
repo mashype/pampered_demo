@@ -1,0 +1,35 @@
+%h1 Listing coupons
+
+%table
+  %thead
+    %tr
+      %th Code string
+      %th Min price
+      %th Max price
+      %th Min value
+      %th Max value
+      %th Disc pct
+      %th Disc cost
+      %th Exp date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @coupons.each do |coupon|
+      %tr
+        %td= coupon.code_string
+        %td= coupon.min_price
+        %td= coupon.max_price
+        %td= coupon.min_value
+        %td= coupon.max_value
+        %td= coupon.disc_pct
+        %td= coupon.disc_cost
+        %td= coupon.exp_date
+        %td= link_to 'Show', coupon
+        %td= link_to 'Edit', edit_coupon_path(coupon)
+        %td= link_to 'Destroy', coupon, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Coupon', new_coupon_path

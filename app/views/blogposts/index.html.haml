@@ -1,0 +1,24 @@
+.wrapper
+  %h1 PamperedUp Blog Listings
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Title
+        %th User
+        %th
+        %th
+        %th
+
+    %tbody
+      - @blogposts.each do |blogpost|
+        %tr
+          %td= blogpost.title
+          %td= blogpost.user.username
+          %td= link_to 'Show', blogpost
+          %td= link_to 'Edit', edit_blogpost_path(blogpost)
+          %td= link_to 'Destroy', blogpost, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Blogpost', new_blogpost_path

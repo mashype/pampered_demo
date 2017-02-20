@@ -1,0 +1,23 @@
+.wrapper_with_padding
+	#post_show
+		%h1.title= @blogpost.title
+		%p.date
+			Submitted #{time_ago_in_words(@blogpost.created_at)} Ago
+			- if user_signed_in? && current_user.admin == true
+				|
+				= link_to 'Edit', edit_blogpost_path(@blogpost) 
+				|
+				= link_to 'Delete', blogpost_path(@blogpost), method: :delete, data: { confirm: 'Are you sure?' }
+
+		%p.body= simple_format(@blogpost.body)
+
+		#comments
+			%h2
+				= @blogpost.blogcomments.count
+				Comments
+			= render @blogpost.blogcomments
+			- if user_signed_in?
+				%h3 Add a comment:
+				= render "blogcomments/form"
+			- else
+				= link_to 'Login to post comment', new_user_session_path

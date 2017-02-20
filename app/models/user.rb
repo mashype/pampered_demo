@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   has_many :bookings
+  has_many :blogcomments
+  has_many :blog_posts
   has_many :reviews, dependent: :destroy
 
   has_one :vendor

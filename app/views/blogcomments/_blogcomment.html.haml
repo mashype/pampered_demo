@@ -1,0 +1,11 @@
+.blogcomment.clearfix
+	.blogcomment_content
+		%p.blogcomment_name
+			%strong= blogcomment.user.username
+		%p.blogcomment_body= blogcomment.body
+		%p.blogcomment_time
+		= time_ago_in_words(blogcomment.created_at)
+		Ago
+
+	- if user_signed_in?
+		%p= link_to 'Delete', [blogcomment.blogpost, blogcomment], method: :delete, class: "btn btn-default", data: { confirm: 'Are you sure?' }

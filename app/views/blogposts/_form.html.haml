@@ -1,0 +1,17 @@
+.wrapper
+  = simple_form_for(@blogpost) do |f|
+
+    - if @blogpost.errors.any?
+      #errors
+        %h1
+          = pluralize(@blogpost.errors.count, "error")
+          prevented this post froms saving
+        %ul
+          - @blogpost.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-inputs
+      = f.input :title
+      = f.input :body
+    .form-actions
+      = f.button :submit

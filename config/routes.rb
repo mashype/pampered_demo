@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
 
+  resources :coupons
   resources :durations
   resources :vendor_features
   resources :features
@@ -14,6 +15,10 @@ Rails.application.routes.draw do
   resources :vendor_licenses
   resources :vendor_locations 
   resources :vendor_services
+
+  resources :blogposts do 
+    resources :blogcomments
+  end
 
   resources :conversations, only: [:index, :show, :destroy] do
     member do

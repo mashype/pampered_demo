@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108051517) do
+ActiveRecord::Schema.define(version: 20170207203505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,27 @@ ActiveRecord::Schema.define(version: 20170108051517) do
 
   add_index "appointments", ["duration_id"], name: "index_appointments_on_duration_id", using: :btree
 
+  create_table "blogcomments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "blogpost_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "blogcomments", ["blogpost_id"], name: "index_blogcomments_on_blogpost_id", using: :btree
+  add_index "blogcomments", ["user_id"], name: "index_blogcomments_on_user_id", using: :btree
+
+  create_table "blogposts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "blogposts", ["user_id"], name: "index_blogposts_on_user_id", using: :btree
+
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "appointment_id"
@@ -49,6 +70,19 @@ ActiveRecord::Schema.define(version: 20170108051517) do
   create_table "contacts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code_string",                                        null: false
+    t.integer  "min_price",                           default: 0
+    t.integer  "max_price",                           default: 1000
+    t.integer  "min_value",                           default: 0
+    t.integer  "max_value",                           default: 100
+    t.decimal  "disc_pct",    precision: 3, scale: 2, default: 0.0
+    t.integer  "disc_cost",                           default: 0
+    t.date     "exp_date",                                           null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "durations", force: :cascade do |t|
@@ -261,6 +295,9 @@ ActiveRecord::Schema.define(version: 20170108051517) do
   end
 
   add_foreign_key "appointments", "durations"
+  add_foreign_key "blogcomments", "blogposts"
+  add_foreign_key "blogcomments", "users"
+  add_foreign_key "blogposts", "users"
   add_foreign_key "features", "vendor_types"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
