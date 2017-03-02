@@ -7,6 +7,8 @@ class Location < ActiveRecord::Base
 	end
 
 	after_validation :geocode, :if => :add_1_changed?
+	after_validation :geocode, :if => :city_changed?
+
 
 	has_many :vendor_locations
 	has_many :vendors, through: :vendor_locations
