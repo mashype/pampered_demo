@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :coupons
   resources :durations
-  resources :vendor_features
+  
   resources :features
   resources :amounts
   resources :charges
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :services
   resources :vendor_types
   resources :vendor_documents
+  resources :vendor_features
   resources :vendor_licenses
   resources :vendor_locations 
   resources :vendor_services
@@ -32,7 +33,10 @@ Rails.application.routes.draw do
   end
 
   resources :vendors, except: [:index] do
-    resources :reviews, except: [:show, :index]    
+    resources :reviews, except: [:show, :index]  
+    collection do 
+      get 'massage'
+    end  
   end
 
   resources :appointments do

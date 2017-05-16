@@ -111,6 +111,14 @@ button, .button:hover {
     padding: 1rem 3.5rem;
 }
 
+.button-buy {
+    background: $gold;
+    color: red;
+    font-size: 14px;
+    padding: 1rem 3.5rem;
+
+}
+
 .button {
     color: white;
     margin: 2rem 0;
@@ -195,6 +203,42 @@ a {
     }
 }
 
+#works {
+
+    text-align: center;
+    display: block;
+    padding: 40px 0px;  
+
+    h3 {
+        @include bold_font;
+        text-align: center;
+        font-size: 3.0rem;
+        color: $dk_purple;
+        margin: 1px;
+
+    }
+
+    p {
+        color: $dk_purple;
+    }
+
+    img {
+        max-width: 90%;
+        height: auto; 
+        display: block;
+        margin: auto;
+        padding: 3px;
+        margin-bottom: 10px;
+        vertical-align: middle;
+        border: 2px solid $purple;
+    }
+
+    .row {
+        border-top: 1px solid $gold;
+        padding-top: 10px;
+    }
+
+}
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
     width: 100%;

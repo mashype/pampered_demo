@@ -1,0 +1,103 @@
+%script{:src => "//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCHo7P-uEfAEioZyTEw51cjJxfGlQf5tiM"}
+%script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
+%script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '580725838769524'); fbq('track', 'PageView');
+</script>
+
+<noscript>
+<img height="1" width="1" src="https://www.facebook.com/tr?id=580725838769524&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+#vendor_message
+	%h3 So you want to make it super easy to get yourself a massage delivered to your doorstep? 
+	%br
+	%h3 Let's get you started right now.
+	%p 
+	= form_tag massage_vendors_path, :method => :get do
+		%p= text_field_tag :search, params[:search], placeholder: 'We just need your zip code to narrow our search...'
+		%p= submit_tag "Refresh Search", :search => nil, class: "button button-buy"
+#works.container-fluid.text-center
+	.wrapper
+		.col-sm-2.col-sm-offset-3
+			= image_tag "search.jpg", class: "img-rounded"				
+			%h4 1. Search
+
+		.col-sm-2
+			= image_tag "compare.jpg", class: "img-rounded"
+			%h4 2. Compare
+
+		.col-sm-2
+			= image_tag "buy.jpg", class: "img-rounded"
+			%h4 3. Book
+
+.wrapper
+
+	%table.table.table-hover
+		%thead
+			%tr
+				%th 
+				%th Vendor
+				%th Appointments
+				%th Services
+				%th Loctions
+				%th{:colspan => "5"}
+		%tbody
+			- @vendors.each_with_index do |vendor, i|
+				%tr
+					%td= image_tag vendor.avatar.url(:thumb)
+					%td
+						= vendor.name
+						%br
+						= vendor.id
+
+				
+					%td	
+						- vendor.appointments.each do |appointment|
+							%li= appointment.title
+					%td
+						- vendor.services.each do |service|
+							%li= service.title
+					%td
+						- vendor.locations.each do |location|
+							%li= location.city								
+					%td
+						%br
+						= link_to "Book Now", vendor, class: "button"	
+						%br
+						%br
+						.stars
+							%p{class: "star-rating", dscore: @avg_reviews[i]}
+
+
+   
+:javascript
+	$('.star-rating').raty({
+		path: '/assets/',
+		readOnly: true,
+		score: function() {
+			return $(this).attr('dscore');
+		}
+	}); 
+
+:javascript
+	handler = Gmaps.build('Google');
+	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+		markers = handler.addMarkers(#{raw @hash.to_json});
+		handler.bounds.extendWith(markers);
+		handler.fitMapToBounds();
+	});
+
+:javascript
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-77303912-2', 'auto');
+	ga('send', 'pageview');

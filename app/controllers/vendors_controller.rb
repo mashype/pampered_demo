@@ -12,6 +12,32 @@ class VendorsController < ApplicationController
   end
 
 
+  def massage
+
+    if params[:search].present?
+      location_ids = Location.near(params[:search], 1000, order: '').pluck(:id)
+    else
+      location_ids = Location.near([session[:latitude], session[:longitude]], 100, order: '').pluck(:id)      
+    end
+
+    @vendor_locations = VendorLocation.order("distance").where(location_id: location_ids)
+#    @vendors = Vendor.where(vendor_id: @vendor_locations.select(:vendor_id), vendor_type_id: 2)
+    @vendors = Vendor.all
+
+    @avg_reviews = []
+    for singlevendor in @vendors
+      @reviews = Review.where(vendor_id: singlevendor.id)
+
+      if @reviews.blank?
+        @avg_reviews << 0
+      else
+        @avg_reviews << @reviews.average(:rating).round(2)
+      end
+    end
+
+  end
+
+
 
   def show
 

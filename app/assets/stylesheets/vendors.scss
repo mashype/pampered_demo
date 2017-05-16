@@ -1,3 +1,59 @@
+#vendor_index {
+
+  padding-bottom: 20px;
+
+  button, .button {
+    @include bold_font;
+    display: block;
+    margin: 0px;
+    width: 100%;
+      font-size: 12px;
+      text-align: center;
+    border: 2px solid $blue;
+    border-radius: .35rem;
+    }
+
+  button, .button:hover {
+    color: $blue;
+    background-color: white;
+    border: 2px solid $blue;
+    border-color: $blue;
+  }
+
+  img {
+    height: auto; 
+    display: block;
+    margin: auto;
+    padding: 3px;
+    vertical-align: middle;
+    border-bottom: 2px solid $gold;
+  }
+
+  #search {
+    border: 1px solid $lt_gold;
+    margin-bottom: 15px;
+  }
+
+  h4 {
+    @include bold_font;
+    text-align: center;
+  }
+
+  h2 {
+    @include bold_font;
+    text-align: center;
+    font-size: 3.0rem;
+    a {
+      color: $purple;
+    }
+  }
+
+  .row {
+    margin: 0px;
+  }
+
+}
+
 #vendor_show {
   margin: auto;
   width: 100%;
@@ -132,4 +188,25 @@
   	border-bottom: 2px solid $purple;
   }
 
+}
+
+#vendor_message {
+  background-color: $purple;
+  text-align: center;
+  vertical-align: middle;
+  padding: 40px 0px;
+
+  h3 {
+    @include bold_font;
+    font-size: 1.5em;
+    text-decoration: none;
+    margin: 0;
+    text-align: center;
+    padding: 5px 5px;
+    color: white;
+  }
+
+  input {
+    width: 50%;
+  } 
 }

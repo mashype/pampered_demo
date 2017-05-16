@@ -41,7 +41,8 @@ fbq('track', 'PageView');
 					%h1 Rough Day?
 					%p.lead.hidden-xs Have one of our certified massage therapists meet at your home or office for an amazing stress relieving swedish massage or get tension relieving deep tissue work.
 				.col-sm-6.col-sm-offset-3
-					= link_to "Check Out Our Therapists", aptfilter_appointments_path, class: "button"
+					= link_to "Check Out Our Therapists", massage_vendors_path, class: "button"
+
 
 		.item
 			= link_to image_tag('hair-banner1.jpg'), root_path, class: "img-responsive"
@@ -70,7 +71,8 @@ fbq('track', 'PageView');
 				%p Don't kill yourself trying to get everything ready on top of your super busy schedule.  Bring in a private chef to cook amazing dinners without breaking the back.  Find an amazing housecleaner or dog walker so you can spend your time doing what you really want.		
 			.col.col-sm-4
 				= image_tag "massage.jpg", class: "img-rounded"
-				%h1 Time To Relax
+				%h1 
+					= link_to "Time To Relax", massage_vendors_path
 				%p Whether you are looking for a hot stone massage to calm your nerves, a deep tissue treatment to work out sore muscles or a simple swedish massage to relax after a busy day, we've got experts that can get you what you are looking for.
 			.col.col-sm-4
 				= image_tag "hair.jpg", class: "img-rounded"

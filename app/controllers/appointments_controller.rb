@@ -1,4 +1,4 @@
-class AppointmentsController < ApplicationController
+class AppointmentsController < ApplicationController 
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
 
