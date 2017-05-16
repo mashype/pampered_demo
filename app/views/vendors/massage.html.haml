@@ -16,64 +16,59 @@ fbq('init', '580725838769524'); fbq('track', 'PageView');
 <!-- End Facebook Pixel Code -->
 
 #vendor_message
-	%h3 So you want to make it super easy to get yourself a massage delivered to your doorstep? 
-	%br
-	%h3 Let's get you started right now.
-	%p 
+	%h3 Let's make it super easy to get yourself a massage delivered to your doorstep? 
+	%p
 	= form_tag massage_vendors_path, :method => :get do
-		%p= text_field_tag :search, params[:search], placeholder: 'We just need your zip code to narrow our search...'
+		%p= text_field_tag :search, params[:search], placeholder: "What's Your Zip..."
 		%p= submit_tag "Refresh Search", :search => nil, class: "button button-buy"
+		
 #works.container-fluid.text-center
-	.wrapper
-		.col-sm-2.col-sm-offset-3
-			= image_tag "search.jpg", class: "img-rounded"				
-			%h4 1. Search
 
-		.col-sm-2
-			= image_tag "compare.jpg", class: "img-rounded"
-			%h4 2. Compare
+	.col-xs-4.col-md-4
 
-		.col-sm-2
-			= image_tag "buy.jpg", class: "img-rounded"
-			%h4 3. Book
+		= image_tag "search.jpg", class: "img-rounded"				
+		%h4 1. Search
 
-.wrapper
+	.col-xs-4.col-md-4
+		= image_tag "compare.jpg", class: "img-rounded"
+		%h4 2. Compare
 
-	%table.table.table-hover
-		%thead
-			%tr
-				%th 
-				%th Vendor
-				%th Appointments
-				%th Services
-				%th Loctions
-				%th{:colspan => "5"}
-		%tbody
-			- @vendors.each_with_index do |vendor, i|
-				%tr
-					%td= image_tag vendor.avatar.url(:thumb)
-					%td
-						= vendor.name
-						%br
-						= vendor.id
+	.col-xs-4.col-md-4
+		= image_tag "buy.jpg", class: "img-rounded"
+		%h4 3. Book
 
-				
-					%td	
-						- vendor.appointments.each do |appointment|
-							%li= appointment.title
-					%td
-						- vendor.services.each do |service|
-							%li= service.title
-					%td
-						- vendor.locations.each do |location|
-							%li= location.city								
-					%td
-						%br
-						= link_to "Book Now", vendor, class: "button"	
-						%br
-						%br
-						.stars
-							%p{class: "star-rating", dscore: @avg_reviews[i]}
+#vendor_show
+	.container-fluid
+		- @vendors.each_with_index do |vendor, i|
+			.row	
+				.col-md-3
+					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: vendor.avatar.url(:medium)}					
+					%br
+						%p=vendor.name
+				.col-md-6
+					%table.table
+						%tbody
+							%tr
+								%td{class: "star-rating", dscore: @avg_review}
+									%em= "#{@reviews.length} reviews"	
+							%tr
+								%td	
+									- vendor.appointments.each do |appointment|
+										%li= appointment.title
+							%tr
+								%td
+									- vendor.locations.each do |location|
+										%li= location.distance_to([session[:latitude], session[:longitude]])								
+							%tr
+								%td
+									%strong Specialty:
+								%td= vendor.vendor_type.title									
+		
+
+				.col-md-3
+
+					= link_to "Book Me", vendor, class: "button"	
+
 
 
    

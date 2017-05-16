@@ -24,6 +24,8 @@ class VendorsController < ApplicationController
 #    @vendors = Vendor.where(vendor_id: @vendor_locations.select(:vendor_id), vendor_type_id: 2)
     @vendors = Vendor.all
 
+#    distance = @vendor_location.distance_from(param[:location])
+
     @avg_reviews = []
     for singlevendor in @vendors
       @reviews = Review.where(vendor_id: singlevendor.id)
