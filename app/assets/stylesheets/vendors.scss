@@ -63,6 +63,11 @@
     text-align: center;
   }
 
+  h3 {
+    @include bold_font;
+    text-align: center;
+  }
+
   p.thick {
     font-weight: bold;
   }
@@ -194,7 +199,7 @@
   background-color: $purple;
   text-align: center;
   vertical-align: middle;
-  padding: 40px 0px;
+  padding: 20px 0px;
 
   h3 {
     @include bold_font;
@@ -208,5 +213,6 @@
 
   input {
     width: 50%;
+    margin: 0px;
   } 
 }

@@ -16,26 +16,27 @@ fbq('init', '580725838769524'); fbq('track', 'PageView');
 <!-- End Facebook Pixel Code -->
 
 #vendor_message
-	%h3 Let's make it super easy to get yourself a massage delivered to your doorstep? 
+	%h3 Let's make it super easy to get 
+	%h3 A massage at your doorstep? 
 	%p
 	= form_tag massage_vendors_path, :method => :get do
 		%p= text_field_tag :search, params[:search], placeholder: "What's Your Zip..."
 		%p= submit_tag "Refresh Search", :search => nil, class: "button button-buy"
-		
+
 #works.container-fluid.text-center
 
-	.col-xs-4.col-md-4
+	.col-xs-4.col-md-2.col-md-offset-3
 
 		= image_tag "search.jpg", class: "img-rounded"				
 		%h4 1. Search
 
-	.col-xs-4.col-md-4
-		= image_tag "compare.jpg", class: "img-rounded"
-		%h4 2. Compare
-
-	.col-xs-4.col-md-4
+	.col-xs-4.col-md-2
 		= image_tag "buy.jpg", class: "img-rounded"
 		%h4 3. Book
+
+	.col-xs-4.col-md-2
+		= image_tag "win.jpg", class: "img-rounded"
+		%h4 Enjoy!
 
 #vendor_show
 	.container-fluid
@@ -43,8 +44,7 @@ fbq('init', '580725838769524'); fbq('track', 'PageView');
 			.row	
 				.col-md-3
 					%img.img-responsive.img-rounded{alt: "Profile Avatar", src: vendor.avatar.url(:medium)}					
-					%br
-						%p=vendor.name
+						%h3=vendor.name
 				.col-md-6
 					%table.table
 						%tbody
@@ -52,18 +52,21 @@ fbq('init', '580725838769524'); fbq('track', 'PageView');
 								%td{class: "star-rating", dscore: @avg_review}
 									%em= "#{@reviews.length} reviews"	
 							%tr
+								%td
+									%strong APPOINTMENTS
+							%tr
 								%td	
 									- vendor.appointments.each do |appointment|
 										%li= appointment.title
 							%tr
 								%td
-									- vendor.locations.each do |location|
-										%li= location.distance_to([session[:latitude], session[:longitude]])								
-							%tr
+									%strong DISTANCE
+							%tr		
 								%td
-									%strong Specialty:
-								%td= vendor.vendor_type.title									
-		
+									- vendor.locations.each do |location|
+										%li= location.city	
+										%li= "#{location.distance_to([session[:latitude], session[:longitude]])} miles"
+
 
 				.col-md-3
 

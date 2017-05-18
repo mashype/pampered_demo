@@ -22,9 +22,11 @@ class VendorsController < ApplicationController
 
     @vendor_locations = VendorLocation.order("distance").where(location_id: location_ids)
 #    @vendors = Vendor.where(vendor_id: @vendor_locations.select(:vendor_id), vendor_type_id: 2)
-    @vendors = Vendor.all
+    @vendors = Vendor.where(vendor_type_id: 2)
 
-#    distance = @vendor_location.distance_from(param[:location])
+#    distance = Location.distance_to([session[:latitude], session[:longitude]]).pluck(:id)
+
+
 
     @avg_reviews = []
     for singlevendor in @vendors

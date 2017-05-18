@@ -112,10 +112,9 @@ button, .button:hover {
 }
 
 .button-buy {
-    background: $gold;
-    color: red;
+    background: red;
     font-size: 14px;
-    padding: 1rem 3.5rem;
+    margin-top: 0px;
 
 }
 
@@ -207,7 +206,7 @@ a {
 
     text-align: center;
     display: block;
-    padding: 40px 0px;  
+    padding: 10px 0px;  
 
     h3 {
         @include bold_font;
