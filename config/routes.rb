@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :reviews, except: [:show, :index]  
     collection do 
       get 'massage'
+      get 'massagemembership'
     end  
   end
 
@@ -57,6 +58,8 @@ Rails.application.routes.draw do
   get 'welcome/terms' => 'welcome#terms' 
   get 'welcome/vendors' => 'welcome#vendors' 
   get 'welcome/mail' => 'welcome#mail' 
+  get 'welcome/membership' => 'welcome#membership' 
+
  
   match '/contacts',     to: 'contacts#new',             via: 'get'
   resources "contacts", only: [:new, :create]

@@ -205,6 +205,7 @@ i {
 	background-color: $light_gray;
 	display: block;
     padding-top: 40px;
+
 }
 
 
@@ -524,3 +525,109 @@ i {
 		}
 	}
 }
+
+#membership_header {
+	background-color: white;
+	text-align: center;
+
+	h2 {
+		@include bold_font;
+		color: $gold;
+		font-size: 3.5em;
+	}
+
+	h3 {
+		@include bold_font;
+		color: black;
+		font-size: 2.5em;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	p {
+		color: $purple;
+		font-size: 2.0em;
+	}
+
+	.row {
+		padding: 25px 0px;
+	}
+
+}
+
+#membership_callouts {
+	background-color: $lt_purple;
+	text-align: center;
+
+	h2 {
+		@include bold_font;
+		color: $dk_purple;
+		font-size: 2.5em;
+	}
+
+	i {
+		color: white;
+		font-size: 7.0rem;
+		padding: 2.0rem 2.5%;
+	}
+
+	p {
+		@include bold_font;
+		color: white;
+	}
+
+	.row {
+		padding: 35px 0px;
+	}
+
+	button, .button {
+		@include bold_font;	
+		padding: 1rem 3.5rem;
+		margin-top: .5rem;
+		display: block;
+		width: 100%;
+   		font-size: 3.0rem;
+    	text-align: center;
+		border: 2px solid white;
+		border-radius: .35rem;
+		}
+
+}
+
+#membership_options {
+	background-color: white;
+	text-align: center;
+
+	h2 {
+		@include bold_font;
+		color: $dk_purple;
+		font-size: 2.5em;
+	}
+
+	h3 {
+		@include bold_font;
+		color: $gold;
+		font-size: 2.5em;
+	}
+
+	h4 {
+		@include bold_font;
+		color: $dk_purple;
+		font-size: 1.5em;
+	}
+
+
+	i {
+		color: $dk_purple;
+		font-size: 9.0rem;
+	}
+
+	.row {
+		padding: 15px 0px;
+	}
+
+}
+
+

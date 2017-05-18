@@ -15,16 +15,14 @@ class VendorsController < ApplicationController
   def massage
 
     if params[:search].present?
-      location_ids = Location.near(params[:search], 1000, order: '').pluck(:id)
+      location_ids = Location.near(params[:search], 100, order: '').pluck(:id)
     else
-      location_ids = Location.near([session[:latitude], session[:longitude]], 100, order: '').pluck(:id)      
+      location_ids = Location.near([session[:latitude], session[:longitude]], 1000, order: '').pluck(:id)      
     end
 
-    @vendor_locations = VendorLocation.order("distance").where(location_id: location_ids)
+    @vendor_locations = VendorLocation.where(location_id: location_ids)
 #    @vendors = Vendor.where(vendor_id: @vendor_locations.select(:vendor_id), vendor_type_id: 2)
-    @vendors = Vendor.where(vendor_type_id: 2)
-
-#    distance = Location.distance_to([session[:latitude], session[:longitude]]).pluck(:id)
+    @vendors = Vendor.all
 
 
 
@@ -41,6 +39,11 @@ class VendorsController < ApplicationController
 
   end
 
+  def massagemembership
+
+    @vendors = Vendor.all
+  
+  end
 
 
   def show
