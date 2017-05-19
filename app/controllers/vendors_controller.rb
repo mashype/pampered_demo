@@ -41,7 +41,7 @@ class VendorsController < ApplicationController
 
   def massagemembership
 
-    @vendors = Vendor.all
+    @vendors = Vendor.where(vendor_type_id: 2)
   
   end
 
