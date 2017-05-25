@@ -216,3 +216,63 @@
     margin: 0px;
   } 
 }
+
+
+#vendor_memberscroll {
+
+  padding-bottom: 20px;
+
+  img {
+    height: auto; 
+    display: block;
+    margin: auto;
+    padding: 3px;
+    vertical-align: middle;
+    border-bottom: 2px solid $gold;
+  }
+
+
+  .box {
+    background: $lt_purple;
+    padding: 2px;
+    margin: auto;
+    display: block;
+    float: none;
+    vertical-align: middle;
+    width: 275px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 7px;
+    text-align: center;
+    
+    .panel-body {
+      background: white;
+      padding: 2px; 
+      text-align: center;
+    }
+    .panel-heading {
+    background: $lt_purple;
+    padding: 4px; 
+    text-align: left;
+    height: 60px;
+    }
+    
+
+    h2 {
+      @include bold_font;
+      font-size: 18px;
+      text-decoration: none;
+      margin: 0;
+      text-align: center;
+      padding: 5px 5px;
+      color: black;
+      a {
+        color: #474747;
+      }
+    }
+
+  }
+}
+
+
+
+

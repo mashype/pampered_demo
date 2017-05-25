@@ -42,6 +42,7 @@ gem 'haml-rails'
 gem 'random_data'
 gem 'thin'
 gem 'will_paginate-bootstrap'
+gem "jquery-slick-rails"
 
 
 gem 'rails_12factor', group: :production

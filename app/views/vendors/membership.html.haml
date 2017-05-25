@@ -1,0 +1,73 @@
+%script{:src => "//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCHo7P-uEfAEioZyTEw51cjJxfGlQf5tiM"}
+%script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
+%script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
+
+
+
+- @vendor_list.each do |vendor_type, vendor_items|
+	%h2= vendor_type
+	#vendor_memberscroll.container-fluid
+		.wrapper
+			.scroller
+				- vendor_items.each_with_index do |vendor_item, i|
+					%a{ href: (url_for [vendor_item])}
+						.box.panel.panel-default
+							.panel-heading
+								%h2= vendor_item.name
+							.panel-body
+								%img.img-responsive.img-rounded{alt: "Profile Avatar", src: vendor_item.avatar.url(:medium)}
+
+
+#welcome_contact.container-fluid
+	.wrapper
+		.row
+			%link{:href => "//cdn-images.mailchimp.com/embedcode/classic-10_7.css", :rel => "stylesheet", :type => "text/css"}/
+			:css
+				#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+
+			#mc_embed_signup
+				%form#mc-embedded-subscribe-form.validate{:action => "//pamperedup.us12.list-manage.com/subscribe/post?u=fd9fd116c23d75e6992fb7233&id=c9890c302f", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}
+					#mc_embed_signup_scroll
+						%h2 Subscribe to our mailing list
+						.indicates-required
+							%span.asterisk *
+							indicates required
+						.mc-field-group
+							%label{:for => "mce-EMAIL"}
+								Email Address
+								%span.asterisk *
+							%input#mce-EMAIL.required.email{:name => "EMAIL", :type => "email", :value => ""}/
+						.mc-field-group
+							%label{:for => "mce-FNAME"} First Name
+							%input#mce-FNAME{:name => "FNAME", :type => "text", :value => ""}/
+						.mc-field-group
+							%label{:for => "mce-ZIP"}
+								Zip
+								%span.asterisk *
+							%input#mce-ZIP.required{:name => "ZIP", :type => "text", :value => ""}/
+						#mce-responses.clear
+							#mce-error-response.response{:style => "display:none"}
+							#mce-success-response.response{:style => "display:none"}
+
+						%div{"aria-hidden" => "true", :style => "position: absolute; left: -5000px;"}
+							%input{:name => "b_fd9fd116c23d75e6992fb7233_c9890c302f", :tabindex => "-1", :type => "text", :value => ""}/
+						.clear
+							%input#mc-embedded-subscribe.button{:name => "subscribe", :type => "submit", :value => "Subscribe"}/
+					%script{:src => "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js", :type => "text/javascript"}
+
+:javascript
+	(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[3]='ZIP';ftypes[3]='zip';}(jQuery));var $mcj = jQuery.noConflict(true);
+
+:javascript
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window,document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '580725838769524'); 
+	fbq('track', 'PageView');
+	fbq('track', 'Lead');
+

@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     collection do 
       get 'massage'
       get 'massagemembership'
+      get 'membership'
     end  
   end
 

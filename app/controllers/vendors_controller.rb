@@ -12,6 +12,14 @@ class VendorsController < ApplicationController
   end
 
 
+  def membership
+
+    @vendors = Vendor.all
+    @vendor_list = @vendors.group_by { |t| t.vendor_type.title }
+
+  end
+
+
   def massage
 
     if params[:search].present?

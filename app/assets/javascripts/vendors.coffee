@@ -35,3 +35,8 @@ jQuery ->
 			$('#vendor_vendor_features_attributes_0_feature_id').parent().hide()
 
 
+jQuery(document).on 'turbolinks:load', ->
+  $('.scroller').slick({
+    dots: true
+  })
+
