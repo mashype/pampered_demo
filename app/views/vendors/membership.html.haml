@@ -2,43 +2,20 @@
 %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
 %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
 
-#MembershipCarousel.carousel.slide
-	.carousel-inner
-		.item.active
-			= link_to image_tag('bell-header1.jpg'), root_path, class: "img-responsive"
-			.container
-				.carousel-caption
-					%h1 You Know You Need It?
-					%p.lead Membership gets you access to amazing professionals in your area ready to serve!
+#MembershipBanner
+	%h2 Membership
+	%h3 $99 per month
 
-		.item
-			= link_to image_tag('chef-banner1.jpg'), root_path, class: "img-responsive"
-			.container
-				.carousel-caption
-					%h1 Massage?
-					%p.lead A one hour massage is included
+	%p 1 massage or
+	%p 1 private chef or
+	%p 2 personal training/yoga 
 
-		.item
-			= link_to image_tag('massage-banner1.jpg'), root_path, class: "img-responsive"
-			.container
-				.carousel-caption 
-					%h1 Yoga?
-					%p.lead Book two yoga sessions.
+	%h4 Mix and match each month
+	%h4 All delivered right to your door
+	%br
+	%h4 Cancel anytime
+	%br
 
-
-		.item
-			= link_to image_tag('hair-banner1.jpg'), root_path, class: "img-responsive"
-			.container
-				.carousel-caption
-					%h1 Dinner?
-					%p.lead Get a chef in to design, prepare and serve an amazing meal.
-
-	%a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
-		%span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
-		%span.sr-only Previous
-	%a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
-		%span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
-		%span.sr-only Next
 
 - @vendor_list.each do |vendor_type, vendor_items|
 	%h2= vendor_type
@@ -54,45 +31,26 @@
 								%img.img-responsive.img-rounded{alt: "Profile Avatar", src: vendor_item.avatar.url(:medium)}
 
 
-#welcome_contact.container-fluid
+#devise
 	.wrapper
 		.row
-			%link{:href => "//cdn-images.mailchimp.com/embedcode/classic-10_7.css", :rel => "stylesheet", :type => "text/css"}/
-			:css
-				#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-
-			#mc_embed_signup
-				%form#mc-embedded-subscribe-form.validate{:action => "//pamperedup.us12.list-manage.com/subscribe/post?u=fd9fd116c23d75e6992fb7233&id=c9890c302f", :method => "post", :name => "mc-embedded-subscribe-form", :novalidate => "", :target => "_blank"}
-					#mc_embed_signup_scroll
-						%h2 Subscribe to our mailing list
-						.indicates-required
-							%span.asterisk *
-							indicates required
-						.mc-field-group
-							%label{:for => "mce-EMAIL"}
-								Email Address
-								%span.asterisk *
-							%input#mce-EMAIL.required.email{:name => "EMAIL", :type => "email", :value => ""}/
-						.mc-field-group
-							%label{:for => "mce-FNAME"} First Name
-							%input#mce-FNAME{:name => "FNAME", :type => "text", :value => ""}/
-						.mc-field-group
-							%label{:for => "mce-ZIP"}
-								Zip
-								%span.asterisk *
-							%input#mce-ZIP.required{:name => "ZIP", :type => "text", :value => ""}/
-						#mce-responses.clear
-							#mce-error-response.response{:style => "display:none"}
-							#mce-success-response.response{:style => "display:none"}
-
-						%div{"aria-hidden" => "true", :style => "position: absolute; left: -5000px;"}
-							%input{:name => "b_fd9fd116c23d75e6992fb7233_c9890c302f", :tabindex => "-1", :type => "text", :value => ""}/
-						.clear
-							%input#mc-embedded-subscribe.button{:name => "subscribe", :type => "submit", :value => "Subscribe"}/
-					%script{:src => "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js", :type => "text/javascript"}
-
-:javascript
-	(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[3]='ZIP';ftypes[3]='zip';}(jQuery));var $mcj = jQuery.noConflict(true);
+			.containter
+				.col-md-6.col-md-offset-3
+					= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+						= f.error_notification
+						.form-style-5
+							%form
+								%fieldset
+									%legend
+										%span.number 
+										Let's Get Started Now
+									= f.input :username, required: true, autofocus: true, :placeholder => "Create Username", label: false
+									= f.input :email, required: true, :placeholder => "Email Address", label: false, type: "email"
+									= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), :placeholder => "Password", label: false, type: "text"
+									= f.input :password_confirmation, required: true, :placeholder => "Confirm Password", label: false
+							%input{:type => "submit", :value => "Create Account", class: "button"}/
+							%p By signing up with Pampered you agree to our #{link_to "Terms of Use", welcome_terms_path}
+							%br
 
 :javascript
 	!function(f,b,e,v,n,t,s)
