@@ -1,5 +1,6 @@
 Rails.application.routes.draw do 
 
+  
   resources :coupons
   resources :durations
   
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :charges
   resources :genders
   resources :locations
+  resources :memberships
   resources :messages, only: [:new, :create]
   resources :services
   resources :vendor_types

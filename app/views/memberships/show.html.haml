@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Total credits:
+  = @membership.total_credits
+%p
+  %b Used credits:
+  = @membership.used_credits
+%p
+  %b Email:
+  = @membership.email
+%p
+  %b Card token:
+  = @membership.card_token
+%p
+  %b User:
+  = @membership.user
+
+= link_to 'Edit', edit_membership_path(@membership)
+\|
+= link_to 'Back', memberships_path

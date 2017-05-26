@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_credits: 1
+  used_credits: 1
+  email: MyString
+  card_token: MyString
+  user_id: 
+
+two:
+  total_credits: 1
+  used_credits: 1
+  email: MyString
+  card_token: MyString
+  user_id: 

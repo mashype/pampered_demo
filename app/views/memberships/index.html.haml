@@ -1,0 +1,29 @@
+%h1 Listing memberships
+
+%table
+  %thead
+    %tr
+      %th Total credits
+      %th Used credits
+      %th Email
+      %th Card token
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @memberships.each do |membership|
+      %tr
+        %td= membership.total_credits
+        %td= membership.used_credits
+        %td= membership.email
+        %td= membership.card_token
+        %td= membership.user
+        %td= link_to 'Show', membership
+        %td= link_to 'Edit', edit_membership_path(membership)
+        %td= link_to 'Destroy', membership, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Membership', new_membership_path
