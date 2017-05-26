@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207203505) do
+ActiveRecord::Schema.define(version: 20170526150108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,14 +274,15 @@ ActiveRecord::Schema.define(version: 20170207203505) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "category"
   end
 
   create_table "vendors", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",                limit: 50
     t.text     "bio"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -292,6 +293,7 @@ ActiveRecord::Schema.define(version: 20170207203505) do
     t.string   "sm_instagram"
     t.string   "sm_pinterest"
     t.string   "website",             limit: 200
+    t.boolean  "active",                          default: true, null: false
   end
 
   add_foreign_key "appointments", "durations"

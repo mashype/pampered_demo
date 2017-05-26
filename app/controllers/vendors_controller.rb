@@ -14,8 +14,8 @@ class VendorsController < ApplicationController
 
   def membership
 
-    @vendors = Vendor.all
-    @vendor_list = @vendors.group_by { |t| t.vendor_type.title }
+    @vendors = Vendor.where("avatar_file_name IS NOT NULL")
+    @vendor_list = @vendors.group_by { |t| t.vendor_type.category }
 
   end
 
