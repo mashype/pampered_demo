@@ -37,6 +37,6 @@ jQuery ->
 
 jQuery(document).on 'turbolinks:load', ->
   $('.scroller').slick({
-    dots: true
+    dots: false
   })
 
