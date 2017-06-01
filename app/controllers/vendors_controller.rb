@@ -14,7 +14,7 @@ class VendorsController < ApplicationController
 
   def membership
 
-    @vendors = Vendor.where("avatar_file_name IS NOT NULL")
+    @vendors = Vendor.where("avatar_file_name IS NOT NULL").order("updated_at DESC")
     @vendor_list = @vendors.group_by { |t| t.vendor_type.category }
 
   end

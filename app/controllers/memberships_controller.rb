@@ -16,20 +16,22 @@ class MembershipsController < ApplicationController
   def edit
   end
 
+
   def create
     @membership = Membership.new membership_params.merge(email: stripe_params["stripeEmail"], card_token: stripe_params["stripeToken"])
     @membership.user_id = current_user.id
-    raise "Please, check registration errors" unless @membership.valid?
+
+    raise "Please, check registration errors" unless @booking.valid?
+
     @membership.process_payment stripe_params['stripeToken']
     @membership.save
 
-    redirect_to root_path
+    redirect_to root_path, :notice => 'Confirmation was successfully updated.'
 
   rescue Exception => e
     flash[:error] = e.message
     render :new
   end
-
 
 
 
